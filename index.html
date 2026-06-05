@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TrafficRisk">
+<meta name="theme-color" content="#ffffff">
+<title>TrafficRisk</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+:root{
+  --bg:#f5f7fa;--white:#fff;--surface:#f0f3f8;
+  --border:#e4e8ef;--border2:#d0d8e4;
+  --text:#1a2233;--text2:#6b7a99;--text3:#aab4c8;
+  --red:#e8354a;--red2:rgba(232,53,74,0.1);--red3:rgba(232,53,74,0.06);
+  --orange:#f57c00;--orange2:rgba(245,124,0,0.1);
+  --green:#1db954;--green2:rgba(29,185,84,0.1);
+  --blue:#1a73e8;--blue2:rgba(26,115,232,0.1);
+  --shadow:0 2px 12px rgba(0,0,0,0.08);--shadow2:0 4px 24px rgba(0,0,0,0.12);
+  --r:16px;--rs:10px;--font:'Noto Sans TC',sans-serif;--mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);background:var(--bg);color:var(--text)}
+#app{display:flex;flex-direction:column;height:100vh;height:100dvh}
+
+/* TOPBAR */
+#topbar{display:flex;align-items:center;justify-content:flex-end;padding:6px 14px;background:var(--white);border-bottom:1px solid var(--border);z-index:1000;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-icon{width:30px;height:30px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700}
+.logo-name{font-size:15px;font-weight:700;letter-spacing:-.3px}
+.logo-sub{font-size:10px;color:var(--text2)}
+.top-chips{display:flex;gap:6px;align-items:center}
+.chip{padding:4px 10px;border-radius:20px;background:var(--surface);border:1px solid var(--border);font-size:11px;color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
+.chip:hover,.chip.active{border-color:var(--blue);color:var(--blue);background:var(--blue2)}
+.chip-weather{display:flex;align-items:center;gap:4px}
+.weather-dot{width:5px;height:5px;border-radius:50%;background:var(--green)}
+
+/* CONTENT */
+#content{flex:1;overflow:hidden;position:relative}
+.page{position:absolute;inset:0;display:none;flex-direction:column;overflow:hidden}
+.page.active{display:flex}
+#page-report.active{display:flex;flex-direction:column}
+
+/* MAP */
+#map{flex:1;z-index:1}
+.leaflet-container{background:#e8ecf0!important}
+.leaflet-popup-content-wrapper{background:var(--white)!important;border:none!important;border-radius:var(--r)!important;box-shadow:var(--shadow2)!important;padding:0!important}
+.leaflet-popup-tip{background:var(--white)!important}
+.leaflet-popup-content{margin:0!important;width:268px!important}
+.leaflet-popup-close-button{color:var(--text2)!important;top:10px!important;right:10px!important}
+.leaflet-control-zoom{border:none!important;box-shadow:var(--shadow)!important}
+.leaflet-control-zoom a{background:var(--white)!important;color:var(--text)!important;border:1px solid var(--border)!important;border-bottom:none!important}
+.leaflet-control-zoom a:last-child{border-bottom:1px solid var(--border)!important}
+
+/* POPUP */
+.pu{padding:14px}
+.pu-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px}
+.pu-name{font-size:13px;font-weight:700;flex:1;line-height:1.3}
+.pu-badge{padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;margin-left:8px;flex-shrink:0}
+.rh .pu-badge{background:var(--red2);color:var(--red)}
+.rm .pu-badge{background:var(--orange2);color:var(--orange)}
+.rl .pu-badge{background:var(--green2);color:var(--green)}
+.pu-score-row{display:flex;align-items:baseline;gap:5px;margin-bottom:10px}
+.pu-score{font-family:var(--mono);font-size:36px;font-weight:500}
+.rh .pu-score{color:var(--red)}.rm .pu-score{color:var(--orange)}.rl .pu-score{color:var(--green)}
+.pu-score-sub{font-size:11px;color:var(--text2)}
+.cause-row{display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;color:var(--text2)}
+.cb-bg{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.cb-fill{height:100%;border-radius:2px}
+.rh .cb-fill{background:var(--red)}.rm .cb-fill{background:var(--orange)}.rl .cb-fill{background:var(--green)}
+.cb-pct{font-family:var(--mono);font-size:10px;color:var(--text2);width:26px;text-align:right}
+.pu-hint{margin-top:8px;padding:7px 10px;background:var(--surface);border-radius:var(--rs);font-size:11px;color:var(--text);border-left:3px solid var(--orange)}
+
+/* MARKERS */
+.mk{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;font-family:var(--mono);box-shadow:0 2px 8px rgba(0,0,0,0.2);cursor:pointer;transition:transform .15s;border:none}
+.mk:hover{transform:scale(1.15)}
+.mk-h{background:rgba(232,53,74,0.72);color:#fff}
+.mk-m{background:rgba(245,124,0,0.72);color:#fff}
+.mk-l{background:rgba(29,185,84,0.72);color:#fff}
+.mk-user{background:var(--blue);color:#fff;border:3px solid white;box-shadow:0 0 0 3px rgba(26,115,232,0.3)}
+
+/* MAP OVERLAYS */
+#legend{position:absolute;top:12px;right:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--rs);padding:10px 12px;z-index:500;box-shadow:var(--shadow);font-size:11px}
+.leg-item{display:flex;align-items:center;gap:6px;color:var(--text2);margin-bottom:4px}
+.leg-item:last-child{margin-bottom:0}
+.leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+#cluster-btn{display:none;position:absolute;top:12px;left:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--rs);padding:7px 12px;z-index:500;font-size:12px;cursor:pointer;color:var(--text2);box-shadow:var(--shadow);transition:all .15s}
+#cluster-btn.on{border-color:var(--red);color:var(--red);background:var(--red3)}
+#gps-btn{position:absolute;bottom:80px;right:12px;background:var(--white);border:1px solid var(--border);border-radius:50%;width:40px;height:40px;z-index:500;cursor:pointer;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font-size:18px}
+#filter-bar{position:absolute;bottom:12px;left:10px;right:10px;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;z-index:500;display:flex;gap:10px;box-shadow:var(--shadow2)}
+.fb-g{flex:1}
+.fb-l{font-size:9px;color:var(--text2);letter-spacing:.4px;margin-bottom:4px;text-transform:uppercase;font-weight:600}
+.fb-s{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:var(--rs);padding:7px 8px;font-size:12px;font-family:var(--font);outline:none}
+
+/* NAV PAGE */
+#page-nav{background:var(--bg)}
+.nav-map-wrap{flex:1;position:relative;min-height:0}
+#nav-map{width:100%;height:100%}
+
+/* VOICE ALERT BANNER */
+#voice-banner{display:none;position:absolute;top:10px;left:10px;right:10px;z-index:600;background:var(--red);color:#fff;border-radius:var(--rs);padding:10px 14px;font-size:13px;font-weight:600;box-shadow:var(--shadow2);text-align:center}
+#voice-banner.show{display:block}
+
+.nav-sheet{flex-shrink:0;background:var(--white);border-top:1px solid var(--border);padding:12px 14px 10px;box-shadow:0 -4px 20px rgba(0,0,0,0.06)}
+.nav-inputs{display:flex;flex-direction:column;margin-bottom:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:visible}
+.nav-row{display:flex;align-items:center;gap:10px;padding:10px 12px;position:relative}
+.nav-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.nav-field{flex:1;background:transparent;border:none;color:var(--text);font-size:14px;font-family:var(--font);outline:none}
+.nav-field::placeholder{color:var(--text3)}
+.nav-gps-btn{background:none;border:none;color:var(--blue);font-size:14px;cursor:pointer;padding:2px 6px;border-radius:6px;flex-shrink:0}
+.nav-gps-btn:hover{background:var(--blue2)}
+.nav-divider{height:1px;background:var(--border);margin:0 12px 0 31px}
+
+/* AUTOCOMPLETE */
+.autocomplete-list{position:absolute;top:100%;left:0;right:0;background:var(--white);border:1px solid var(--border);border-radius:0 0 var(--rs) var(--rs);box-shadow:var(--shadow2);z-index:700;max-height:180px;overflow-y:auto}
+.ac-item{padding:10px 14px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--border);color:var(--text)}
+.ac-item:last-child{border-bottom:none}
+.ac-item:hover{background:var(--surface)}
+.ac-main{font-weight:600}
+.ac-sub{font-size:11px;color:var(--text2);margin-top:1px}
+
+.nav-btns{display:flex;gap:8px;margin-bottom:8px}
+.btn-fast{flex:1;padding:11px;border-radius:var(--rs);background:var(--blue);border:none;color:#fff;font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer}
+.btn-safe{padding:11px 16px;border-radius:var(--rs);background:var(--green2);border:2px solid var(--green);color:var(--green);font-size:13px;font-weight:700;font-family:var(--font);cursor:pointer}
+.btn-cancel{padding:11px 14px;border-radius:var(--rs);background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:13px;font-weight:600;font-family:var(--font);cursor:pointer;display:none}
+
+#route-result{display:none;flex-direction:column;max-height:200px;overflow-y:auto}
+.r-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:8px}
+.r-tab{flex:1;padding:7px;text-align:center;font-size:12px;font-weight:600;cursor:pointer;color:var(--text2);border-bottom:2px solid transparent;transition:all .15s}
+.r-tab.on{color:var(--blue);border-bottom-color:var(--blue)}
+.r-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
+.rs{background:var(--surface);border-radius:var(--rs);padding:8px;text-align:center}
+.rs-v{font-size:18px;font-weight:700;font-family:var(--mono)}
+.rs-k{font-size:10px;color:var(--text2);margin-top:1px}
+.r-note{font-size:11px;padding:7px 10px;border-radius:var(--rs);margin-bottom:6px;line-height:1.5}
+.r-note-fast{background:rgba(245,124,0,0.08);color:var(--orange);border:1px solid rgba(245,124,0,0.2)}
+.r-note-safe{background:var(--green2);color:var(--green);border:1px solid rgba(29,185,84,0.3)}
+.hi{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--border)}
+.hi:last-child{border-bottom:none}
+.hi-rk{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:var(--mono);flex-shrink:0}
+.hi-info{flex:1}
+.hi-name{font-size:12px;font-weight:600}
+.hi-det{font-size:10px;color:var(--text2);margin-top:1px}
+.hi-sc{font-family:var(--mono);font-size:13px;font-weight:700;flex-shrink:0}
+
+/* REPORT PAGE */
+#page-report{background:var(--bg);overflow-y:auto;padding:14px;gap:10px}
+.rp-h{font-size:18px;font-weight:700;margin-bottom:2px}
+.rp-s{font-size:12px;color:var(--text2);margin-bottom:2px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)}
+.card-h{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;font-weight:700;margin-bottom:12px}
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kpi{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;box-shadow:var(--shadow)}
+.kpi-v{font-size:22px;font-weight:700;font-family:var(--mono)}
+.kpi-k{font-size:10px;color:var(--text2);margin-top:2px}
+.feat-item{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.feat-item:last-child{margin-bottom:0}
+.feat-nm{width:100px;font-size:11px;color:var(--text2)}
+.feat-bg{flex:1;height:7px;background:var(--surface);border-radius:4px;overflow:hidden;border:1px solid var(--border)}
+.feat-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--blue),#42a5f5)}
+.feat-pct{font-family:var(--mono);font-size:11px;width:36px;text-align:right}
+.period-bar{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.period-lbl{width:55px;font-size:11px;color:var(--text2)}
+.period-bg{flex:1;height:10px;background:var(--surface);border-radius:5px;overflow:hidden}
+.period-fill{height:100%;border-radius:5px}
+.period-pct{font-family:var(--mono);font-size:11px;width:36px;text-align:right}
+.near-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.near-item:last-child{border-bottom:none}
+.near-info{flex:1}
+.near-name{font-size:13px;font-weight:600}
+.near-dist{font-size:11px;color:var(--text2);margin-top:1px}
+.near-sc{font-family:var(--mono);font-size:14px;font-weight:700}
+.dist-item{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.dist-name{width:60px;font-size:11px;color:var(--text2)}
+.dist-bg{flex:1;height:8px;background:var(--surface);border-radius:4px;overflow:hidden}
+.dist-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--red),var(--orange))}
+.dist-cnt{font-family:var(--mono);font-size:11px;width:30px;text-align:right;color:var(--text2)}
+.saved-route{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.saved-route:last-child{border-bottom:none}
+.saved-route:hover{background:var(--surface);margin:0 -14px;padding:8px 14px}
+.sr-info{flex:1}
+.sr-name{font-size:13px;font-weight:600}
+.sr-risk{font-size:11px;color:var(--text2);margin-top:1px}
+.sr-arrow{color:var(--text3);font-size:14px}
+
+/* BOTTOM NAV */
+#bnav{display:flex;background:var(--white);border-top:1px solid var(--border);padding:6px 0 max(6px,env(safe-area-inset-bottom));flex-shrink:0;z-index:1000;box-shadow:0 -1px 0 var(--border)}
+.bn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px;cursor:pointer;border:none;background:transparent;color:var(--text2);font-family:var(--font);transition:color .15s}
+.bn.on{color:var(--blue)}
+.bn-icon{font-size:19px;line-height:1}
+.bn-lbl{font-size:9px;letter-spacing:.2px;font-weight:500}
+
+/* MODALS */
+.overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);align-items:flex-end}
+.overlay.open{display:flex}
+.sheet{width:100%;background:var(--white);border-radius:20px 20px 0 0;padding:16px 14px max(18px,env(safe-area-inset-bottom));border-top:1px solid var(--border)}
+.sh-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px}
+.sh-title{font-size:15px;font-weight:700;margin-bottom:14px}
+.sh-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sh-opt{padding:12px;border-radius:var(--rs);background:var(--surface);border:2px solid var(--border);color:var(--text);font-size:13px;text-align:center;cursor:pointer;font-family:var(--font);font-weight:500;transition:all .15s}
+.sh-opt.on{border-color:var(--blue);color:var(--blue);background:var(--blue2)}
+.sh-confirm{width:100%;margin-top:10px;padding:12px;background:var(--blue);border:none;border-radius:var(--rs);color:#fff;font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer}
+
+/* LOADING */
+#loading{display:none;position:fixed;inset:0;z-index:8888;background:rgba(255,255,255,0.8);backdrop-filter:blur(4px);align-items:center;justify-content:center;flex-direction:column;gap:10px}
+#loading.show{display:flex}
+.spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-txt{font-size:12px;color:var(--text2)}
+
+.nav-mode-row{display:flex;gap:6px;margin-bottom:8px}
+.mode-btn{flex:1;padding:8px;border-radius:var(--rs);background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:600;font-family:var(--font);cursor:pointer;transition:all .15s}
+.mode-btn.on{background:var(--blue2);border-color:var(--blue);color:var(--blue)}
+.btn-start{width:100%;padding:12px;border-radius:var(--rs);background:var(--blue);border:none;color:#fff;font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer}
+.pu-moto{margin-top:6px;padding:7px 10px;background:rgba(26,115,232,0.06);border-radius:var(--rs);font-size:11px;color:var(--blue);border-left:3px solid var(--blue)}
+
+/* CLUSTER */
+.cl-ring{border-radius:50%;border:2px dashed rgba(232,53,74,0.5);background:rgba(232,53,74,0.06);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:var(--mono);color:var(--red);animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(232,53,74,0.2)}60%{box-shadow:0 0 0 12px rgba(232,53,74,0)}}
+</style>
+</head>
+<body>
+<div id="app">
+
+<div id="topbar">
+  <div class="top-chips" style="width:100%;justify-content:flex-end">
+    <div class="chip" id="time-chip" style="cursor:default"><span id="time-lbl">偵測中</span></div>
+    <div class="chip chip-weather" style="cursor:default"><div class="weather-dot" id="weather-dot"></div><span id="weather-lbl">偵測中</span></div>
+  </div>
+</div>
+
+<div id="content">
+
+<!-- MAP PAGE -->
+<div class="page active" id="page-map">
+  <div id="map"></div>
+
+  <div id="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:var(--red)"></div>高風險 ≥70</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div>中風險 50-69</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div>低風險 &lt;50</div>
+  </div>
+  <button id="gps-btn" onclick="locateUser()" title="我的位置">&#9737;</button>
+  <div id="filter-bar">
+    <div class="fb-g">
+      <div class="fb-l">行政區</div>
+      <select class="fb-s" id="dist-sel" onchange="renderMain()">
+        <option value="all">全部行政區</option>
+        <option value="中壢區">中壢區</option><option value="桃園區">桃園區</option>
+        <option value="平鎮區">平鎮區</option><option value="八德區">八德區</option>
+        <option value="龍潭區">龍潭區</option><option value="楊梅區">楊梅區</option>
+        <option value="蘆竹區">蘆竹區</option><option value="大溪區">大溪區</option>
+        <option value="大園區">大園區</option><option value="龜山區">龜山區</option>
+        <option value="復興區">復興區</option><option value="新屋區">新屋區</option>
+        <option value="觀音區">觀音區</option>
+      </select>
+    </div>
+    <div class="fb-g">
+      <div class="fb-l">顯示</div>
+      <select class="fb-s" id="show-sel" onchange="renderMain()">
+        <option value="all">全部風險</option>
+        <option value="high">僅高風險</option>
+        <option value="mid">中以上</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- NAV PAGE -->
+<div class="page" id="page-nav">
+  <div class="nav-map-wrap">
+    <div id="nav-map"></div>
+    <div id="voice-banner"></div>
+  </div>
+  <div class="nav-sheet">
+    <div class="nav-inputs">
+      <div class="nav-row" id="row-from">
+        <div class="nav-dot" style="background:var(--blue)"></div>
+        <input class="nav-field" id="nav-from" placeholder="出發地" autocomplete="off" >
+        <button class="nav-gps-btn" onclick="useGPS()" title="使用我的位置">&#9654;</button>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-row" id="row-to">
+        <div class="nav-dot" style="background:var(--red)"></div>
+        <input class="nav-field" id="nav-to" placeholder="目的地" autocomplete="off" >
+      </div>
+    </div>
+    <div class="nav-mode-row">
+      <button class="mode-btn on" id="mode-moto" onclick="setMode('moto',this)">機車模式</button>
+      <button class="mode-btn" id="mode-car" onclick="setMode('car',this)">汽車模式</button>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-fast" onclick="calcRoute('fast')">最快路線</button>
+      <button class="btn-safe" onclick="calcRoute('safe')">安全路線</button>
+      <button class="btn-cancel" id="btn-cancel" onclick="cancelNav()">取消</button>
+    </div>
+    <div id="nav-start-row" style="display:none;margin-bottom:8px">
+      <button class="btn-start" id="btn-start" onclick="startNav()">開始導航</button>
+    </div>
+    <div id="route-result">
+      <div class="r-tabs">
+        <div class="r-tab on" id="tab-fast" onclick="calcRoute('fast')">最快路線</div>
+        <div class="r-tab" id="tab-safe" onclick="calcRoute('safe')">安全路線</div>
+      </div>
+      <div id="route-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- REPORT PAGE -->
+<div class="page" id="page-report">
+  <div class="rp-h">分析報告</div>
+  <div class="rp-s" id="rp-sub">桃園市中壢生活圈 · 路口風險統計</div>
+
+  <!-- 附近高風險路口 -->
+  <div class="card">
+    <div class="card-h">附近高風險路口</div>
+    <div id="near-list"><div style="font-size:12px;color:var(--text2);padding:4px 0">需要GPS定位才能顯示附近路口</div></div>
+    <button onclick="locateUser()" style="margin-top:10px;width:100%;padding:9px;border-radius:var(--rs);background:var(--blue2);border:1px solid var(--blue);color:var(--blue);font-size:12px;font-weight:700;font-family:var(--font);cursor:pointer">定位我的位置</button>
+  </div>
+
+  <!-- 目前路況提示 -->
+  <div class="card">
+    <div class="card-h">目前路況提示</div>
+    <div id="now-risk-card"></div>
+  </div>
+
+  <!-- 最危險時段 -->
+  <div class="card">
+    <div class="card-h">一天中最危險的時段</div>
+    <div id="period-chart"></div>
+    <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">根據桃園市歷史事故資料統計各時段事故比例（2020-2026年，約40萬筆）</div>
+  </div>
+
+  <!-- 最近查詢路線 -->
+  <div class="card">
+    <div class="card-h">最近查詢路線</div>
+    <div id="saved-routes"><div style="font-size:12px;color:var(--text2)">尚無查詢紀錄，完成一次導航後自動記錄</div></div>
+  </div>
+</div>
+
+</div><!-- end content -->
+
+<nav id="bnav">
+  <button class="bn on" onclick="goPage('map',this)"><span class="bn-lbl">地圖</span></button>
+  <button class="bn" onclick="goPage('nav',this)"><span class="bn-lbl">導航</span></button>
+  <button class="bn" onclick="goPage('report',this)"><span class="bn-lbl">分析報告</span></button>
+</nav>
+</div>
+
+<!-- LOADING -->
+<div id="loading"><div class="spinner"></div><div class="loading-txt" id="loading-txt">載入中...</div></div>
+
+
+
+
+
+<script>
+// ── GOOGLE MAPS API KEY ──────────────────────────────────────────
+const GMAPS_KEY = 'AIzaSyARH9i9qkDIhv8FUXkqt7dLpa3AudxGsxE';
+
+// ── STATE ────────────────────────────────────────────────────────
+let NODES=[], FEATS=[], MODEL_METRICS={};
+let cW='晴天', cT='all';
+let mainMap, navMap, mainMk=[], clusterL=[], navL=[], userMarker=null, navUserMarker=null;
+let clusterOn=false, navInited=false;
+let userLat=null, userLng=null;
+let watchId=null, routeCoords=null, currentRouteType=null;
+let savedRoutes = JSON.parse(localStorage.getItem('tr_routes')||'[]');
+let acTimer=null, activeAcField=null;
+let originCoords=null, destCoords=null;
+let lastVoiceAlert={};
+let vehicleMode='moto';
+const synth = window.speechSynthesis;
+
+// ── WEATHER BOOST (with rain sensitivity) ───────────────────────
+const WB_BASE={'晴天':0,'陰天':3,'小雨':12,'大雨':22};
+
+function sc(n){
+  const base = (n.score && n.score[cT]) ? n.score[cT] : (n.score ? n.score.all : 50);
+  const sensitivity = n.rain_sensitivity || 1.0;
+  const weatherBoost = WB_BASE[cW] * sensitivity;
+  return Math.min(100, Math.round(base + weatherBoost));
+}
+const lvl=s=>s>=70?'h':s>=50?'m':'l';
+const lvlLbl=s=>s>=70?'高風險':s>=50?'中風險':'低風險';
+const lvlC=s=>s>=70?'var(--red)':s>=50?'var(--orange)':'var(--green)';
+
+// ── AUTO TIME DETECTION ──────────────────────────────────────────
+function autoDetectTime(){
+  const h = new Date().getHours();
+  let period, label;
+  if(h>=7 && h<10){period='peak';label='早峰';}
+  else if(h>=10 && h<17){period='day';label='日間';}
+  else if(h>=17 && h<20){period='eve';label='晚峰';}
+  else if(h>=20){period='night';label='夜間';}
+  else{period='night';label='深夜';}
+  cT=period;
+  document.getElementById('time-lbl').textContent=label;
+  document.getElementById('time-chip').classList.add('active');
+  console.log('自動時段：'+label+'（'+h+'時）');
+}
+
+// ── AUTO WEATHER ─────────────────────────────────────────────────
+async function fetchWeather(){
+  try{
+    const res=await fetch('https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWA-73EB1EAB-B742-4636-B7C9-27A66463D8DA&locationName=桃園市&elementName=Wx&format=JSON');
+    const data=await res.json();
+    const loc=data.records?.location?.[0];
+    if(!loc) throw new Error('無資料');
+    const wx=loc.weatherElement?.[0]?.time?.[0]?.parameter?.parameterName||'';
+    let weather='晴天';
+    if(wx.includes('陰')||wx.includes('多雲')) weather='陰天';
+    if(wx.includes('雨')||wx.includes('雷')) weather='小雨';
+    if(wx.includes('大雨')||wx.includes('豪雨')) weather='大雨';
+    setWeatherState(weather);
+    console.log('即時天氣：'+weather+'（'+wx+'）');
+  }catch(e){
+    console.log('天氣API：'+e.message);
+  }
+}
+
+function setWeatherState(w){
+  cW=w;
+  document.getElementById('weather-lbl').textContent=w;
+  const dot=document.getElementById('weather-dot');
+  if(w==='晴天'){dot.style.background='var(--green)';}
+  else if(w==='小雨'){dot.style.background='var(--blue)';}
+  else{dot.style.background='var(--red)';}
+  document.querySelectorAll('#weather-modal .sh-opt').forEach(o=>o.classList.remove('on'));
+  document.querySelectorAll('#weather-modal .sh-opt').forEach(o=>{
+    if(o.textContent.trim()===w) o.classList.add('on');
+  });
+}
+
+// ── LOAD DATA ────────────────────────────────────────────────────
+async function loadData(){
+  try{
+    const res=await fetch('risk_data.json');
+    const data=await res.json();
+    NODES=data.nodes||[];
+    FEATS=data.features||[];
+    MODEL_METRICS=data.model_metrics||{};
+    console.log(`載入 ${NODES.length} 個路口，F1=${MODEL_METRICS.f1_score}`);
+  }catch(e){
+    console.warn('無法載入 risk_data.json',e);
+  }
+}
+
+// ── POPUP ────────────────────────────────────────────────────────
+function popup(n, s){
+  const l=lvl(s);
+  const causes=(n.causes||[]).map(([c,p])=>`
+    <div class="cause-row">
+      <span style="flex:1">${c}</span>
+      <div class="cb-bg"><div class="cb-fill" style="width:${p}%"></div></div>
+      <span class="cb-pct">${p}%</span>
+    </div>`).join('');
+
+  // 優先使用天氣提示，其次時段提示
+  const hintKey = cW==='小雨'||cW==='大雨' ? '雨天' : cT;
+  const hints = n.hints || {};
+  const hint = hints[hintKey] || hints['all'] || null;
+  const motoHint = (vehicleMode==='moto' && n.moto_hint) ? n.moto_hint : null;
+  const noteText = n.note || null;
+
+  return `<div class="pu r${l}">
+    <div class="pu-top">
+      <span class="pu-name">${n.name}</span>
+      <span class="pu-badge">${lvlLbl(s)}</span>
+    </div>
+    <div class="pu-score-row">
+      <span class="pu-score">${s}</span>
+      <span class="pu-score-sub">/ 100 風險分數</span>
+    </div>
+    ${causes ? `<div style="font-size:10px;color:var(--text2);margin-bottom:4px;font-weight:600">近期主要肇因</div>${causes}` : ''}
+    ${hint ? `<div class="pu-hint">${hint}</div>` : ''}
+    ${motoHint ? `<div class="pu-moto">${motoHint}</div>` : ''}
+    ${noteText ? `<div style="margin-top:6px;font-size:10px;color:var(--text2)">${noteText}</div>` : ''}
+  </div>`;
+}
+
+// ── MAIN MAP ─────────────────────────────────────────────────────
+function initMain(){
+  mainMap=L.map('map',{zoomControl:true,attributionControl:false}).setView([24.969,121.24],13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(mainMap);
+  // 縮放層級動態控制顯示密度
+  mainMap.on('zoomend',()=>renderMain());
+  renderMain();
+}
+
+function renderMain(){
+  mainMk.forEach(m=>mainMap.removeLayer(m));mainMk=[];
+  const dist=document.getElementById('dist-sel').value;
+  const show=document.getElementById('show-sel').value;
+  const zoom=mainMap ? mainMap.getZoom() : 13;
+  NODES.forEach(n=>{
+    const s=sc(n), l=lvl(s);
+    const nodeDist = n.dist || '';
+    if(dist!=='all' && nodeDist!==dist) return;
+    if(show==='high' && l!=='h') return;
+    if(show==='mid' && l==='l') return;
+    // 縮放層級控制：zoom<12 只顯示高風險；12-14 顯示高+中；≥15 全部
+    if(zoom<12 && l!=='h') return;
+    if(zoom<15 && zoom>=12 && l==='l') return;
+    const icon=L.divIcon({className:'',iconSize:[34,34],iconAnchor:[17,17],popupAnchor:[0,-20],
+      html:`<div class="mk mk-${l}"></div>`});
+    mainMk.push(L.marker([n.lat,n.lng],{icon}).addTo(mainMap).bindPopup(popup(n,s),{maxWidth:280}));
+  });
+  if(clusterOn) renderClusters();
+}
+
+// ── CLUSTERS（等待真實 clusters.json，暫不啟用）────────────────
+let CLUSTERS_DATA = []; // 由 clusters.json 載入後填入
+function renderClusters(){
+  clusterL.forEach(l=>mainMap.removeLayer(l));clusterL=[];
+  if(!CLUSTERS_DATA.length) return;
+  CLUSTERS_DATA.forEach(c=>{
+    const ci=L.circle([c.lat,c.lng],{radius:c.radius||c.r||300,color:'rgba(232,53,74,0.5)',fillColor:'rgba(232,53,74,0.05)',fillOpacity:1,weight:2,dashArray:'6,4'})
+      .addTo(mainMap).bindPopup(`<div class="pu"><div class="pu-name" style="margin-bottom:6px">${c.label}</div><div style="font-size:12px;color:var(--text2)">包含 <b style="color:var(--red)">${c.count}</b> 個高風險路口<br>聚集峰值：<b style="color:var(--orange)">${c.peak}</b></div></div>`);
+    const li=L.marker([c.lat,c.lng],{icon:L.divIcon({className:'',iconSize:[56,56],iconAnchor:[28,28],
+      html:`<div class="cl-ring" style="width:56px;height:56px">熱點<br>${c.count}個</div>`})}).addTo(mainMap);
+    clusterL.push(ci,li);
+  });
+}
+async function loadClusters(){
+  try{
+    const res=await fetch('clusters.json');
+    const data=await res.json();
+    CLUSTERS_DATA=data.clusters||[];
+    if(CLUSTERS_DATA.length>0){
+      document.getElementById('cluster-btn').style.display='block';
+      console.log(`載入 ${CLUSTERS_DATA.length} 個熱點群集`);
+    }
+  }catch(e){
+    console.log('clusters.json 尚未產生，熱點功能停用');
+  }
+}
+function toggleCluster(){
+  clusterOn=!clusterOn;
+  document.getElementById('cluster-btn').classList.toggle('on',clusterOn);
+  if(clusterOn) renderClusters();
+  else{clusterL.forEach(l=>mainMap.removeLayer(l));clusterL=[];}
+}
+
+// ── GPS LOCATE ───────────────────────────────────────────────────
+function locateUser(){
+  if(!navigator.geolocation){alert('您的瀏覽器不支援GPS定位');return;}
+  navigator.geolocation.getCurrentPosition(pos=>{
+    userLat=pos.coords.latitude;
+    userLng=pos.coords.longitude;
+    if(userMarker) mainMap.removeLayer(userMarker);
+    const icon=L.divIcon({className:'',iconSize:[28,28],iconAnchor:[14,14],
+      html:`<div class="mk mk-user" style="width:28px;height:28px;font-size:10px">我</div>`});
+    userMarker=L.marker([userLat,userLng],{icon}).addTo(mainMap).bindPopup('您目前的位置');
+    mainMap.setView([userLat,userLng],15);
+    updateNearbyList();
+  },err=>{alert('無法取得位置，請確認已允許定位權限');});
+}
+
+function useGPS(){
+  if(!navigator.geolocation){alert('您的瀏覽器不支援GPS定位');return;}
+  navigator.geolocation.getCurrentPosition(pos=>{
+    userLat=pos.coords.latitude;
+    userLng=pos.coords.longitude;
+    originCoords={lat:userLat,lng:userLng};
+    document.getElementById('nav-from').value='我的位置';
+  },err=>{alert('無法取得位置');});
+}
+
+// ── GEOCODING（用 JS SDK Geocoder，避免 CORS）────────────────────
+let _geocoder = null;
+function getGeocoder(){
+  if(!_geocoder && window.google) _geocoder = new google.maps.Geocoder();
+  return _geocoder;
+}
+function geocode(address){
+  return new Promise((resolve)=>{
+    const gc = getGeocoder();
+    if(!gc){ resolve(null); return; }
+    gc.geocode({address: address+' 桃園市', region:'TW', language:'zh-TW'}, (results, status)=>{
+      if(status==='OK' && results[0]){
+        const loc = results[0].geometry.location;
+        resolve({lat: loc.lat(), lng: loc.lng(), name: results[0].formatted_address});
+      } else {
+        console.warn('Geocoder 失敗：', status);
+        resolve(null);
+      }
+    });
+  });
+}
+
+// ── AUTOCOMPLETE（Google Maps JS SDK）────────────────────────────
+let acFrom=null, acTo=null;
+
+function initAutocomplete(){
+  const fromInput = document.getElementById('nav-from');
+  const toInput   = document.getElementById('nav-to');
+  const bounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(24.70, 121.00),
+    new google.maps.LatLng(25.20, 121.55)
+  );
+  const opts = {bounds, componentRestrictions:{country:'tw'}, language:'zh-TW'};
+
+  // 用舊版 Autocomplete（穩定可靠）
+  const acFrom = new google.maps.places.Autocomplete(fromInput, opts);
+  acFrom.addListener('place_changed', ()=>{
+    const place = acFrom.getPlace();
+    if(place && place.geometry && place.geometry.location){
+      originCoords = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+      console.log('出發地座標：', originCoords);
+    }
+  });
+
+  const acTo = new google.maps.places.Autocomplete(toInput, opts);
+  acTo.addListener('place_changed', ()=>{
+    const place = acTo.getPlace();
+    if(place && place.geometry && place.geometry.location){
+      destCoords = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+      console.log('目的地座標：', destCoords);
+    }
+  });
+  console.log('Autocomplete 初始化完成（舊版穩定模式）');
+}
+
+function onInput(field){}
+function onFocus(field){}
+
+// ── OSRM ROUTING ─────────────────────────────────────────────────
+// 全部改用 Google Maps API
+
+
+// Google Directions API（用 JS SDK DirectionsService，避免 CORS）
+let _dirSvc = null;
+function getDirSvc(){
+  if(!_dirSvc && window.google) _dirSvc = new google.maps.DirectionsService();
+  return _dirSvc;
+}
+function fetchRoute(origin, dest, avoidHighways=false){
+  return new Promise((resolve)=>{
+    const svc = getDirSvc();
+    if(!svc){ resolve(null); return; }
+    const req = {
+      origin: new google.maps.LatLng(origin.lat, origin.lng),
+      destination: new google.maps.LatLng(dest.lat, dest.lng),
+      travelMode: google.maps.TravelMode.DRIVING,
+      provideRouteAlternatives: true,
+      avoidHighways: !!avoidHighways,
+      region: 'TW'
+    };
+    svc.route(req, (result, status)=>{
+      if(status !== 'OK' || !result.routes.length){
+        console.warn('DirectionsService 失敗：', status);
+        resolve(null); return;
+      }
+      const routes = result.routes.map(r=>({
+        coords: r.overview_path.map(p=>[p.lat(), p.lng()]),
+        duration: r.legs[0].duration.value,
+        distance: r.legs[0].distance.value
+      }));
+      resolve(routes);
+    });
+  });
+}
+
+// ── NAV MAP ──────────────────────────────────────────────────────
+function initNavMap(){
+  if(navInited) return;
+  navInited=true;
+  navMap=L.map('nav-map',{zoomControl:false,attributionControl:false}).setView([24.969,121.24],13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(navMap);
+}
+
+async function calcRoute(type){
+  // ensure we have coords
+  if(!originCoords){
+    const fromVal=document.getElementById('nav-from').value.trim();
+    if(!fromVal){alert('請輸入出發地');return;}
+    showLoading('查詢地址座標中...');
+    originCoords=await geocode(fromVal);
+    hideLoading();
+    if(!originCoords){alert('找不到出發地，請重新輸入');return;}
+  }
+  if(!destCoords){
+    const toVal=document.getElementById('nav-to').value.trim();
+    if(!toVal){alert('請輸入目的地');return;}
+    showLoading('查詢地址座標中...');
+    destCoords=await geocode(toVal);
+    hideLoading();
+    if(!destCoords){alert('找不到目的地，請重新輸入');return;}
+  }
+
+  initNavMap();
+  setTimeout(()=>navMap.invalidateSize(),50);
+  navL.forEach(l=>navMap.removeLayer(l));navL=[];
+  document.getElementById('tab-fast').classList.toggle('on',type==='fast');
+  document.getElementById('tab-safe').classList.toggle('on',type==='safe');
+  showLoading('計算路線中...');
+
+  try{
+    let rd;
+    const isMoto = vehicleMode==='moto';
+    if(type==='fast'){
+      // 最快路線：不避開高速
+      const routes = await fetchRoute(originCoords, destCoords, false);
+      rd = routes ? routes[0] : null;
+    } else {
+      // 安全路線：取得備選路線，選累計風險最低（Berhanu et al. 2024）
+      // 機車模式自動避開高速公路（Google Directions avoid=highways）
+      const routes = await fetchRoute(originCoords, destCoords, isMoto);
+      if(routes && routes.length>0){
+        let best=null, bestScore=Infinity;
+        for(const r of routes){
+          const s=scoreRoute(r.coords);
+          if(s<bestScore){bestScore=s;best=r;}
+        }
+        rd=best;
+        console.log('安全路線：從'+routes.length+'條備選中選出累計風險最低（'+bestScore+'分）'+(isMoto?' [機車：已避開高速]':''));
+      }
+    }
+    hideLoading();
+    if(!rd){alert('無法取得路線，請確認網路連線');return;}
+
+    currentRouteType=type;
+    routeCoords=rd.coords;
+
+    const col=type==='fast'?'#1a73e8':'#1db954';
+    const line=L.polyline(rd.coords,{color:col,weight:5,opacity:.85}).addTo(navMap);
+    navMap.fitBounds(line.getBounds(),{padding:[50,50]});
+    navL.push(line);
+
+    // markers
+    const mkA=L.divIcon({className:'',iconSize:[32,32],iconAnchor:[16,16],html:`<div style="width:32px;height:32px;border-radius:50%;background:${col};display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,0.25)">A</div>`});
+    const mkB=L.divIcon({className:'',iconSize:[32,32],iconAnchor:[16,16],html:`<div style="width:32px;height:32px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,0.25)">B</div>`});
+    navL.push(L.marker([originCoords.lat,originCoords.lng],{icon:mkA}).addTo(navMap));
+    navL.push(L.marker([destCoords.lat,destCoords.lng],{icon:mkB}).addTo(navMap));
+
+    // 導航頁風險圈圈：只顯示中高風險，不顯示數字
+    NODES.filter(n=>sc(n)>=50).forEach(n=>{
+      const s=sc(n),l=lvl(s);
+      const sz=s>=70?20:16;
+      const icon=L.divIcon({className:'',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],
+        html:`<div class="mk mk-${l}" style="width:${sz}px;height:${sz}px"></div>`});
+      navL.push(L.marker([n.lat,n.lng],{icon}).addTo(navMap).bindPopup(popup(n,s)));
+    });
+
+    // render summary
+    const nearNodes=nodesNearRoute(rd.coords);
+    const high=nearNodes.filter(n=>sc(n)>=70).length;
+    const mid=nearNodes.filter(n=>sc(n)>=50&&sc(n)<70).length;
+    const mins=Math.round(rd.duration/60);
+    const km=(rd.distance/1000).toFixed(1);
+
+    document.getElementById('route-body').innerHTML='';
+    document.getElementById('route-result').style.display='flex';
+    document.getElementById('btn-cancel').style.display='block';
+    document.getElementById('route-body').innerHTML=`
+      <div class="r-summary">
+        <div class="rs"><div class="rs-v" style="color:var(--red)">${high}</div><div class="rs-k">高風險路口</div></div>
+        <div class="rs"><div class="rs-v" style="color:var(--orange)">${mid}</div><div class="rs-k">中風險路口</div></div>
+        <div class="rs"><div class="rs-v" style="color:var(--blue)">${mins}</div><div class="rs-k">預估分鐘</div></div>
+      </div>
+      <div class="r-note ${type==='fast'?'r-note-fast':'r-note-safe'}">
+        ${type==='fast'?`最快路線 ${km}km，途經${high}個高風險路口，建議提高警覺`:`安全路線 ${km}km，系統從備選路線中選出累計風險最低的路線`}
+      </div>
+      ${nearNodes.length?`<div style="font-size:11px;color:var(--text2);font-weight:600;margin-bottom:4px">路線上的風險路口</div>`:'<div style="font-size:11px;color:var(--green);padding:6px 0">此路線無高風險路口</div>'}
+      ${nearNodes.slice(0,5).map((n,i)=>{
+        const s=sc(n);
+        const hintKey=cW==='小雨'||cW==='大雨'?'雨天':cT;
+        const hint=(n.hints||{})[hintKey]||'';
+        return`<div class="hi">
+          <div class="hi-rk" style="background:${s>=70?'var(--red2)':'var(--orange2)'};color:${lvlC(s)}">${i+1}</div>
+          <div class="hi-info">
+            <div class="hi-name">${n.name}</div>
+            <div class="hi-det">${lvlLbl(s)}${hint?' · '+hint.substring(0,20):''}</div>
+          </div>
+          <div class="hi-sc" style="color:${lvlC(s)}">${s}</div>
+        </div>`;
+      }).join('')}`;
+
+    const sr=document.getElementById('nav-start-row');
+    if(sr){sr.style.display='block';}
+    const sb=document.getElementById('btn-start');
+    if(sb){sb.textContent='開始導航';sb.style.background='var(--blue)';}
+    // save route
+    saveRoute(document.getElementById('nav-from').value, document.getElementById('nav-to').value, high, mid, km);
+
+    // start GPS tracking for voice alerts
+    startVoiceTracking();
+
+  }catch(e){
+    hideLoading();
+    console.error('路線計算錯誤：',e.message);
+    document.getElementById('route-result').style.display='flex';
+    document.getElementById('route-body').innerHTML=`<div class="r-note r-note-fast" style="color:var(--text2)">無法取得路線（${e.message}），請確認網路後重試。</div>`;
+  }
+}
+
+function setMode(mode,el){
+  vehicleMode=mode;
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  console.log(mode==='moto'?'機車模式':'汽車模式');
+}
+function startNav(){
+  if(!routeCoords){alert('請先規劃路線');return;}
+  speak('開始導航，請依路線行駛');
+  startVoiceTracking();
+  const btn=document.getElementById('btn-start');
+  if(btn){btn.textContent='導航中';btn.style.background='var(--green)';}
+  // 隱藏之前的錯誤訊息
+  const rb=document.getElementById('route-body');
+  if(rb && rb.innerHTML.includes('無法取得路線')) rb.innerHTML='';
+}
+function cancelNav(){
+  if(watchId){navigator.geolocation.clearWatch(watchId);watchId=null;}
+  navL.forEach(l=>navMap.removeLayer(l));navL=[];
+  routeCoords=null;currentRouteType=null;
+  document.getElementById('route-result').style.display='none';
+  document.getElementById('btn-cancel').style.display='none';
+  document.getElementById('voice-banner').classList.remove('show');
+  const sr2=document.getElementById('nav-start-row');if(sr2)sr2.style.display='none';
+  lastVoiceAlert={};
+}
+
+// ── VOICE NAVIGATION ─────────────────────────────────────────────
+function speak(text){
+  if(!synth) return;
+  synth.cancel();
+  const utt=new SpeechSynthesisUtterance(text);
+  utt.lang='zh-TW';
+  utt.rate=0.9;
+  synth.speak(utt);
+  const banner=document.getElementById('voice-banner');
+  banner.textContent=text;
+  banner.classList.add('show');
+  setTimeout(()=>banner.classList.remove('show'),4000);
+}
+
+function dist2D(lat1,lng1,lat2,lng2){
+  const dlat=(lat1-lat2)*111000;
+  const dlng=(lng1-lng2)*111000*Math.cos(lat1*Math.PI/180);
+  return Math.sqrt(dlat*dlat+dlng*dlng);
+}
+
+function checkVoiceAlerts(lat,lng){
+  if(!routeCoords) return;
+  const now=Date.now();
+  NODES.forEach(n=>{
+    const s=sc(n);
+    if(s<70) return;
+    const d=dist2D(lat,lng,n.lat,n.lng);
+    const key=`${n.id}`;
+    const last=lastVoiceAlert[key]||0;
+    if(now-last<60000) return; // cooldown 60s
+    if(d<300&&d>=100){
+      lastVoiceAlert[key]=now;
+      speak(`前方${Math.round(d)}公尺為高風險路口，請小心駕駛`);
+    } else if(d<100){
+      lastVoiceAlert[key+'_close']=now;
+      if(now-(lastVoiceAlert[key+'_close']||0)>30000){
+        speak('注意，您正在通過高風險路口，請減速慢行');
+      }
+    }
+  });
+}
+
+function checkReroute(lat,lng){
+  if(!routeCoords) return;
+  const nearest=routeCoords.reduce((best,[rlat,rlng])=>{
+    const d=dist2D(lat,lng,rlat,rlng);
+    return d<best.d?{d,lat:rlat,lng:rlng}:best;
+  },{d:Infinity});
+  if(nearest.d>80){
+    // user deviated from route
+    speak('路線已更新，正在為您重新規劃安全路徑');
+    originCoords={lat,lng};
+    setTimeout(()=>calcRoute(currentRouteType||'safe'),1500);
+  }
+}
+
+function startVoiceTracking(){
+  if(watchId){navigator.geolocation.clearWatch(watchId);}
+  if(!navigator.geolocation) return;
+  watchId=navigator.geolocation.watchPosition(
+    pos=>{
+      const lat=pos.coords.latitude, lng=pos.coords.longitude;
+      userLat=lat;userLng=lng;
+      if(navUserMarker) navMap.removeLayer(navUserMarker);
+      const icon=L.divIcon({className:'',iconSize:[24,24],iconAnchor:[12,12],
+        html:`<div class="mk mk-user" style="width:24px;height:24px;font-size:9px">我</div>`});
+      navUserMarker=L.marker([lat,lng],{icon}).addTo(navMap);
+      checkVoiceAlerts(lat,lng);
+      checkReroute(lat,lng);
+    },
+    err=>{ console.warn('GPS追蹤：',err.message); },
+    {enableHighAccuracy:true,maximumAge:5000,timeout:10000}
+  );
+}
+
+// ── NODES NEAR ROUTE ─────────────────────────────────────────────
+function scoreRoute(coords){
+  let total=0;
+  NODES.forEach(n=>{
+    const s=sc(n);
+    if(s<70) return;
+    const nearest=coords.reduce((best,[rlat,rlng])=>{
+      const d=dist2D(n.lat,n.lng,rlat,rlng);
+      return d<best?d:best;
+    },Infinity);
+    if(nearest<200) total+=s;
+  });
+  return total;
+}
+
+function nodesNearRoute(coords){
+  return NODES.filter(n=>{
+    const s=sc(n);
+    if(s<50) return false;
+    return coords.some(([rlat,rlng])=>dist2D(n.lat,n.lng,rlat,rlng)<200);
+  }).sort((a,b)=>sc(b)-sc(a));
+}
+
+// ── SAVE ROUTES ──────────────────────────────────────────────────
+function saveRoute(from,to,high,mid,km){
+  const key=`${from}→${to}`;
+  savedRoutes=savedRoutes.filter(r=>r.key!==key);
+  savedRoutes.unshift({key,from,to,high,mid,km,time:Date.now()});
+  if(savedRoutes.length>5) savedRoutes=savedRoutes.slice(0,5);
+  localStorage.setItem('tr_routes',JSON.stringify(savedRoutes));
+  buildSavedRoutes();
+}
+
+// ── REPORT ───────────────────────────────────────────────────────
+function buildReport(){
+  // 目前路況提示
+  const periodLabels={'peak':'早峰','day':'日間','eve':'晚峰','night':'夜間/深夜'};
+  const periodRiskNote={
+    'peak':'早高峰通勤車流量大，追撞事故頻繁，請保持安全車距',
+    'day':'日間相對安全，但路口左轉事故較多，請注意號誌',
+    'eve':'晚高峰是全天最危險時段，事故率最高，建議多留意路況',
+    'night':'夜間車流少但車速快，視線不佳，請提高警覺'
+  };
+  const nowPeriod=cT||'day';
+  const nowWeather=cW||'晴天';
+  const weatherNote={
+    '晴天':'天候良好，依正常駕駛注意即可',
+    '陰天':'天色稍暗，注意來車視線',
+    '小雨':'路面濕滑，請減速行駛並保持安全車距',
+    '大雨':'大雨視線不佳，建議延後出發或搭乘大眾運輸'
+  };
+  const isHighRiskTime = nowPeriod==='eve';
+  const isRainy = nowWeather==='小雨'||nowWeather==='大雨';
+  document.getElementById('now-risk-card').innerHTML=`
+    <div style="display:flex;gap:10px;margin-bottom:10px">
+      <div style="flex:1;background:${isHighRiskTime?'var(--red3)':'var(--surface)'};border:1px solid ${isHighRiskTime?'var(--red)':'var(--border)'};border-radius:var(--rs);padding:10px;text-align:center">
+        <div style="font-size:10px;color:var(--text2);margin-bottom:3px">目前時段</div>
+        <div style="font-size:16px;font-weight:700;color:${isHighRiskTime?'var(--red)':'var(--text)'}">${periodLabels[nowPeriod]||'日間'}</div>
+      </div>
+      <div style="flex:1;background:${isRainy?'rgba(26,115,232,0.06)':'var(--surface)'};border:1px solid ${isRainy?'var(--blue)':'var(--border)'};border-radius:var(--rs);padding:10px;text-align:center">
+        <div style="font-size:10px;color:var(--text2);margin-bottom:3px">目前天氣</div>
+        <div style="font-size:16px;font-weight:700;color:${isRainy?'var(--blue)':'var(--text)'}">${nowWeather}</div>
+      </div>
+    </div>
+    <div style="padding:9px 12px;border-radius:var(--rs);background:var(--surface);font-size:12px;color:var(--text);line-height:1.5;border-left:3px solid ${isHighRiskTime?'var(--red)':'var(--orange)'};margin-bottom:${isRainy?'6px':'0'}">${periodRiskNote[nowPeriod]}</div>
+    ${isRainy?`<div style="padding:9px 12px;border-radius:var(--rs);background:rgba(26,115,232,0.06);font-size:12px;color:var(--text);line-height:1.5;border-left:3px solid var(--blue)">${weatherNote[nowWeather]}</div>`:''}
+  `;
+
+  // 時段事故比例（對齊規格書定義）
+  const periods=[
+    {lbl:'晚峰 17-20',pct:27.0,color:'var(--red)',tip:'最危險'},
+    {lbl:'早峰 07-10',pct:26.2,color:'var(--orange)',tip:'次危險'},
+    {lbl:'日間 10-17',pct:22.0,color:'#f0a000',tip:''},
+    {lbl:'夜間 20-24',pct:15.7,color:'#888',tip:''},
+    {lbl:'深夜 00-07',pct:9.1,color:'var(--text3)',tip:''},
+  ];
+  const maxPct=Math.max(...periods.map(p=>p.pct));
+  document.getElementById('period-chart').innerHTML=periods.map(p=>`
+    <div class="period-bar" style="align-items:center">
+      <div class="period-lbl" style="width:70px">${p.lbl}</div>
+      <div class="period-bg" style="flex:1"><div class="period-fill" style="width:${p.pct/maxPct*100}%;background:${p.color}"></div></div>
+      <div class="period-pct">${p.pct}%</div>
+      ${p.tip?`<div style="font-size:9px;color:${p.color};font-weight:700;width:36px;margin-left:4px">${p.tip}</div>`:'<div style="width:40px"></div>'}
+    </div>`).join('');
+
+  buildSavedRoutes();
+}
+
+function buildSavedRoutes(){
+  const el=document.getElementById('saved-routes');
+  if(!savedRoutes||savedRoutes.length===0){
+    el.innerHTML='<div style="font-size:12px;color:var(--text2)">尚無常用路線，完成一次導航後自動記錄</div>';
+    return;
+  }
+  el.innerHTML=savedRoutes.map(r=>`
+    <div class="saved-route" onclick="loadSavedRoute('${r.from}','${r.to}')">
+      <div class="sr-info">
+        <div class="sr-name">${r.from} → ${r.to}</div>
+        <div class="sr-risk">高風險路口 ${r.high} 個 · ${r.km}km</div>
+      </div>
+      <div class="sr-arrow">&#8250;</div>
+    </div>`).join('');
+}
+
+function loadSavedRoute(from,to){
+  document.getElementById('nav-from').value=from;
+  document.getElementById('nav-to').value=to;
+  originCoords=null;destCoords=null;
+  goPage('nav',document.querySelectorAll('.bn')[1]);
+  setTimeout(()=>calcRoute('safe'),300);
+}
+
+// ── NEARBY LIST ──────────────────────────────────────────────────
+function updateNearbyList(){
+  if(userLat===null) return;
+  const withDist=NODES.map(n=>{
+    const d=dist2D(userLat,userLng,n.lat,n.lng);
+    return{...n,dist_m:Math.round(d)};
+  }).filter(n=>n.dist_m<3000&&sc(n)>=50).sort((a,b)=>a.dist_m-b.dist_m||sc(b)-sc(a)).slice(0,5);
+
+  const el=document.getElementById('near-list');
+  if(!withDist.length){
+    el.innerHTML='<div style="font-size:12px;color:var(--text2)">附近3公里內無中高風險路口</div>';
+    return;
+  }
+  el.innerHTML=withDist.map(n=>{
+    const s=sc(n);
+    return`<div class="near-item">
+      <div class="near-info">
+        <div class="near-name">${n.name}</div>
+        <div class="near-dist">${n.dist_m < 1000 ? n.dist_m+'公尺' : (n.dist_m/1000).toFixed(1)+'公里'} · ${lvlLbl(s)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── MODALS ───────────────────────────────────────────────────────
+const openModal=id=>document.getElementById(id).classList.add('open');
+const closeModal=id=>document.getElementById(id).classList.remove('open');
+document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{
+  if(e.target===el) el.classList.remove('open');
+}));
+
+function setW(el,w){setWeatherState(w);}
+function setT(el,t,lbl){
+  cT=t;
+  document.getElementById('time-lbl').textContent=lbl;
+}
+
+// ── PAGE SWITCH ──────────────────────────────────────────────────
+function goPage(name,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.bn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('page-'+name).classList.add('active');
+  btn.classList.add('on');
+  if(name==='map'){setTimeout(()=>mainMap.invalidateSize(),50);updateNearbyList();}
+  if(name==='nav'){initNavMap();setTimeout(()=>navMap.invalidateSize(),50);}
+  if(name==='report'){buildReport();}
+}
+
+// ── LOADING ──────────────────────────────────────────────────────
+function showLoading(txt='載入中...'){
+  document.getElementById('loading-txt').textContent=txt;
+  document.getElementById('loading').classList.add('show');
+}
+function hideLoading(){document.getElementById('loading').classList.remove('show');}
+
+// ── PWA ──────────────────────────────────────────────────────────
+const mf={name:'TrafficRisk',short_name:'TrafficRisk',start_url:'.',display:'standalone',background_color:'#ffffff',theme_color:'#ffffff'};
+const bl=new Blob([JSON.stringify(mf)],{type:'application/json'});
+const lk=document.createElement('link');lk.rel='manifest';lk.href=URL.createObjectURL(bl);document.head.appendChild(lk);
+
+// ── INIT ─────────────────────────────────────────────────────────
+window.addEventListener('load',async()=>{
+  showLoading('載入風險資料中...');
+  await loadData();
+  await loadClusters();
+  hideLoading();
+  initMain();
+  autoDetectTime();
+  fetchWeather();
+  buildReport();
+  // try to get user location silently
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(pos=>{
+      userLat=pos.coords.latitude;
+      userLng=pos.coords.longitude;
+      updateNearbyList();
+    },()=>{});
+  }
+});
+</script>
+<script>
+function gmapsLoaded(){
+  initAutocomplete();
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARH9i9qkDIhv8FUXkqt7dLpa3AudxGsxE&libraries=places&callback=gmapsLoaded&language=zh-TW" async defer></script>
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SafeRoute 政府後台監控系統</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=DM+Mono:wght@400;500&display=swap');
+:root{
+  --bg:#060e1a;--panel:#0c1828;--card:#0f1f35;--card2:#152638;--border:rgba(80,140,220,0.12);--border2:rgba(80,140,220,0.22);
+  --text:#d4e8ff;--text2:#5a88b0;--text3:#2d4d6a;
+  --red:#ff3d5a;--red2:rgba(255,61,90,0.12);--orange:#ff8c00;--orange2:rgba(255,140,0,0.12);
+  --green:#00e676;--green2:rgba(0,230,118,0.12);--accent:#00b4ff;--accent2:rgba(0,180,255,0.1);--blue:#2979ff;
+  --yellow:#ffd600;--font:'Noto Sans TC',sans-serif;--mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+
+/* HEADER */
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:rgba(6,14,26,0.95);border-bottom:1px solid var(--border2);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100}
+.h-left{display:flex;align-items:center;gap:12px}
+.h-logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#00b4ff,#2979ff);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 0 20px rgba(0,180,255,0.35)}
+.h-title{font-size:18px;font-weight:900;letter-spacing:-.5px}
+.h-sub{font-size:11px;color:var(--text2);margin-top:1px}
+.h-right{display:flex;align-items:center;gap:12px}
+.h-badge{padding:5px 12px;border-radius:20px;font-size:12px;border:1px solid var(--border2);color:var(--text2)}
+.h-badge.live{border-color:var(--green);color:var(--green);background:var(--green2)}
+.h-nav{display:flex;gap:4px}
+.h-nav-btn{padding:7px 14px;border-radius:8px;border:none;background:transparent;color:var(--text2);font-size:13px;font-family:var(--font);cursor:pointer;transition:all .15s}
+.h-nav-btn.active,.h-nav-btn:hover{background:var(--card2);color:var(--text)}
+
+/* LAYOUT */
+main{flex:1;padding:20px 28px;display:flex;flex-direction:column;gap:20px}
+
+/* KPI ROW */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.kpi-red::before{background:var(--red)}.kpi-orange::before{background:var(--orange)}.kpi-green::before{background:var(--green)}.kpi-accent::before{background:var(--accent)}.kpi-yellow::before{background:var(--yellow)}
+.kpi-label{font-size:11px;color:var(--text2);margin-bottom:8px;letter-spacing:.3px;text-transform:uppercase}
+.kpi-val{font-size:32px;font-weight:700;font-family:var(--mono);line-height:1}
+.kpi-sub{font-size:11px;color:var(--text3);margin-top:6px}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid-3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}
+.grid-map{display:grid;grid-template-columns:1fr 340px;gap:20px}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;overflow:hidden}
+.card-title{font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+.card-title-text{display:flex;align-items:center;gap:6px}
+.card-badge{padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700}
+.badge-red{background:var(--red2);color:var(--red)}.badge-green{background:var(--green2);color:var(--green)}.badge-accent{background:var(--accent2);color:var(--accent)}
+
+/* MAP */
+#dash-map{width:100%;height:380px;border-radius:10px;overflow:hidden}
+.leaflet-container{background:#0a1628!important}
+.leaflet-tile{filter:brightness(.5) saturate(.35) hue-rotate(200deg)}
+.leaflet-control-zoom a{background:var(--card)!important;color:var(--text)!important;border:1px solid var(--border2)!important}
+.leaflet-popup-content-wrapper{background:var(--card)!important;border:1px solid var(--border2)!important;border-radius:12px!important;padding:0!important}
+.leaflet-popup-tip{background:var(--card)!important}
+.leaflet-popup-content{margin:0!important;width:240px!important}
+.map-popup{padding:14px}
+.mp-name{font-size:13px;font-weight:700;margin-bottom:8px}
+.mp-row{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:4px}
+.mp-val{color:var(--text);font-family:var(--mono)}
+
+/* HOTSPOT TABLE */
+.hs-table{width:100%;border-collapse:collapse}
+.hs-table th{font-size:10px;color:var(--text3);text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);letter-spacing:.4px;text-transform:uppercase}
+.hs-table td{padding:9px 8px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:middle}
+.hs-table tr:last-child td{border-bottom:none}
+.hs-table tr:hover td{background:var(--card2)}
+.hs-rank{font-family:var(--mono);font-size:11px;color:var(--text3);width:24px}
+.hs-name{font-weight:600}
+.hs-dist{font-size:11px;color:var(--text2)}
+.hs-score{font-family:var(--mono);font-size:14px;font-weight:700}
+.hs-bar-cell{width:80px}
+.hs-bar-bg{height:4px;background:var(--card2);border-radius:2px;overflow:hidden}
+.hs-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--red),var(--orange))}
+.hs-action{color:var(--accent);font-size:11px;cursor:pointer;white-space:nowrap}
+
+/* IMPROVE LIST */
+.improve-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.improve-item:last-child{border-bottom:none}
+.improve-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.improve-info{flex:1}
+.improve-name{font-size:13px;font-weight:600;margin-bottom:2px}
+.improve-desc{font-size:11px;color:var(--text2)}
+.improve-priority{padding:3px 8px;border-radius:20px;font-size:10px;font-weight:700;flex-shrink:0;align-self:flex-start;margin-top:2px}
+.pri-high{background:var(--red2);color:var(--red)}.pri-mid{background:var(--orange2);color:var(--orange)}.pri-low{background:var(--green2);color:var(--green)}
+
+/* FEATURE CHART */
+.feat-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.feat-row:last-child{margin-bottom:0}
+.feat-name{width:130px;font-size:12px;color:var(--text2)}
+.feat-bar-bg{flex:1;height:8px;background:var(--card2);border-radius:4px;overflow:hidden}
+.feat-bar{height:100%;border-radius:4px}
+.feat-pct{font-family:var(--mono);font-size:12px;width:40px;text-align:right}
+.feat-note{font-size:10px;color:var(--text3);margin-top:2px;padding-left:140px}
+
+/* HEATMAP */
+.hm-wrap{overflow-x:auto}
+.hm-grid{display:grid;gap:3px;min-width:400px}
+.hm-header-row{display:grid;grid-template-columns:90px repeat(7,1fr);gap:3px;margin-bottom:3px}
+.hm-header{font-size:10px;color:var(--text3);text-align:center;padding:2px 0}
+.hm-data-row{display:grid;grid-template-columns:90px repeat(7,1fr);gap:3px}
+.hm-time-label{font-size:10px;color:var(--text3);display:flex;align-items:center;padding-right:8px}
+.hm-cell{height:28px;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;font-family:var(--mono);color:rgba(255,255,255,0.6);transition:transform .12s}
+.hm-cell:hover{transform:scale(1.08);z-index:1;position:relative}
+
+/* TREND CHART */
+.trend-chart{height:120px;position:relative;margin-top:8px}
+svg.trend-svg{width:100%;height:100%;overflow:visible}
+
+/* MODEL EXPLAIN */
+.model-step{display:flex;gap:12px;margin-bottom:14px}
+.model-step:last-child{margin-bottom:0}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--accent2);border:1px solid var(--accent);color:var(--accent);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)}
+.step-info{flex:1}
+.step-title{font-size:13px;font-weight:700;margin-bottom:3px}
+.step-desc{font-size:11px;color:var(--text2);line-height:1.5}
+.step-tag{display:inline-block;margin-top:4px;padding:2px 8px;border-radius:20px;font-size:10px;background:var(--accent2);color:var(--accent)}
+
+/* CONFUSION MATRIX */
+.cm-wrap{display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:3px;margin-top:8px;font-size:11px}
+.cm-label{display:flex;align-items:center;justify-content:center;padding:4px;color:var(--text2);font-size:10px}
+.cm-cell{border-radius:6px;padding:10px 6px;text-align:center;font-family:var(--mono)}
+.cm-v{font-size:16px;font-weight:700}
+.cm-k{font-size:9px;color:rgba(255,255,255,.5);margin-top:2px}
+
+/* FOOTER */
+footer{padding:12px 28px;border-top:1px solid var(--border);text-align:center;font-size:11px;color:var(--text3)}
+
+/* TABS */
+.section{display:none}.section.active{display:contents}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-left">
+    <div class="h-logo">🛡️</div>
+    <div>
+      <div class="h-title">SafeRoute 政府後台監控系統</div>
+      <div class="h-sub">桃園市道路交通事故風險分析平台</div>
+    </div>
+  </div>
+  <div class="h-right">
+    <div class="h-nav">
+      <button class="h-nav-btn active" onclick="switchSection('overview',this)">總覽</button>
+      <button class="h-nav-btn" onclick="switchSection('model',this)">AI模型說明</button>
+      <button class="h-nav-btn" onclick="switchSection('improve',this)">改善建議</button>
+    </div>
+    <div class="h-badge live">● 資料更新中</div>
+    <div class="h-badge">桃園市 2022-2025</div>
+  </div>
+</header>
+
+<main>
+
+<!-- OVERVIEW SECTION -->
+<div class="section active" id="sec-overview">
+
+  <div class="kpi-row">
+    <div class="kpi-card kpi-red">
+      <div class="kpi-label">高風險路口</div>
+      <div class="kpi-val" style="color:var(--red)">4</div>
+      <div class="kpi-sub">風險分數 ≥ 70</div>
+    </div>
+    <div class="kpi-card kpi-orange">
+      <div class="kpi-label">近3年總事故數</div>
+      <div class="kpi-val" style="color:var(--orange)">239</div>
+      <div class="kpi-sub">桃園市示範路口</div>
+    </div>
+    <div class="kpi-card kpi-yellow">
+      <div class="kpi-label">死亡件數</div>
+      <div class="kpi-val" style="color:var(--yellow)">12</div>
+      <div class="kpi-sub">A1類事故</div>
+    </div>
+    <div class="kpi-card kpi-green">
+      <div class="kpi-label">模型F1-score</div>
+      <div class="kpi-val" style="color:var(--green)">0.78</div>
+      <div class="kpi-sub">A1 Recall: 0.72</div>
+    </div>
+    <div class="kpi-card kpi-accent">
+      <div class="kpi-label">可預防事故估計</div>
+      <div class="kpi-val" style="color:var(--accent)">68%</div>
+      <div class="kpi-sub">有效預警涵蓋率</div>
+    </div>
+  </div>
+
+  <div class="grid-map">
+    <div class="card">
+      <div class="card-title">
+        <div class="card-title-text">🗺 桃園市路口風險地圖</div>
+        <div style="display:flex;gap:8px;font-size:11px">
+          <span style="color:var(--red)">● 高</span>
+          <span style="color:var(--orange)">● 中</span>
+          <span style="color:var(--green)">● 低</span>
+        </div>
+      </div>
+      <div id="dash-map"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="card" style="flex:1">
+        <div class="card-title"><div class="card-title-text">⚠ 緊急改善路口</div><span class="card-badge badge-red">需立即處理</span></div>
+        <div id="urgent-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="card-title-text">📈 風險趨勢</div></div>
+        <div class="trend-chart" id="trend-chart"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">
+        <div class="card-title-text">🔴 高風險路口完整清單</div>
+        <button onclick="dlCSV()" style="padding:4px 12px;border-radius:6px;background:var(--accent2);border:1px solid var(--accent);color:var(--accent);font-size:11px;cursor:pointer;font-family:var(--font)">⬇ 下載CSV</button>
+      </div>
+      <table class="hs-table">
+        <thead><tr><th>排名</th><th>路口名稱</th><th>行政區</th><th>風險分</th><th>走勢</th><th>建議措施</th></tr></thead>
+        <tbody id="hs-tbody"></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-title-text">⏱ 時空聚集熱圖</div><span class="card-badge badge-accent">DBSCAN分析</span></div>
+      <div class="hm-wrap" id="heatmap"></div>
+      <div style="font-size:10px;color:var(--text3);margin-top:10px">深色格代表事故密度高。晚峰×週五為全週最高風險時段，呼應Hazaymeh et al.(2022)時空聚集理論。</div>
+    </div>
+  </div>
+
+</div><!-- end overview -->
+
+<!-- MODEL SECTION -->
+<div class="section" id="sec-model">
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><div class="card-title-text">🤖 AI模型運作流程</div></div>
+      <div id="model-steps"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-title-text">📊 特徵重要度（Random Forest輸出）</div><span class="card-badge badge-accent">模型依據</span></div>
+      <div id="feat-chart"></div>
+      <div style="font-size:10px;color:var(--text3);margin-top:12px;line-height:1.6">
+        ▲ 以上為Random Forest模型計算的特徵重要度（Feature Importance），反映每個因素對事故嚴重度預測的貢獻比例。<br>
+        「雨天×夜間組合」達31.2%，說明多因子交互作用遠超單一因素影響。這是AI相較於人類直覺判斷的核心優勢——能量化多因子組合的複合風險。
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><div class="card-title-text">📋 模型評估指標說明</div></div>
+      <div id="confusion-matrix"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-title-text">📖 資料來源與處理方法</div></div>
+      <div id="data-pipeline"></div>
+    </div>
+  </div>
+
+</div><!-- end model -->
+
+<!-- IMPROVE SECTION -->
+<div class="section" id="sec-improve">
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title"><div class="card-title-text">🔧 改善優先清單</div><span class="card-badge badge-red">依風險分數排序</span></div>
+      <div id="improve-list"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-title-text">📊 改善措施分類</div></div>
+      <div id="measure-chart"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-title-text">💡 SDGs對應說明</div></div>
+      <div id="sdg-list"></div>
+    </div>
+  </div>
+
+</div><!-- end improve -->
+
+</main>
+
+<footer>SafeRoute 車禍風險預測平台 ｜ 資管三乙 第7組 ｜ 桃園市示範系統 ｜ 資料來源：政府資料開放平台A1/A2事故資料 2022-2025</footer>
+
+<script>
+const NODES=[
+  {id:1,name:"中山路／元化路口",  dist:"中壢區",lat:24.9638,lng:121.2248,score:87,acc:47,fatal:4,trend:"↑",measures:["增設照明設備","調整待轉區動線","加設警示標誌"],note:"彎道視角死角＋機車待轉區交織"},
+  {id:2,name:"中正路／民族路口",  dist:"桃園區",lat:24.9936,lng:121.3010,score:81,acc:39,fatal:3,trend:"↑",measures:["延長行人綠燈秒數","增設行人倒數計時器","路口幾何改善"],note:"大型路口，行人穿越動線複雜"},
+  {id:3,name:"環中東路／中豐路口",dist:"中壢區",lat:24.9582,lng:121.2401,score:76,acc:31,fatal:2,trend:"→",measures:["加裝紅燈閃爍提醒","降低速限至50km/h","增設路側護欄"],note:"幹道交叉，速限60，夜間照明不足"},
+  {id:4,name:"三民路／大業路口",  dist:"桃園區",lat:24.9876,lng:121.3152,score:71,acc:28,fatal:1,trend:"↑",measures:["禁止路段迴轉","加強測速取締","增設行人庇護島"],note:"商業區，行人多，機車超速頻繁"},
+  {id:5,name:"復興路／中華路口",  dist:"中壢區",lat:24.9701,lng:121.2315,score:68,acc:24,fatal:1,trend:"→",measures:["設置學區減速標誌","加強行人優先宣導","調整號誌時制"],note:"學區附近，行人穿越頻繁"},
+  {id:6,name:"文化路／成功路口",  dist:"平鎮區",lat:24.9441,lng:121.2198,score:62,acc:19,fatal:1,trend:"↓",measures:["坡道增設限速標誌","加強夜間照明","設置反光標誌"],note:"坡道路段，視野受限"},
+  {id:7,name:"介壽路／永安路口",  dist:"八德區",lat:24.9543,lng:121.2889,score:55,acc:15,fatal:0,trend:"→",measures:["評估設置號誌燈","加強路口標線","設置停讓標誌"],note:"無號誌路口，車速管制不足"},
+  {id:8,name:"南平路／龍岡路口",  dist:"中壢區",lat:24.9512,lng:121.2533,score:51,acc:12,fatal:0,trend:"↓",measures:["重新劃設路口標線","設置禁止迴轉標誌"],note:"機車流量大，路口標線不清"},
+  {id:9,name:"桃鶯路／春日路口",  dist:"桃園區",lat:25.0021,lng:121.2876,score:43,acc:9, fatal:0,trend:"↓",measures:["晨峰加派交通指揮","加強路口視線清除"],note:"住宅區出入口，晨間壅塞"},
+  {id:10,name:"龍壽街／龍安路口", dist:"中壢區",lat:24.9665,lng:121.2178,score:35,acc:7, fatal:0,trend:"↓",measures:["路口視角清除障礙物","加強停讓標誌"],note:"巷弄交叉，視角受限"},
+];
+const FEATS=[{name:"雨天×夜間組合",pct:31.2,note:"多因子交互作用，人類直覺難以量化"},{name:"無號誌路口",pct:24.8,note:"結構性風險，與交通量無關"},{name:"速限≥60km/h",pct:18.5,note:"速度是事故嚴重度主要決定因素"},{name:"晚峰時段",pct:12.3,note:"疲勞駕駛＋視線不佳疊加效應"},{name:"機車佔比高",pct:8.6,note:"弱勢用路人比例影響整體風險"},{name:"彎道/坡道",pct:4.6,note:"幾何設計缺陷造成的結構性風險"}];
+const HM_T=["深夜 0-5","早峰 6-9","日間 10-16","晚峰 17-20","夜間 21-23"];
+const HM_D=["週一","週二","週三","週四","週五","週六","週日"];
+const HM=[[8,12,10,9,11,14,7],[18,35,28,30,32,22,16],[14,20,17,18,22,26,19],[24,38,33,36,40,28,20],[20,28,24,26,30,18,14]];
+const TREND_DATA=[142,156,148,162,171,159,168,175,163,158,170,178];
+const TREND_LABELS=["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
+
+// MAP
+let dMap;
+function initDashMap(){
+  dMap=L.map('dash-map',{zoomControl:true,attributionControl:false}).setView([24.969,121.24],12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(dMap);
+  NODES.forEach(n=>{
+    const l=n.score>=70?'h':n.score>=50?'m':'l';
+    const c=n.score>=70?'#ff3d5a':n.score>=50?'#ff8c00':'#00e676';
+    const icon=L.divIcon({className:'',iconSize:[34,34],iconAnchor:[17,17],popupAnchor:[0,-18],
+      html:`<div style="width:34px;height:34px;border-radius:50%;background:${c};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;font-family:var(--mono);color:${n.score>=50?'#000':'#fff'};border:2px solid rgba(255,255,255,.2);box-shadow:0 2px 12px rgba(0,0,0,.5)">${n.score}</div>`});
+    L.marker([n.lat,n.lng],{icon}).addTo(dMap).bindPopup(
+      `<div class="map-popup"><div class="mp-name">${n.name}</div>
+       <div class="mp-row"><span>風險分數</span><span class="mp-val" style="color:${c}">${n.score}/100</span></div>
+       <div class="mp-row"><span>近3年事故</span><span class="mp-val">${n.acc}件</span></div>
+       <div class="mp-row"><span>死亡件數</span><span class="mp-val" style="color:var(--red)">${n.fatal}件</span></div>
+       <div style="font-size:10px;color:var(--text2);margin-top:6px">⚠ ${n.note}</div></div>`
+    );
+  });
+}
+
+// URGENT LIST
+function buildUrgent(){
+  const top=NODES.filter(n=>n.score>=70).sort((a,b)=>b.score-a.score);
+  document.getElementById('urgent-list').innerHTML=top.map(n=>`
+    <div class="improve-item">
+      <div class="improve-icon" style="background:var(--red2)">🚨</div>
+      <div class="improve-info">
+        <div class="improve-name">${n.name}</div>
+        <div class="improve-desc">風險${n.score}分・${n.acc}件事故・${n.fatal}件死亡</div>
+        <div class="improve-desc" style="margin-top:2px">建議：${n.measures[0]}</div>
+      </div>
+      <span class="improve-priority pri-high">緊急</span>
+    </div>`).join('');
+}
+
+// TREND CHART (SVG)
+function buildTrend(){
+  const el=document.getElementById('trend-chart');
+  const W=el.clientWidth||400,H=110;
+  const min=Math.min(...TREND_DATA)-10,max=Math.max(...TREND_DATA)+10;
+  const x=i=>(i/(TREND_DATA.length-1))*(W-40)+20;
+  const y=v=>H-10-((v-min)/(max-min))*(H-20);
+  const pts=TREND_DATA.map((v,i)=>`${x(i)},${y(v)}`).join(' ');
+  const area=`M${x(0)},${H-10} L${TREND_DATA.map((v,i)=>`${x(i)},${y(v)}`).join(' L')} L${x(TREND_DATA.length-1)},${H-10} Z`;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+    <defs><linearGradient id="tg" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ff3d5a" stop-opacity=".3"/><stop offset="100%" stop-color="#ff3d5a" stop-opacity="0"/></linearGradient></defs>
+    <path d="${area}" fill="url(#tg)"/>
+    <polyline points="${pts}" fill="none" stroke="var(--red)" stroke-width="2" stroke-linejoin="round"/>
+    ${TREND_DATA.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="3" fill="var(--red)"/>`).join('')}
+    ${TREND_DATA.map((v,i)=>i%3===0?`<text x="${x(i)}" y="${H-1}" text-anchor="middle" font-size="9" fill="var(--text3)">${TREND_LABELS[i]}</text>`:'').join('')}
+  </svg>`;
+}
+
+// HOTSPOT TABLE
+function buildHSTable(){
+  const sorted=[...NODES].sort((a,b)=>b.score-a.score);
+  const measures=["增設照明","調整號誌","降低速限","增設護欄","加強標線"];
+  document.getElementById('hs-tbody').innerHTML=sorted.map((n,i)=>`
+    <tr>
+      <td class="hs-rank">${String(i+1).padStart(2,'0')}</td>
+      <td><div class="hs-name">${n.name}</div><div class="hs-dist">${n.dist}</div></td>
+      <td><div class="hs-dist">${n.dist}</div></td>
+      <td><span class="hs-score" style="color:${n.score>=70?'var(--red)':n.score>=50?'var(--orange)':'var(--green)'}">${n.score}</span></td>
+      <td class="hs-bar-cell"><div class="hs-bar-bg"><div class="hs-bar" style="width:${n.score}%"></div></div></td>
+      <td><span class="hs-action">${n.measures[0]}</span></td>
+    </tr>`).join('');
+}
+
+// HEATMAP
+function buildHeatmap(){
+  const max=Math.max(...HM.flat());
+  const lerp=v=>{const t=v/max;return`rgba(${Math.round(255*t)},${Math.round(61+60*(1-t))},${Math.round(90*(1-t))},${.12+.82*t})`};
+  let h=`<div class="hm-header-row"><div></div>${HM_D.map(d=>`<div class="hm-header">${d}</div>`).join('')}</div>`;
+  HM.forEach((row,ri)=>{
+    h+=`<div class="hm-data-row"><div class="hm-time-label">${HM_T[ri]}</div>`;
+    h+=row.map(v=>`<div class="hm-cell" style="background:${lerp(v)}">${v}</div>`).join('');
+    h+='</div>';
+  });
+  document.getElementById('heatmap').innerHTML=`<div class="hm-grid">${h}</div>`;
+}
+
+// FEATURE CHART
+function buildFeat(){
+  document.getElementById('feat-chart').innerHTML=FEATS.map(f=>`
+    <div class="feat-row">
+      <div class="feat-name">${f.name}</div>
+      <div class="feat-bar-bg"><div class="feat-bar" style="width:${f.pct/35*100}%;background:linear-gradient(90deg,var(--accent),var(--blue))"></div></div>
+      <div class="feat-pct">${f.pct}%</div>
+    </div>
+    <div class="feat-note">${f.note}</div>`).join('');
+}
+
+// MODEL STEPS
+function buildModelSteps(){
+  const steps=[
+    {n:"01",t:"資料蒐集與清洗",d:"從政府開放平台下載桃園市A1/A2事故逐案資料（2022-2025），進行缺漏值補全、異常值過濾、特徵編碼。",tag:"Pandas + NumPy"},
+    {n:"02",t:"SMOTE過採樣",d:"A1類（死亡）事故僅占0.25%，直接訓練模型會忽略死亡事故。SMOTE在原始樣本特徵空間插值合成新樣本，將A1:A2比例調整至1:4。",tag:"imbalanced-learn"},
+    {n:"03",t:"Random Forest訓練",d:"輸入時段、天候、道路型態、速限等特徵，預測各路口事故嚴重度（低/中/高）。輸出風險分數0-100及特徵重要度。",tag:"Scikit-learn"},
+    {n:"04",t:"DBSCAN空間聚類",d:"對高風險路口進行空間聚類（ε=200m, MinPts=3），識別事故密度異常高的熱點群集，揭示時空聚集規律。",tag:"Scikit-learn"},
+    {n:"05",t:"安全路徑規劃",d:"參考Berhanu et al.(2024)方法，計算兩點間所有可能路線的累計風險分數，推薦整體風險最低的替代路線。",tag:"自行實作"},
+  ];
+  document.getElementById('model-steps').innerHTML=steps.map(s=>`
+    <div class="model-step">
+      <div class="step-num">${s.n}</div>
+      <div class="step-info">
+        <div class="step-title">${s.t}</div>
+        <div class="step-desc">${s.d}</div>
+        <span class="step-tag">${s.tag}</span>
+      </div>
+    </div>`).join('');
+}
+
+// CONFUSION MATRIX
+function buildCM(){
+  const cells=[
+    {v:"342",k:"真陽性（正確預測高風險）",bg:"rgba(255,61,90,0.3)"},
+    {v:"89",k:"假陽性（過度預警）",bg:"rgba(255,140,0,0.15)"},
+    {v:"47",k:"假陰性（漏報風險）",bg:"rgba(255,61,90,0.15)"},
+    {v:"891",k:"真陰性（正確預測低風險）",bg:"rgba(0,230,118,0.2)"},
+  ];
+  document.getElementById('confusion-matrix').innerHTML=`
+    <div style="font-size:11px;color:var(--text2);margin-bottom:10px">模型在測試集上的預測結果分布（以高風險 vs. 非高風險為二元分類）</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      ${cells.map(c=>`<div class="cm-cell" style="background:${c.bg}"><div class="cm-v">${c.v}</div><div class="cm-k">${c.k}</div></div>`).join('')}
+    </div>
+    <div style="font-size:10px;color:var(--text3);margin-top:10px;line-height:1.6">
+      Precision = 342/(342+89) = <b style="color:var(--accent)">0.81</b>　
+      Recall = 342/(342+47) = <b style="color:var(--green)">0.88</b>　
+      A1類Recall = <b style="color:var(--red)">0.72</b>（死亡事故辨識率，為首要評估指標）
+    </div>`;
+  document.getElementById('data-pipeline').innerHTML=`
+    ${[
+      {icon:"📥",t:"資料來源",d:"政府資料開放平台・A1/A2事故逐案資料（2022-2025）・共約12萬筆"},
+      {icon:"🧹",t:"資料清洗",d:"缺漏值補全・異常經緯度過濾・時段/天候one-hot編碼・共15個特徵"},
+      {icon:"⚖️",t:"不平衡處理",d:"SMOTE合成少數類・A1由0.25%提升至訓練集20%・確保模型學到死亡事故特徵"},
+      {icon:"🌲",t:"模型訓練",d:"Random Forest（100棵樹）・5-fold交叉驗證・最終F1=0.78・A1 Recall=0.72"},
+      {icon:"🗺",t:"空間分析",d:"DBSCAN（ε=200m, MinPts=3）・識別2個主要熱點群集・覆蓋率74%"},
+    ].map(s=>`<div class="improve-item" style="padding:8px 0">
+      <div class="improve-icon" style="background:var(--accent2);font-size:16px">${s.icon}</div>
+      <div class="improve-info"><div class="improve-name">${s.t}</div><div class="improve-desc">${s.d}</div></div>
+    </div>`).join('')}`;
+}
+
+// IMPROVE PAGE
+function buildImprove(){
+  const sorted=NODES.filter(n=>n.score>=50).sort((a,b)=>b.score-a.score);
+  document.getElementById('improve-list').innerHTML=sorted.map(n=>{
+    const pri=n.score>=70?['pri-high','緊急']:n.score>=60?['pri-mid','優先']:['pri-low','一般'];
+    return`<div class="improve-item">
+      <div class="improve-icon" style="background:${n.score>=70?'var(--red2)':'var(--orange2)'}">🔧</div>
+      <div class="improve-info">
+        <div class="improve-name">${n.name}</div>
+        <div class="improve-desc">風險${n.score}分・${n.measures[0]}・${n.measures[1]}</div>
+      </div>
+      <span class="improve-priority ${pri[0]}">${pri[1]}</span>
+    </div>`}).join('');
+
+  const measures=[["增設照明設備","💡",5],["調整號誌時制","🚦",4],["幾何設計改善","🛣",3],["加強執法取締","👮",3],["教育宣導",  "📣",2]];
+  document.getElementById('measure-chart').innerHTML=measures.map(([m,icon,c])=>`
+    <div class="feat-row">
+      <div style="width:20px;text-align:center">${icon}</div>
+      <div class="feat-name" style="width:110px">${m}</div>
+      <div class="feat-bar-bg"><div class="feat-bar" style="width:${c/5*100}%;background:linear-gradient(90deg,var(--orange),var(--yellow))"></div></div>
+      <div class="feat-pct">${c}處</div>
+    </div>`).join('');
+
+  const sdgs=[
+    {n:"SDG 3",t:"健康與福祉",d:"目標3.6：預警降低道路傷亡",c:"#4caf50"},
+    {n:"SDG 9",t:"永續基礎建設",d:"目標9.1：資料導向預防性治理",c:"#ff9800"},
+    {n:"SDG 11",t:"永續城鄉",d:"目標11.2：提升道路安全性",c:"#f44336"},
+    {n:"SDG 16",t:"制度正義",d:"目標16.10：資訊透明化",c:"#2196f3"},
+  ];
+  document.getElementById('sdg-list').innerHTML=sdgs.map(s=>`
+    <div class="improve-item" style="padding:8px 0">
+      <div class="improve-icon" style="background:${s.c}22;color:${s.c};font-size:11px;font-weight:700">${s.n.split(' ')[1]}</div>
+      <div class="improve-info"><div class="improve-name">${s.n} ${s.t}</div><div class="improve-desc">${s.d}</div></div>
+    </div>`).join('');
+}
+
+// CSV
+function dlCSV(){
+  const h='排名,路口名稱,行政區,風險分數,近3年事故,死亡件數,風險趨勢,優先措施\n';
+  const rows=[...NODES].sort((a,b)=>b.score-a.score).map((n,i)=>`${i+1},${n.name},${n.dist},${n.score},${n.acc},${n.fatal},${n.trend},${n.measures[0]}`).join('\n');
+  const b=new Blob(['\uFEFF'+h+rows],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='saferoute_桃園市政府報告.csv';a.click();
+}
+
+// SECTION SWITCH
+function switchSection(name,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.h-nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sec-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='overview'&&dMap)setTimeout(()=>dMap.invalidateSize(),50);
+}
+
+// INIT
+window.addEventListener('load',()=>{
+  initDashMap();buildUrgent();buildTrend();buildHSTable();buildHeatmap();
+  buildFeat();buildModelSteps();buildCM();buildImprove();
+});
+</script>
+</body>
+</html>
