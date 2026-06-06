@@ -138,6 +138,11 @@ async def ors_route_geojson(waypoints):
             raise RuntimeError(f"ORS HTTP {r.status_code}: {r.text[:300]}")
         data = r.json()
 
+    # DEBUG：印出完整結構幫助診斷
+    import json as _json
+    print(f"[ORS DEBUG] 頂層keys: {list(data.keys())}")
+    print(f"[ORS DEBUG] 原始回傳前800字: {_json.dumps(data, ensure_ascii=False)[:800]}")
+
     # GeoJSON Feature response
     if "features" in data:
         feat = data["features"][0]
@@ -151,7 +156,11 @@ async def ors_route_geojson(waypoints):
     # routes response
     if "routes" in data:
         rt = data["routes"][0]
-        raw = rt["geometry"]["coordinates"]
+        geom = rt.get("geometry", {})
+        if isinstance(geom, dict):
+            raw = geom["coordinates"]
+        else:
+            raise RuntimeError(f"ORS geometry 格式錯誤: {type(geom)}")
         return {
             "coords":   [[c[1], c[0]] for c in raw],
             "duration": rt["summary"]["duration"],
