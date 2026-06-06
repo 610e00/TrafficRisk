@@ -361,7 +361,8 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
 
 <script>
 // ── GOOGLE MAPS API KEY ──────────────────────────────────────────
-const GMAPS_KEY = 'AIzaSyARH9i9qkDIhv8FUXkqt7dLpa3AudxGsxE';
+const GMAPS_KEY  = 'AIzaSyARH9i9qkDIhv8FUXkqt7dLpa3AudxGsxE';
+const BACKEND_URL = 'https://traffic-risk-api.onrender.com';
 
 // ── STATE ────────────────────────────────────────────────────────
 let NODES=[], FEATS=[], MODEL_METRICS={};
@@ -675,8 +676,10 @@ function initNavMap(){
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(navMap);
 }
 
+// ── 後端路線快取（避免切換tab重複打API）─────────────────────────
+let _routeCache = null; // { fast, safe, comparison }
+
 async function calcRoute(type){
-  // ensure we have coords
   if(!originCoords){
     const fromVal=document.getElementById('nav-from').value.trim();
     if(!fromVal){alert('請輸入出發地');return;}
@@ -696,108 +699,181 @@ async function calcRoute(type){
 
   initNavMap();
   setTimeout(()=>navMap.invalidateSize(),50);
-  navL.forEach(l=>navMap.removeLayer(l));navL=[];
   document.getElementById('tab-fast').classList.toggle('on',type==='fast');
   document.getElementById('tab-safe').classList.toggle('on',type==='safe');
-  showLoading('計算路線中...');
 
-  try{
-    let rd;
-    const isMoto = vehicleMode==='moto';
-    if(type==='fast'){
-      // 最快路線：不避開高速
-      const routes = await fetchRoute(originCoords, destCoords, false);
-      rd = routes ? routes[0] : null;
-    } else {
-      // 安全路線：取得備選路線，選累計風險最低（Berhanu et al. 2024）
-      // 機車模式自動避開高速公路（Google Directions avoid=highways）
-      const routes = await fetchRoute(originCoords, destCoords, isMoto);
-      if(routes && routes.length>0){
-        let best=null, bestScore=Infinity;
-        for(const r of routes){
-          const s=scoreRoute(r.coords);
-          if(s<bestScore){bestScore=s;best=r;}
-        }
-        rd=best;
-        console.log('安全路線：從'+routes.length+'條備選中選出累計風險最低（'+bestScore+'分）'+(isMoto?' [機車：已避開高速]':''));
-      }
-    }
-    hideLoading();
-    if(!rd){alert('無法取得路線，請確認網路連線');return;}
-
-    currentRouteType=type;
-    routeCoords=rd.coords;
-
-    const col=type==='fast'?'#1a73e8':'#1db954';
-    const line=L.polyline(rd.coords,{color:col,weight:5,opacity:.85}).addTo(navMap);
-    navMap.fitBounds(line.getBounds(),{padding:[50,50]});
-    navL.push(line);
-
-    // markers
-    const mkA=L.divIcon({className:'',iconSize:[32,32],iconAnchor:[16,16],html:`<div style="width:32px;height:32px;border-radius:50%;background:${col};display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,0.25)">A</div>`});
-    const mkB=L.divIcon({className:'',iconSize:[32,32],iconAnchor:[16,16],html:`<div style="width:32px;height:32px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,0.25)">B</div>`});
-    navL.push(L.marker([originCoords.lat,originCoords.lng],{icon:mkA}).addTo(navMap));
-    navL.push(L.marker([destCoords.lat,destCoords.lng],{icon:mkB}).addTo(navMap));
-
-    // 導航頁風險圈圈：只顯示中高風險，不顯示數字
-    NODES.filter(n=>sc(n)>=50).forEach(n=>{
-      const s=sc(n),l=lvl(s);
-      const sz=s>=70?20:16;
-      const icon=L.divIcon({className:'',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],
-        html:`<div class="mk mk-${l}" style="width:${sz}px;height:${sz}px"></div>`});
-      navL.push(L.marker([n.lat,n.lng],{icon}).addTo(navMap).bindPopup(popup(n,s)));
-    });
-
-    // render summary
-    const nearNodes=nodesNearRoute(rd.coords);
-    const high=nearNodes.filter(n=>sc(n)>=70).length;
-    const mid=nearNodes.filter(n=>sc(n)>=50&&sc(n)<70).length;
-    const mins=Math.round(rd.duration/60);
-    const km=(rd.distance/1000).toFixed(1);
-
-    document.getElementById('route-body').innerHTML='';
-    document.getElementById('route-result').style.display='flex';
-    document.getElementById('btn-cancel').style.display='block';
-    document.getElementById('route-body').innerHTML=`
-      <div class="r-summary">
-        <div class="rs"><div class="rs-v" style="color:var(--red)">${high}</div><div class="rs-k">高風險路口</div></div>
-        <div class="rs"><div class="rs-v" style="color:var(--orange)">${mid}</div><div class="rs-k">中風險路口</div></div>
-        <div class="rs"><div class="rs-v" style="color:var(--blue)">${mins}</div><div class="rs-k">預估分鐘</div></div>
-      </div>
-      <div class="r-note ${type==='fast'?'r-note-fast':'r-note-safe'}">
-        ${type==='fast'?`最快路線 ${km}km，途經${high}個高風險路口，建議提高警覺`:`安全路線 ${km}km，系統從備選路線中選出累計風險最低的路線`}
-      </div>
-      ${nearNodes.length?`<div style="font-size:11px;color:var(--text2);font-weight:600;margin-bottom:4px">路線上的風險路口</div>`:'<div style="font-size:11px;color:var(--green);padding:6px 0">此路線無高風險路口</div>'}
-      ${nearNodes.slice(0,5).map((n,i)=>{
-        const s=sc(n);
-        const hintKey=cW==='小雨'||cW==='大雨'?'雨天':cT;
-        const hint=(n.hints||{})[hintKey]||'';
-        return`<div class="hi">
-          <div class="hi-rk" style="background:${s>=70?'var(--red2)':'var(--orange2)'};color:${lvlC(s)}">${i+1}</div>
-          <div class="hi-info">
-            <div class="hi-name">${n.name}</div>
-            <div class="hi-det">${lvlLbl(s)}${hint?' · '+hint.substring(0,20):''}</div>
-          </div>
-          <div class="hi-sc" style="color:${lvlC(s)}">${s}</div>
-        </div>`;
-      }).join('')}`;
-
-    const sr=document.getElementById('nav-start-row');
-    if(sr){sr.style.display='block';}
-    const sb=document.getElementById('btn-start');
-    if(sb){sb.textContent='開始導航';sb.style.background='var(--blue)';}
-    // save route
-    saveRoute(document.getElementById('nav-from').value, document.getElementById('nav-to').value, high, mid, km);
-
-    // start GPS tracking for voice alerts
-    startVoiceTracking();
-
-  }catch(e){
-    hideLoading();
-    console.error('路線計算錯誤：',e.message);
-    document.getElementById('route-result').style.display='flex';
-    document.getElementById('route-body').innerHTML=`<div class="r-note r-note-fast" style="color:var(--text2)">無法取得路線（${e.message}），請確認網路後重試。</div>`;
+  // 有快取就直接切換，不重打API
+  if(_routeCache){
+    renderRouteResult(_routeCache, type);
+    return;
   }
+
+  showLoading('後端計算安全路線中...');
+  try{
+    const body = {
+      origin_lat:   originCoords.lat,
+      origin_lng:   originCoords.lng,
+      dest_lat:     destCoords.lat,
+      dest_lng:     destCoords.lng,
+      period:       cT || 'day',
+      weather:      cW || '晴天',
+      vehicle_mode: vehicleMode || 'car',
+    };
+    const res = await fetch(`${BACKEND_URL}/api/route/`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body),
+    });
+    if(!res.ok) throw new Error(`後端回應 ${res.status}`);
+    _routeCache = await res.json();
+    hideLoading();
+    renderRouteResult(_routeCache, type);
+  } catch(e){
+    hideLoading();
+    console.error('後端路線失敗，切換為本地計算：', e.message);
+    // fallback：用本地 DirectionsService
+    await calcRouteFallback(type);
+  }
+}
+
+function renderRouteResult(cache, type){
+  const rd = type==='fast' ? cache.fast : cache.safe;
+  const other = type==='fast' ? cache.safe : cache.fast;
+  const cmp = cache.comparison;
+
+  navL.forEach(l=>navMap.removeLayer(l));navL=[];
+  currentRouteType=type;
+  routeCoords=rd.coords;
+
+  const col=type==='fast'?'#1a73e8':'#1db954';
+  const line=L.polyline(rd.coords,{color:col,weight:5,opacity:.85}).addTo(navMap);
+  navMap.fitBounds(line.getBounds(),{padding:[50,50]});
+  navL.push(line);
+
+  // 如果兩條路線不同，淡色顯示另一條
+  if(!cmp.same_route && other.coords){
+    const otherCol = type==='fast'?'rgba(29,185,84,0.3)':'rgba(26,115,232,0.3)';
+    navL.push(L.polyline(other.coords,{color:otherCol,weight:3,opacity:.6,dashArray:'6,4'}).addTo(navMap));
+  }
+
+  const mkA=L.divIcon({className:'',iconSize:[32,32],iconAnchor:[16,16],html:`<div style="width:32px;height:32px;border-radius:50%;background:${col};display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,0.25)">A</div>`});
+  const mkB=L.divIcon({className:'',iconSize:[32,32],iconAnchor:[16,16],html:`<div style="width:32px;height:32px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,0.25)">B</div>`});
+  navL.push(L.marker([originCoords.lat,originCoords.lng],{icon:mkA}).addTo(navMap));
+  navL.push(L.marker([destCoords.lat,destCoords.lng],{icon:mkB}).addTo(navMap));
+
+  NODES.filter(n=>sc(n)>=50).forEach(n=>{
+    const s=sc(n),l=lvl(s);
+    const sz=s>=70?20:16;
+    const icon=L.divIcon({className:'',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],
+      html:`<div class="mk mk-${l}" style="width:${sz}px;height:${sz}px"></div>`});
+    navL.push(L.marker([n.lat,n.lng],{icon}).addTo(navMap).bindPopup(popup(n,s)));
+  });
+
+  // 比較資訊banner（只在安全路線顯示，或兩條不同時才顯示）
+  let compareBanner = '';
+  if(!cmp.same_route){
+    if(type==='safe'){
+      const saved = cmp.saved_high>0||cmp.saved_mid>0;
+      compareBanner = `<div style="padding:8px 12px;border-radius:var(--rs);margin-bottom:8px;font-size:11px;line-height:1.6;
+        background:${saved?'rgba(29,185,84,0.08)':'var(--surface)'};
+        border:1px solid ${saved?'var(--green)':'var(--border)'}">
+        ${saved
+          ? `安全路線比最快路線少經過 <b style="color:var(--green)">${cmp.saved_high}</b> 個高風險、<b style="color:var(--green)">${cmp.saved_mid}</b> 個中風險路口，多花 <b>${cmp.extra_minutes}</b> 分鐘`
+          : `兩條路線風險相近，安全路線多花 <b>${cmp.extra_minutes}</b> 分鐘`}
+      </div>`;
+    } else {
+      compareBanner = `<div style="padding:8px 12px;border-radius:var(--rs);margin-bottom:8px;font-size:11px;line-height:1.6;background:rgba(26,115,232,0.06);border:1px solid var(--blue)">
+        切換到安全路線可少經過 <b style="color:var(--red)">${cmp.saved_high}</b> 個高風險路口，多花 <b>${cmp.extra_minutes}</b> 分鐘
+      </div>`;
+    }
+  } else {
+    compareBanner = `<div style="padding:8px 12px;border-radius:var(--rs);margin-bottom:8px;font-size:11px;color:var(--text2);background:var(--surface);border:1px solid var(--border)">
+      此路段無明顯替代路線，建議途經高風險路口時減速行駛
+    </div>`;
+  }
+
+  const riskNodes = rd.risk_nodes || [];
+  const high = rd.high_count || 0;
+  const mid  = rd.mid_count  || 0;
+  const mins = rd.duration_min;
+  const km   = rd.distance_km;
+
+  document.getElementById('route-body').innerHTML='';
+  document.getElementById('route-result').style.display='flex';
+  document.getElementById('btn-cancel').style.display='block';
+  document.getElementById('route-body').innerHTML=`
+    <div class="r-summary">
+      <div class="rs"><div class="rs-v" style="color:var(--red)">${high}</div><div class="rs-k">高風險路口</div></div>
+      <div class="rs"><div class="rs-v" style="color:var(--orange)">${mid}</div><div class="rs-k">中風險路口</div></div>
+      <div class="rs"><div class="rs-v" style="color:var(--blue)">${mins}</div><div class="rs-k">預估分鐘</div></div>
+    </div>
+    ${compareBanner}
+    <div class="r-note ${type==='fast'?'r-note-fast':'r-note-safe'}">
+      ${type==='fast'?`最快路線 ${km}km，建議提高警覺`:`安全路線 ${km}km，已選累計風險最低路徑`}
+    </div>
+    ${riskNodes.length
+      ? `<div style="font-size:11px;color:var(--text2);font-weight:600;margin-bottom:4px">路線上的風險路口</div>`
+      : `<div style="font-size:11px;color:var(--green);padding:6px 0">此路線無高風險路口</div>`}
+    ${riskNodes.slice(0,5).map((n,i)=>{
+      const hintKey=cW==='小雨'||cW==='大雨'?'雨天':cT;
+      const hint=(n.hints||{})[hintKey]||'';
+      const col=n.score>=70?'var(--red)':'var(--orange)';
+      const bg=n.score>=70?'var(--red2)':'var(--orange2)';
+      return`<div class="hi">
+        <div class="hi-rk" style="background:${bg};color:${col}">${i+1}</div>
+        <div class="hi-info">
+          <div class="hi-name">${n.name}</div>
+          <div class="hi-det">${n.level}${hint?' · '+hint.substring(0,20):''}</div>
+        </div>
+      </div>`;
+    }).join('')}`;
+
+  const sr=document.getElementById('nav-start-row');
+  if(sr) sr.style.display='block';
+  const sb=document.getElementById('btn-start');
+  if(sb){sb.textContent='開始導航';sb.style.background='var(--blue)';}
+  saveRoute(document.getElementById('nav-from').value, document.getElementById('nav-to').value, high, mid, String(km));
+}
+
+// ── Fallback：後端不通時用本地DirectionsService ───────────────────
+async function calcRouteFallback(type){
+  const isMoto=vehicleMode==='moto';
+  const routes=await new Promise(resolve=>{
+    const svc=getDirSvc();
+    if(!svc){resolve(null);return;}
+    svc.route({
+      origin:new google.maps.LatLng(originCoords.lat,originCoords.lng),
+      destination:new google.maps.LatLng(destCoords.lat,destCoords.lng),
+      travelMode:google.maps.TravelMode.DRIVING,
+      provideRouteAlternatives:true,
+      avoidHighways:type==='safe'&&isMoto,
+      region:'TW'
+    },(result,status)=>{
+      if(status!=='OK'||!result.routes.length){resolve(null);return;}
+      resolve(result.routes.map(r=>({
+        coords:r.overview_path.map(p=>[p.lat(),p.lng()]),
+        duration:r.legs[0].duration.value,
+        distance:r.legs[0].distance.value
+      })));
+    });
+  });
+  if(!routes){alert('無法取得路線，請確認網路連線');return;}
+  let rd=routes[0];
+  if(type==='safe'&&routes.length>1){
+    let best=null,bestScore=Infinity;
+    for(const r of routes){const s=scoreRoute(r.coords);if(s<bestScore){bestScore=s;best=r;}}
+    rd=best;
+  }
+  // 用本地資料組成假cache
+  const nearNodes=nodesNearRoute(rd.coords);
+  const high=nearNodes.filter(n=>sc(n)>=70).length;
+  const mid=nearNodes.filter(n=>sc(n)>=50&&sc(n)<70).length;
+  _routeCache={
+    fast:{coords:rd.coords,duration_min:Math.round(rd.duration/60),distance_km:(rd.distance/1000).toFixed(1),high_count:high,mid_count:mid,risk_nodes:nearNodes.slice(0,8).map(n=>({...n,score:sc(n),level:sc(n)>=70?'高風險':'中風險',hints:n.hints||{}}))},
+    safe:{coords:rd.coords,duration_min:Math.round(rd.duration/60),distance_km:(rd.distance/1000).toFixed(1),high_count:high,mid_count:mid,risk_nodes:nearNodes.slice(0,8).map(n=>({...n,score:sc(n),level:sc(n)>=70?'高風險':'中風險',hints:n.hints||{}}))},
+    comparison:{same_route:true,extra_minutes:0,saved_high:0,saved_mid:0,routes_available:routes.length}
+  };
+  renderRouteResult(_routeCache,type);
 }
 
 function setMode(mode,el){
@@ -820,6 +896,8 @@ function cancelNav(){
   if(watchId){navigator.geolocation.clearWatch(watchId);watchId=null;}
   navL.forEach(l=>navMap.removeLayer(l));navL=[];
   routeCoords=null;currentRouteType=null;
+  originCoords=null;destCoords=null;
+  _routeCache=null;
   document.getElementById('route-result').style.display='none';
   document.getElementById('btn-cancel').style.display='none';
   document.getElementById('voice-banner').classList.remove('show');
