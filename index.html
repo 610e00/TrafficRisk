@@ -1173,7 +1173,20 @@ function showLoading(txt='載入中...'){
 function hideLoading(){document.getElementById('loading').classList.remove('show');}
 
 // ── PWA ──────────────────────────────────────────────────────────
-const mf={name:'TrafficRisk',short_name:'TrafficRisk',start_url:'.',display:'standalone',background_color:'#ffffff',theme_color:'#ffffff'};
+const mf={
+  name:'桃園市車禍風險預測平台',
+  short_name:'車禍風險',
+  start_url:'/TrafficRisk/',
+  scope:'/TrafficRisk/',
+  display:'standalone',
+  background_color:'#ffffff',
+  theme_color:'#1a73e8',
+  lang:'zh-TW',
+  icons:[
+    {src:'https://raw.githubusercontent.com/610e00/TrafficRisk/master/icon-192.png',sizes:'192x192',type:'image/png'},
+    {src:'https://raw.githubusercontent.com/610e00/TrafficRisk/master/icon-512.png',sizes:'512x512',type:'image/png'}
+  ]
+};
 const bl=new Blob([JSON.stringify(mf)],{type:'application/json'});
 const lk=document.createElement('link');lk.rel='manifest';lk.href=URL.createObjectURL(bl);document.head.appendChild(lk);
 
