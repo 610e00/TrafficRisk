@@ -124,8 +124,8 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
 .ac-sub{font-size:11px;color:var(--text2);margin-top:1px}
 
 .nav-btns{display:flex;gap:8px;margin-bottom:8px}
-.btn-fast{flex:1;padding:11px;border-radius:var(--rs);background:var(--blue);border:none;color:#fff;font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer}
-.btn-safe{padding:11px 16px;border-radius:var(--rs);background:var(--green2);border:2px solid var(--green);color:var(--green);font-size:13px;font-weight:700;font-family:var(--font);cursor:pointer}
+.btn-fast{flex:1;padding:11px;border-radius:var(--rs);background:var(--blue);border:none;color:#fff;font-size:13px;font-weight:700;font-family:var(--font);cursor:pointer}
+.btn-safe{flex:1;padding:11px;border-radius:var(--rs);background:var(--green2);border:2px solid var(--green);color:var(--green);font-size:13px;font-weight:700;font-family:var(--font);cursor:pointer}
 .btn-cancel{padding:11px 14px;border-radius:var(--rs);background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:13px;font-weight:600;font-family:var(--font);cursor:pointer;display:none}
 
 #route-result{display:none;flex-direction:column;max-height:200px;overflow-y:auto}
@@ -212,10 +212,10 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-txt{font-size:12px;color:var(--text2)}
 
-.nav-mode-row{display:flex;gap:6px;margin-bottom:8px}
-.mode-btn{flex:1;padding:8px;border-radius:var(--rs);background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:600;font-family:var(--font);cursor:pointer;transition:all .15s}
+.nav-mode-row{display:flex;gap:6px;margin-bottom:10px}
+.mode-btn{flex:1;padding:6px 8px;border-radius:var(--rs);background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:11px;font-weight:600;font-family:var(--font);cursor:pointer;transition:all .15s}
 .mode-btn.on{background:var(--blue2);border-color:var(--blue);color:var(--blue)}
-.btn-start{width:100%;padding:12px;border-radius:var(--rs);background:var(--blue);border:none;color:#fff;font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer}
+.btn-start{width:100%;padding:15px;border-radius:var(--rs);background:#1db954;border:none;color:#fff;font-size:16px;font-weight:700;font-family:var(--font);cursor:pointer;letter-spacing:0.5px}
 .pu-moto{margin-top:6px;padding:7px 10px;background:rgba(26,115,232,0.06);border-radius:var(--rs);font-size:11px;color:var(--blue);border-left:3px solid var(--blue)}
 
 /* CLUSTER */
@@ -240,9 +240,9 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
   <div id="map"></div>
 
   <div id="legend">
-    <div class="leg-item"><div class="leg-dot" style="background:var(--red)"></div>高風險 ≥70</div>
-    <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div>中風險 50-69</div>
-    <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div>低風險 &lt;50</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--red)"></div>高風險</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div>中風險</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div>低風險</div>
   </div>
   <button id="gps-btn" onclick="locateUser()" title="我的位置">&#9737;</button>
   <div id="filter-bar">
@@ -262,7 +262,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
     <div class="fb-g">
       <div class="fb-l">顯示</div>
       <select class="fb-s" id="show-sel" onchange="renderMain()">
-        <option value="all">全部風險</option>
+        <option value="all" selected>全部風險</option>
         <option value="high">僅高風險</option>
         <option value="mid">中以上</option>
       </select>
@@ -462,26 +462,41 @@ function popup(n, s){
       <span class="cb-pct">${p}%</span>
     </div>`).join('');
 
-  // 優先使用天氣提示，其次時段提示
-  const hintKey = cW==='小雨'||cW==='大雨' ? '雨天' : cT;
+  // 計算動態加成原因
+  const baseScore = n.score?.all || s;
+  const isRainy = cW==='小雨'||cW==='大雨';
+  const hintKey = isRainy ? '雨天' : cT;
   const hints = n.hints || {};
   const hint = hints[hintKey] || hints['all'] || null;
   const motoHint = (vehicleMode==='moto' && n.moto_hint) ? n.moto_hint : null;
   const noteText = n.note || null;
 
+  // 動態加成標籤
+  const boostTags = [];
+  if(isRainy && n.rain_sensitivity && n.rain_sensitivity > 1.2){
+    const boost = WB_BASE[cW] || 0;
+    if(boost > 0) boostTags.push(`<span style="background:rgba(26,115,232,0.1);color:var(--blue);padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700">${cW} +${Math.round(boost * n.rain_sensitivity)}分</span>`);
+  }
+  const periodScores = n.score || {};
+  const periodScore = periodScores[cT] || baseScore;
+  if(periodScore > baseScore + 3){
+    const periodLbl = {'peak':'早峰','day':'日間','eve':'晚峰','night':'夜間'}[cT]||cT;
+    boostTags.push(`<span style="background:rgba(232,53,74,0.08);color:var(--red);padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700">${periodLbl}加成 +${Math.round(periodScore-baseScore)}分</span>`);
+  }
+
   return `<div class="pu r${l}">
     <div class="pu-top">
       <span class="pu-name">${n.name}</span>
-      <span class="pu-badge">${lvlLbl(s)}</span>
     </div>
-    <div class="pu-score-row">
-      <span class="pu-score">${s}</span>
-      <span class="pu-score-sub">/ 100 風險分數</span>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;align-items:center">
+      <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;
+        background:${l==='h'?'var(--red3)':l==='m'?'var(--orange2)':'rgba(52,168,83,0.1)'};
+        color:${l==='h'?'var(--red)':l==='m'?'var(--orange)':'var(--green)'}">${lvlLbl(s)}</span>
+      ${boostTags.join('')}
     </div>
     ${causes ? `<div style="font-size:10px;color:var(--text2);margin-bottom:4px;font-weight:600">近期主要肇因</div>${causes}` : ''}
     ${hint ? `<div class="pu-hint">${hint}</div>` : ''}
     ${motoHint ? `<div class="pu-moto">${motoHint}</div>` : ''}
-    ${noteText ? `<div style="margin-top:6px;font-size:10px;color:var(--text2)">${noteText}</div>` : ''}
   </div>`;
 }
 
@@ -508,8 +523,9 @@ function renderMain(){
     // 縮放層級控制：zoom<12 只顯示高風險；12-14 顯示高+中；≥15 全部
     if(zoom<12 && l!=='h') return;
     if(zoom<15 && zoom>=12 && l==='l') return;
-    const icon=L.divIcon({className:'',iconSize:[34,34],iconAnchor:[17,17],popupAnchor:[0,-20],
-      html:`<div class="mk mk-${l}"></div>`});
+    const sz = l==='h' ? 26 : 20;
+    const icon=L.divIcon({className:'',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],popupAnchor:[0,-14],
+      html:`<div class="mk mk-${l}" style="width:${sz}px;height:${sz}px"></div>`});
     mainMk.push(L.marker([n.lat,n.lng],{icon}).addTo(mainMap).bindPopup(popup(n,s),{maxWidth:280}));
   });
   if(clusterOn) renderClusters();
@@ -607,25 +623,35 @@ function initAutocomplete(){
   );
   const opts = {bounds, componentRestrictions:{country:'tw'}, language:'zh-TW'};
 
-  // 用舊版 Autocomplete（穩定可靠）
-  const acFrom = new google.maps.places.Autocomplete(fromInput, opts);
+  acFrom = new google.maps.places.Autocomplete(fromInput, opts);
   acFrom.addListener('place_changed', ()=>{
     const place = acFrom.getPlace();
     if(place && place.geometry && place.geometry.location){
       originCoords = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+      _routeCache = null; // 出發地換了，清掉快取
       console.log('出發地座標：', originCoords);
     }
   });
 
-  const acTo = new google.maps.places.Autocomplete(toInput, opts);
+  acTo = new google.maps.places.Autocomplete(toInput, opts);
   acTo.addListener('place_changed', ()=>{
     const place = acTo.getPlace();
     if(place && place.geometry && place.geometry.location){
       destCoords = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+      _routeCache = null; // 目的地換了，清掉快取
       console.log('目的地座標：', destCoords);
     }
   });
-  console.log('Autocomplete 初始化完成（舊版穩定模式）');
+
+  // 手動清空輸入框時，清掉對應座標（但不動另一個）
+  fromInput.addEventListener('input', ()=>{
+    if(fromInput.value.trim()==='') { originCoords=null; _routeCache=null; }
+  });
+  toInput.addEventListener('input', ()=>{
+    if(toInput.value.trim()==='') { destCoords=null; _routeCache=null; }
+  });
+
+  console.log('Autocomplete 初始化完成');
 }
 
 function onInput(field){}
@@ -896,8 +922,12 @@ function cancelNav(){
   if(watchId){navigator.geolocation.clearWatch(watchId);watchId=null;}
   navL.forEach(l=>navMap.removeLayer(l));navL=[];
   routeCoords=null;currentRouteType=null;
-  originCoords=null;destCoords=null;
+  destCoords=null;
   _routeCache=null;
+  // 只有當出發地是手動輸入的才清掉，GPS定位的保留
+  const fromVal=document.getElementById('nav-from').value.trim();
+  if(fromVal!=='我的位置') originCoords=null;
+  document.getElementById('nav-to').value='';
   document.getElementById('route-result').style.display='none';
   document.getElementById('btn-cancel').style.display='none';
   document.getElementById('voice-banner').classList.remove('show');
