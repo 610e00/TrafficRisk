@@ -595,45 +595,58 @@ function geocode(address){
 
 // ── AUTOCOMPLETE（Google Maps JS SDK）────────────────────────────
 let acFrom=null, acTo=null;
+let acFromReady=false, acToReady=false;
 
 function initAutocomplete(){
+  // iOS Safari 問題：Autocomplete 初始化時會觸發 blur，導致鍵盤縮回
+  // 解法：改為使用者第一次點擊輸入框時才初始化，並延遲 300ms 等鍵盤穩定
   const fromInput = document.getElementById('nav-from');
   const toInput   = document.getElementById('nav-to');
   const bounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(24.70, 121.00),
-    new google.maps.LatLng(25.20, 121.55)
+    new google.maps.LatLng(24.85, 121.15),
+    new google.maps.LatLng(25.05, 121.35)
   );
   const opts = {bounds, componentRestrictions:{country:'tw'}, language:'zh-TW'};
 
-  acFrom = new google.maps.places.Autocomplete(fromInput, opts);
-  acFrom.addListener('place_changed', ()=>{
-    const place = acFrom.getPlace();
-    if(place && place.geometry && place.geometry.location){
-      originCoords = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
-      _routeCache = null; // 出發地換了，清掉快取
-      console.log('出發地座標：', originCoords);
-    }
-  });
+  function setupFrom(){
+    if(acFromReady) return;
+    acFromReady = true;
+    setTimeout(()=>{
+      acFrom = new google.maps.places.Autocomplete(fromInput, opts);
+      acFrom.addListener('place_changed', ()=>{
+        const place = acFrom.getPlace();
+        if(place && place.geometry && place.geometry.location){
+          originCoords = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+          _routeCache = null;
+        }
+      });
+      fromInput.addEventListener('input', ()=>{
+        if(fromInput.value.trim()===''){originCoords=null;_routeCache=null;}
+      });
+    }, 300);
+  }
 
-  acTo = new google.maps.places.Autocomplete(toInput, opts);
-  acTo.addListener('place_changed', ()=>{
-    const place = acTo.getPlace();
-    if(place && place.geometry && place.geometry.location){
-      destCoords = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
-      _routeCache = null; // 目的地換了，清掉快取
-      console.log('目的地座標：', destCoords);
-    }
-  });
+  function setupTo(){
+    if(acToReady) return;
+    acToReady = true;
+    setTimeout(()=>{
+      acTo = new google.maps.places.Autocomplete(toInput, opts);
+      acTo.addListener('place_changed', ()=>{
+        const place = acTo.getPlace();
+        if(place && place.geometry && place.geometry.location){
+          destCoords = {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()};
+          _routeCache = null;
+        }
+      });
+      toInput.addEventListener('input', ()=>{
+        if(toInput.value.trim()===''){destCoords=null;_routeCache=null;}
+      });
+    }, 300);
+  }
 
-  // 手動清空輸入框時，清掉對應座標（但不動另一個）
-  fromInput.addEventListener('input', ()=>{
-    if(fromInput.value.trim()==='') { originCoords=null; _routeCache=null; }
-  });
-  toInput.addEventListener('input', ()=>{
-    if(toInput.value.trim()==='') { destCoords=null; _routeCache=null; }
-  });
-
-  console.log('Autocomplete 初始化完成');
+  fromInput.addEventListener('focus', setupFrom);
+  toInput.addEventListener('focus', setupTo);
+  console.log('Autocomplete 初始化完成（延遲模式，iOS 相容）');
 }
 
 function onInput(field){}
@@ -716,7 +729,7 @@ async function calcRoute(type){
     return;
   }
 
-  showLoading('計算安全路線中...');
+  showLoading('後端計算安全路線中...');
   try{
     const body = {
       origin_lat:   originCoords.lat,
