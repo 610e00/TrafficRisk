@@ -212,9 +212,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-txt{font-size:12px;color:var(--text2)}
 
-.nav-mode-row{display:flex;gap:6px;margin-bottom:10px}
-.mode-btn{flex:1;padding:6px 8px;border-radius:var(--rs);background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:11px;font-weight:600;font-family:var(--font);cursor:pointer;transition:all .15s}
-.mode-btn.on{background:var(--blue2);border-color:var(--blue);color:var(--blue)}
+.nav-mode-row{display:none}
 .btn-start{width:100%;padding:15px;border-radius:var(--rs);background:#1db954;border:none;color:#fff;font-size:16px;font-weight:700;font-family:var(--font);cursor:pointer;letter-spacing:0.5px}
 .pu-moto{margin-top:6px;padding:7px 10px;background:rgba(26,115,232,0.06);border-radius:var(--rs);font-size:11px;color:var(--blue);border-left:3px solid var(--blue)}
 
@@ -246,19 +244,6 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
   </div>
   <button id="gps-btn" onclick="locateUser()" title="我的位置">&#9737;</button>
   <div id="filter-bar">
-    <div class="fb-g">
-      <div class="fb-l">行政區</div>
-      <select class="fb-s" id="dist-sel" onchange="renderMain()">
-        <option value="all">全部行政區</option>
-        <option value="中壢區">中壢區</option><option value="桃園區">桃園區</option>
-        <option value="平鎮區">平鎮區</option><option value="八德區">八德區</option>
-        <option value="龍潭區">龍潭區</option><option value="楊梅區">楊梅區</option>
-        <option value="蘆竹區">蘆竹區</option><option value="大溪區">大溪區</option>
-        <option value="大園區">大園區</option><option value="龜山區">龜山區</option>
-        <option value="復興區">復興區</option><option value="新屋區">新屋區</option>
-        <option value="觀音區">觀音區</option>
-      </select>
-    </div>
     <div class="fb-g">
       <div class="fb-l">顯示</div>
       <select class="fb-s" id="show-sel" onchange="renderMain()">
@@ -375,7 +360,7 @@ let savedRoutes = JSON.parse(localStorage.getItem('tr_routes')||'[]');
 let acTimer=null, activeAcField=null;
 let originCoords=null, destCoords=null;
 let lastVoiceAlert={};
-let vehicleMode='moto';
+let vehicleMode='car';
 const synth = window.speechSynthesis;
 
 // ── WEATHER BOOST (with rain sensitivity) ───────────────────────
@@ -502,7 +487,7 @@ function popup(n, s){
 
 // ── MAIN MAP ─────────────────────────────────────────────────────
 function initMain(){
-  mainMap=L.map('map',{zoomControl:true,attributionControl:false}).setView([24.969,121.24],13);
+  mainMap=L.map('map',{zoomControl:true,attributionControl:false}).setView([24.966,121.224],14);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(mainMap);
   // 縮放層級動態控制顯示密度
   mainMap.on('zoomend',()=>renderMain());
@@ -511,13 +496,10 @@ function initMain(){
 
 function renderMain(){
   mainMk.forEach(m=>mainMap.removeLayer(m));mainMk=[];
-  const dist=document.getElementById('dist-sel').value;
   const show=document.getElementById('show-sel').value;
   const zoom=mainMap ? mainMap.getZoom() : 13;
   NODES.forEach(n=>{
     const s=sc(n), l=lvl(s);
-    const nodeDist = n.dist || '';
-    if(dist!=='all' && nodeDist!==dist) return;
     if(show==='high' && l!=='h') return;
     if(show==='mid' && l==='l') return;
     // 縮放層級控制：zoom<12 只顯示高風險；12-14 顯示高+中；≥15 全部
@@ -734,7 +716,7 @@ async function calcRoute(type){
     return;
   }
 
-  showLoading('後端計算安全路線中...');
+  showLoading('計算安全路線中...');
   try{
     const body = {
       origin_lat:   originCoords.lat,
