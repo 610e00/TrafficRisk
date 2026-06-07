@@ -155,7 +155,10 @@ async def compute_routes(origin, dest, nodes,
 
     fast = min(scored_filtered, key=lambda x: x["duration"])
     candidates = [r for r in scored_filtered if r["duration"] <= fast["duration"] + MAX_EXTRA_SEC]
-    safe = min(candidates, key=lambda x: x["risk_penalty"])
+    safe = min(candidates, key=lambda x: (
+        len([h for h in x['risk_hits'] if h['score'] >= 70]),  # 優先：高風險路口最少
+        x['risk_penalty']                                        # 次要：總懲罰最低
+    ))
 
     same = (fast is safe) or (
         abs(fast["duration"] - safe["duration"]) < 5 and
