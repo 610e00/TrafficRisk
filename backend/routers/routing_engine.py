@@ -91,6 +91,7 @@ async def google_routes(origin: dict, dest: dict) -> list:
         "destination":  f"{dest['lat']},{dest['lng']}",
         "alternatives": "true",
         "mode":         "driving",
+        "avoid":        "highways",
         "language":     "zh-TW",
         "region":       "TW",
         "key":          GOOGLE_KEY,
@@ -141,8 +142,19 @@ async def compute_routes(origin, dest, nodes,
         mid  = len([h for h in hits if 50 <= h["score"] < 70])
         print(f"[route] {rt['summary']}: {rt['duration']/60:.1f}分 懲罰={penalty:.0f} 高={high} 中={mid}")
 
-    fast = min(scored, key=lambda x: x["duration"])
-    candidates = [r for r in scored if r["duration"] <= fast["duration"] + MAX_EXTRA_SEC]
+    # 排除國道/高速公路路線
+    HIGHWAY_KEYWORDS = ['國道', '高速', '快速道路', 'freeway', 'highway']
+    scored_filtered = [
+        r for r in scored
+        if not any(kw in r.get('summary', '') for kw in HIGHWAY_KEYWORDS)
+    ]
+    # 如果過濾後沒有路線，就用全部（至少要有路線）
+    if not scored_filtered:
+        scored_filtered = scored
+        print("[route] 警告：所有路線都是高速公路，無法排除")
+
+    fast = min(scored_filtered, key=lambda x: x["duration"])
+    candidates = [r for r in scored_filtered if r["duration"] <= fast["duration"] + MAX_EXTRA_SEC]
     safe = min(candidates, key=lambda x: x["risk_penalty"])
 
     same = (fast is safe) or (
