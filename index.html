@@ -18,7 +18,7 @@
   --text:#1a2233;--text2:#6b7a99;--text3:#aab4c8;
   --red:#e8354a;--red2:rgba(232,53,74,0.1);--red3:rgba(232,53,74,0.06);
   --orange:#f57c00;--orange2:rgba(245,124,0,0.1);
-  --green:#1db954;--green2:rgba(29,185,84,0.1);
+  --green:#1db954;--green2:rgba(29,185,84,0.1);--yellow:#ffd000;--yellow2:rgba(245,158,11,0.12);
   --blue:#1a73e8;--blue2:rgba(26,115,232,0.1);
   --shadow:0 2px 12px rgba(0,0,0,0.08);--shadow2:0 4px 24px rgba(0,0,0,0.12);
   --r:16px;--rs:10px;--font:'Noto Sans TC',sans-serif;--mono:'DM Mono',monospace;
@@ -63,15 +63,15 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
 .pu-badge{padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;margin-left:8px;flex-shrink:0}
 .rh .pu-badge{background:var(--red2);color:var(--red)}
 .rm .pu-badge{background:var(--orange2);color:var(--orange)}
-.rl .pu-badge{background:var(--green2);color:var(--green)}
+.rl .pu-badge{background:var(--yellow2);color:var(--yellow)}
 .pu-score-row{display:flex;align-items:baseline;gap:5px;margin-bottom:10px}
 .pu-score{font-family:var(--mono);font-size:36px;font-weight:500}
-.rh .pu-score{color:var(--red)}.rm .pu-score{color:var(--orange)}.rl .pu-score{color:var(--green)}
+.rh .pu-score{color:var(--red)}.rm .pu-score{color:var(--orange)}.rl .pu-score{color:var(--yellow)}
 .pu-score-sub{font-size:11px;color:var(--text2)}
 .cause-row{display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:12px;color:var(--text2)}
 .cb-bg{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
 .cb-fill{height:100%;border-radius:2px}
-.rh .cb-fill{background:var(--red)}.rm .cb-fill{background:var(--orange)}.rl .cb-fill{background:var(--green)}
+.rh .cb-fill{background:var(--red)}.rm .cb-fill{background:var(--orange)}.rl .cb-fill{background:var(--yellow)}
 .cb-pct{font-family:var(--mono);font-size:10px;color:var(--text2);width:26px;text-align:right}
 .pu-hint{margin-top:8px;padding:7px 10px;background:var(--surface);border-radius:var(--rs);font-size:11px;color:var(--text);border-left:3px solid var(--orange)}
 
@@ -80,7 +80,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
 .mk:hover{transform:scale(1.15)}
 .mk-h{background:rgba(232,53,74,0.72);color:#fff}
 .mk-m{background:rgba(245,124,0,0.72);color:#fff}
-.mk-l{background:rgba(29,185,84,0.72);color:#fff}
+.mk-l{background:rgba(226, 180, 13, 0.72);color:#fff}
 .mk-user{background:var(--blue);color:#fff;border:3px solid white;box-shadow:0 0 0 3px rgba(26,115,232,0.3)}
 
 /* MAP OVERLAYS */
@@ -237,11 +237,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
 <div class="page active" id="page-map">
   <div id="map"></div>
 
-  <div id="legend">
-    <div class="leg-item"><div class="leg-dot" style="background:var(--red)"></div>高風險</div>
-    <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div>中風險</div>
-    <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div>低風險</div>
-  </div>
+  <div id="legend" style="display:none"></div>
   <button id="gps-btn" onclick="locateUser()" title="我的位置">&#9737;</button>
   <div id="filter-bar">
     <div class="fb-g">
@@ -318,7 +314,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
   <div class="card">
     <div class="card-h">一天中最危險的時段</div>
     <div id="period-chart"></div>
-    <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">根據桃園市歷史事故資料統計各時段事故比例（2020-2026年，約40萬筆）</div>
+    <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">根據桃園市歷史事故資料統計各時段事故比例（2020-2026年）</div>
   </div>
 
   <!-- 最近查詢路線 -->
@@ -346,7 +342,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
 
 <script>
 // ── GOOGLE MAPS API KEY ──────────────────────────────────────────
-const GMAPS_KEY  = 'AIzaSyCF6WZSkgcfhWQJ0DH4l3zUXXL8AkqZJtA';
+const GMAPS_KEY  = 'AIzaSyARH9i9qkDIhv8FUXkqt7dLpa3AudxGsxE';
 const BACKEND_URL = 'https://traffic-risk-api.onrender.com';
 
 // ── STATE ────────────────────────────────────────────────────────
@@ -372,9 +368,9 @@ function sc(n){
   const weatherBoost = WB_BASE[cW] * sensitivity;
   return Math.min(100, Math.round(base + weatherBoost));
 }
-const lvl=s=>s>=70?'h':s>=50?'m':'l';
-const lvlLbl=s=>s>=70?'高風險':s>=50?'中風險':'低風險';
-const lvlC=s=>s>=70?'var(--red)':s>=50?'var(--orange)':'var(--green)';
+const lvl=(n)=>typeof n==='object'?(n.alert||(n.score&&n.score.all>=70?'h':n.score&&n.score.all>=50?'m':'l')):(n>=70?'h':n>=50?'m':'l');
+const lvlLbl=(n)=>{const l=typeof n==='object'?lvl(n):lvl(n);return l==='h'?'極高警示':l==='m'?'高度警示':'注意警示';};
+const lvlC=(n)=>{const l=typeof n==='object'?lvl(n):lvl(n);return l==='h'?'var(--red)':l==='m'?'var(--orange)':'var(--yellow)';};
 
 // ── AUTO TIME DETECTION ──────────────────────────────────────────
 function autoDetectTime(){
@@ -439,7 +435,7 @@ async function loadData(){
 
 // ── POPUP ────────────────────────────────────────────────────────
 function popup(n, s){
-  const l=lvl(s);
+  const l=lvl(n);
   const causes=(n.causes||[]).map(([c,p])=>`
     <div class="cause-row">
       <span style="flex:1">${c}</span>
@@ -447,16 +443,13 @@ function popup(n, s){
       <span class="cb-pct">${p}%</span>
     </div>`).join('');
 
-  // 計算動態加成原因
   const baseScore = n.score?.all || s;
   const isRainy = cW==='小雨'||cW==='大雨';
   const hintKey = isRainy ? '雨天' : cT;
   const hints = n.hints || {};
   const hint = hints[hintKey] || hints['all'] || null;
   const motoHint = (vehicleMode==='moto' && n.moto_hint) ? n.moto_hint : null;
-  const noteText = n.note || null;
 
-  // 動態加成標籤
   const boostTags = [];
   if(isRainy && n.rain_sensitivity && n.rain_sensitivity > 1.2){
     const boost = WB_BASE[cW] || 0;
@@ -469,14 +462,15 @@ function popup(n, s){
     boostTags.push(`<span style="background:rgba(232,53,74,0.08);color:var(--red);padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700">${periodLbl}加成 +${Math.round(periodScore-baseScore)}分</span>`);
   }
 
+  const bgColor = l==='h'?'var(--red3)':l==='m'?'var(--orange2)':'var(--yellow2)';
+  const txtColor = l==='h'?'var(--red)':l==='m'?'var(--orange)':'var(--yellow)';
+
   return `<div class="pu r${l}">
     <div class="pu-top">
       <span class="pu-name">${n.name}</span>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;align-items:center">
-      <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;
-        background:${l==='h'?'var(--red3)':l==='m'?'var(--orange2)':'rgba(52,168,83,0.1)'};
-        color:${l==='h'?'var(--red)':l==='m'?'var(--orange)':'var(--green)'}">${lvlLbl(s)}</span>
+      <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:${bgColor};color:${txtColor}">${lvlLbl(n)}</span>
       ${boostTags.join('')}
     </div>
     ${causes ? `<div style="font-size:10px;color:var(--text2);margin-bottom:4px;font-weight:600">近期主要肇因</div>${causes}` : ''}
@@ -499,7 +493,7 @@ function renderMain(){
   const show=document.getElementById('show-sel').value;
   const zoom=mainMap ? mainMap.getZoom() : 13;
   NODES.forEach(n=>{
-    const s=sc(n), l=lvl(s);
+    const s=sc(n), l=lvl(n);
     if(show==='high' && l!=='h') return;
     if(show==='mid' && l==='l') return;
     // 縮放層級控制：zoom<12 只顯示高風險；12-14 顯示高+中；≥15 全部
@@ -783,7 +777,7 @@ function renderRouteResult(cache, type){
   navL.push(L.marker([destCoords.lat,destCoords.lng],{icon:mkB}).addTo(navMap));
 
   NODES.filter(n=>sc(n)>=50).forEach(n=>{
-    const s=sc(n),l=lvl(s);
+    const s=sc(n),l=lvl(n);
     const sz=s>=70?20:16;
     const icon=L.divIcon({className:'',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],
       html:`<div class="mk mk-${l}" style="width:${sz}px;height:${sz}px"></div>`});
@@ -1075,8 +1069,8 @@ function buildReport(){
 
   // 時段事故比例（對齊規格書定義）
   const periods=[
-    {lbl:'晚峰 17-20',pct:27.0,color:'var(--red)',tip:'最危險'},
-    {lbl:'早峰 07-10',pct:26.2,color:'var(--orange)',tip:'次危險'},
+    {lbl:'晚峰 17-20',pct:27.0,color:'var(--red)',tip:''},
+    {lbl:'早峰 07-10',pct:26.2,color:'var(--orange)',tip:''},
     {lbl:'日間 10-17',pct:22.0,color:'#f0a000',tip:''},
     {lbl:'夜間 20-24',pct:15.7,color:'#888',tip:''},
     {lbl:'深夜 00-07',pct:9.1,color:'var(--text3)',tip:''},
@@ -1135,7 +1129,7 @@ function updateNearbyList(){
     return`<div class="near-item">
       <div class="near-info">
         <div class="near-name">${n.name}</div>
-        <div class="near-dist">${n.dist_m < 1000 ? n.dist_m+'公尺' : (n.dist_m/1000).toFixed(1)+'公里'} · ${lvlLbl(s)}</div>
+        <div class="near-dist">${n.dist_m < 1000 ? n.dist_m+'公尺' : (n.dist_m/1000).toFixed(1)+'公里'} · ${lvlLbl(n)}</div>
       </div>
     </div>`;
   }).join('');
@@ -1215,6 +1209,6 @@ function gmapsLoaded(){
   initAutocomplete();
 }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF6WZSkgcfhWQJ0DH4l3zUXXL8AkqZJtA&libraries=places&callback=gmapsLoaded&language=zh-TW" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARH9i9qkDIhv8FUXkqt7dLpa3AudxGsxE&libraries=places&callback=gmapsLoaded&language=zh-TW" async defer></script>
 </body>
 </html>
