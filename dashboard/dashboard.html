@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>儀表板 — 桃園市車禍風險預測平台</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    #admin-map{width:100%;height:420px;border-radius:0 0 12px 12px;z-index:0}
+    .map-panel .panel-body{padding:0;overflow:hidden;border-radius:0 0 12px 12px}
+    .legend-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}
+    .layer-btn{padding:4px 10px;border:1px solid var(--border);border-radius:6px;background:var(--surface);cursor:pointer;font-size:.8rem;transition:all .15s}
+    .layer-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .compare-col{background:#FFF7ED}
+  </style>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="brand-icon">🚦</div>
+        <div><h2>車禍風險預測平台</h2><small>桃園市政府交通局</small></div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">總覽</div>
+      <a href="dashboard.html" class="active"><span class="nav-icon">📊</span> 儀表板</a>
+      <div class="nav-section">資料管理</div>
+      <a href="hotspot.html"><span class="nav-icon">📍</span> 危險街道</a>
+      <a href="events.html"><span class="nav-icon">🔔</span> 即時事件</a>
+      <a href="construction.html"><span class="nav-icon">🚧</span> 施工</a>
+    </nav>
+    <div class="sidebar-footer">v1.0 · 2026</div>
+  </aside>
+
+  <div class="main-content">
+    <header class="top-header"><h1>儀表板總覽</h1></header>
+
+    <div class="page-body">
+
+      <!-- 地圖 -->
+      <div class="panel map-panel">
+        <div class="panel-header">
+          <h3>桃園市車禍風險地圖</h3>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <button class="layer-btn active" id="btn-high" onclick="toggleLayer('high')">
+              <span class="legend-dot" style="background:#DC2626"></span>高風險
+            </button>
+            <button class="layer-btn active" id="btn-mid" onclick="toggleLayer('mid')">
+              <span class="legend-dot" style="background:#D97706"></span>中風險
+            </button>
+            <button class="layer-btn active" id="btn-low" onclick="toggleLayer('low')">
+              <span class="legend-dot" style="background:#059669"></span>低風險
+            </button>
+            <span style="font-size:.8rem;color:var(--text-muted);margin-left:8px">🚧 施工 &nbsp; 🚨 出警 &nbsp; 🔔 即時事件</span>
+          </div>
+        </div>
+        <div class="panel-body"><div id="admin-map"></div></div>
+      </div>
+
+      <!-- KPI -->
+      <div class="kpi-grid">
+        <div class="kpi-card danger">
+          <div class="kpi-icon">🔴</div>
+          <div class="kpi-label">高風險路口</div>
+          <div class="kpi-value" id="kpiHigh">—</div>
+          <div class="kpi-change" id="kpiHighSub"></div>
+        </div>
+        <div class="kpi-card warning">
+          <div class="kpi-icon">🟡</div>
+          <div class="kpi-label">中風險路口</div>
+          <div class="kpi-value" id="kpiMid">—</div>
+          <div class="kpi-change" id="kpiMidSub"></div>
+        </div>
+        <div class="kpi-card success">
+          <div class="kpi-icon">🟢</div>
+          <div class="kpi-label">低風險路口</div>
+          <div class="kpi-value" id="kpiLow">—</div>
+          <div class="kpi-change" id="kpiLowSub"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">歷史事故總數</div>
+          <div class="kpi-value" id="kpiTotal">—</div>
+          <div class="kpi-change" id="kpiTotalSub"></div>
+        </div>
+      </div>
+
+      <!-- 風險分布 + 即時事件 -->
+      <div>
+        <div class="panel">
+          <div class="panel-header"><h3>風險等級分布</h3></div>
+          <div class="panel-body">
+            <div class="chart-container"><canvas id="riskDistChart"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 建議改善路口 TOP 10 -->
+      <div class="panel">
+        <div class="panel-header">
+          <h3>建議改善路口 TOP 10</h3>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>排名</th>
+                <th>路口名稱</th>
+                <th>行政區</th>
+                <th>歷史事故數</th>
+                <th>歷史死亡</th>
+                <th class="compare-col">今年事故數 <small id="nowYear"></small></th>
+                <th class="compare-col">今年死亡</th>
+                <th>主要肇因</th>
+              </tr>
+            </thead>
+            <tbody id="improveTable">
+              <tr><td colspan="8" style="text-align:center;color:var(--text-muted)">載入中…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 事故原因 + 特徵重要度 -->
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-header"><h3>最常見事故原因 TOP 10</h3></div>
+          <div class="panel-body">
+            <div class="chart-container" style="height:320px"><canvas id="causeChart"></canvas></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><h3>特徵重要度</h3></div>
+          <div class="panel-body">
+            <div class="chart-container" style="height:320px"><canvas id="featureChart"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const API = 'http://localhost:8000';
+let layerGroups = { high: L.layerGroup(), mid: L.layerGroup(), low: L.layerGroup() };
+let layerVisible = { high: true, mid: true, low: true };
+let adminMap;
+
+function toggleLayer(key) {
+  layerVisible[key] = !layerVisible[key];
+  const btn = document.getElementById(`btn-${key}`);
+  if (layerVisible[key]) {
+    layerGroups[key].addTo(adminMap);
+    btn.classList.add('active');
+  } else {
+    adminMap.removeLayer(layerGroups[key]);
+    btn.classList.remove('active');
+  }
+}
+
+async function init() {
+  // 載入所有資料
+  const [allData, origData, nowData] = await Promise.all([
+    fetch('../backend/data/all_risk_data.json').then(r => r.json()),
+    fetch('../backend/data/risk_data.json').then(r => r.json()),
+    fetch('../backend/data/dashboard_now.json').then(r => r.json()),
+  ]);
+
+  const allNodes  = allData.nodes;
+  const origNodes = origData.nodes;
+  const features  = origData.features;
+  const metrics   = origData.model_metrics;
+  const nowKpi    = nowData.kpi;
+  const roadMap   = {};
+  nowData.road_stats.forEach(r => { roadMap[r.road] = r; });
+
+  // ── 地圖 ──────────────────────────────────────────────────────
+  adminMap = L.map('admin-map', { zoomControl:true, attributionControl:false })
+              .setView([24.966, 121.224], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:18 }).addTo(adminMap);
+
+  // 依 level 分組，縮小圓點
+  allNodes.forEach(n => {
+    const lv = n.level; // 0=低 1=中 2=高
+    const color = lv===2 ? '#DC2626' : lv===1 ? '#D97706' : '#059669';
+    const r     = lv===2 ? 4 : lv===1 ? 3 : 2;
+    const key   = lv===2 ? 'high' : lv===1 ? 'mid' : 'low';
+    L.circleMarker([n.lat, n.lng], {
+      radius:r, color, fillColor:color, fillOpacity:0.65, weight:0.5
+    })
+    .bindPopup(`<div style="padding:8px;min-width:160px;font-size:.85rem">
+      <div style="font-weight:600;color:${color}">${lv===2?'高':lv===1?'中':'低'}風險</div>
+      <div style="margin-top:4px">事故：<strong>${n.acc}</strong> / 死亡：<strong>${n.fatal}</strong></div>
+      <div style="color:#999;font-size:.75rem">加權分數：${n.weighted_score}</div>
+    </div>`)
+    .addTo(layerGroups[key]);
+  });
+
+  layerGroups.high.addTo(adminMap);
+  layerGroups.mid.addTo(adminMap);
+  layerGroups.low.addTo(adminMap);
+
+  // 施工圖示
+  try {
+    const cdata = await fetch(`${API}/api/construction/`).then(r => r.json());
+    (cdata.items || []).forEach(item => {
+      if (!item.lat || !item.lng) return;
+      L.marker([item.lat, item.lng], { icon: L.divIcon({
+        html:'<div style="font-size:22px">🚧</div>', className:'', iconSize:[28,28], iconAnchor:[14,14]
+      })})
+      .bindPopup(`<div style="padding:8px;min-width:160px;font-size:.85rem">
+        <div style="font-weight:600;color:#D97706">🚧 施工</div>
+        <div>${item.location}</div>
+        <div style="color:#666">${item.description_impact}</div>
+      </div>`).addTo(adminMap);
+    });
+  } catch(e) {}
+
+  // 出警圖示
+  try {
+    const edata = await fetch(`${API}/api/emergency/`).then(r => r.json());
+    (edata.items || []).forEach(item => {
+      if (!item.lat || !item.lng) return;
+      L.marker([item.lat, item.lng], { icon: L.divIcon({
+        html:'<div style="font-size:22px">🚨</div>', className:'', iconSize:[28,28], iconAnchor:[14,14]
+      })})
+      .bindPopup(`<div style="padding:8px;min-width:160px;font-size:.85rem">
+        <div style="font-weight:600;color:#DC2626">🚨 緊急出警</div>
+        <div>${item.location}</div>
+        <div style="color:#999">${item.time}</div>
+      </div>`).addTo(adminMap);
+    });
+  } catch(e) {}
+
+  // PTT 社群事件圖示
+try {
+  const pdata = await fetch(`${API}/api/events/?confirmed_only=true`).then(r => r.json());
+  (pdata.events || []).forEach(item => {
+    if (!item.lat || !item.lng) return;
+    L.marker([item.lat, item.lng], { icon: L.divIcon({
+      html:'<div style="font-size:22px">🔔</div>',
+      className:'', iconSize:[28,28], iconAnchor:[14,14]
+    })})
+    .bindPopup(`<div style="padding:8px;min-width:160px;font-size:.85rem">
+      <div style="font-weight:600;color:#7C3AED;margin-bottom:6px">🔔 社群事件</div>
+      <div>${item.description}</div>
+      <div style="color:#999;font-size:.75rem;margin-top:4px">${item.crawled_at?.slice(0,10) ?? ''}</div>
+    </div>`).addTo(adminMap);
+  });
+  } catch(e) {}
+
+  // ── KPI ───────────────────────────────────────────────────────
+  const high  = allNodes.filter(n => n.level === 2).length;
+  const mid   = allNodes.filter(n => n.level === 1).length;
+  const low   = allNodes.filter(n => n.level === 0).length;
+  const total = allNodes.length;
+  const totalAcc   = allNodes.reduce((s,n) => s + n.acc, 0);
+  const totalFatal = allNodes.reduce((s,n) => s + n.fatal, 0);
+
+  document.getElementById('kpiHigh').textContent    = high.toLocaleString();
+  document.getElementById('kpiHighSub').textContent = ``;
+  document.getElementById('kpiHighSub').className   = 'kpi-change up';
+  document.getElementById('kpiMid').textContent     = mid.toLocaleString();
+  document.getElementById('kpiMidSub').textContent  = ``;
+  document.getElementById('kpiLow').textContent     = low.toLocaleString();
+  document.getElementById('kpiLowSub').textContent  = ``;
+  document.getElementById('kpiTotal').textContent   = totalAcc.toLocaleString();
+  document.getElementById('kpiTotalSub').textContent= `死亡 ${totalFatal} 件 · ${metrics.data_years}`;
+
+  // ── 風險分布圓餅 ──────────────────────────────────────────────
+  new Chart(document.getElementById('riskDistChart'), {
+    type:'doughnut',
+    data:{
+      labels:[`高風險（${high}）`,`中風險（${mid}）`,`低風險（${low}）`],
+      datasets:[{ data:[high,mid,low],
+        backgroundColor:['#DC2626','#D97706','#059669'], borderWidth:0 }]
+    },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom'}} }
+  });
+
+
+
+  // ── 建議改善路口 TOP 10 ────────────────────────────────────────
+  document.getElementById('nowYear').textContent = `（${nowData.data_note}）`;
+  const top10 = [...origNodes].sort((a,b) => b.weighted_score - a.weighted_score).slice(0,10);
+
+  document.getElementById('improveTable').innerHTML = top10.map((n,i) => {
+    // 今年資料：從路名中比對 road_stats
+    let nowAcc = '—', nowFatal = '—';
+    for (const road of Object.keys(roadMap)) {
+      if (n.name.includes(road)) {
+        nowAcc   = roadMap[road].accidents;
+        nowFatal = roadMap[road].fatal;
+        break;
+      }
+    }
+    const cause = n.causes?.[0]?.[0] ?? '—';
+    const fatalStyle = 'color:var(--danger);font-weight:600';
+    return `<tr>
+      <td>${i+1}</td>
+      <td>${n.name}</td>
+      <td>${n.dist}</td>
+      <td>${n.acc.toLocaleString()}</td>
+      <td>${n.fatal > 0 ? `<span style="${fatalStyle}">${n.fatal}</span>` : '0'}</td>
+      <td class="compare-col">${nowAcc !== '—' ? nowAcc.toLocaleString() : '—'}</td>
+      <td class="compare-col">${nowFatal !== '—' && nowFatal > 0 ? `<span style="${fatalStyle}">${nowFatal}</span>` : nowFatal}</td>
+      <td style="font-size:.85rem">${cause}</td>
+    </tr>`;
+  }).join('');
+
+  // ── 事故原因 Top 10 ───────────────────────────────────────────
+  const causeMap = {};
+  origNodes.forEach(n => (n.causes||[]).forEach(([c,ct]) => { causeMap[c]=(causeMap[c]||0)+ct; }));
+  const top10c = Object.entries(causeMap).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  new Chart(document.getElementById('causeChart'), {
+    type:'bar',
+    data:{
+      labels:top10c.map(c=>c[0]),
+      datasets:[{ label:'累計次數', data:top10c.map(c=>c[1]), backgroundColor:'#1E3A8A', borderRadius:4 }]
+    },
+    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true}} }
+  });
+
+  // ── 特徵重要度 ────────────────────────────────────────────────
+  new Chart(document.getElementById('featureChart'), {
+    type:'bar',
+    data:{
+      labels:features.map(f=>f.name),
+      datasets:[{ label:'重要度 %', data:features.map(f=>f.pct), backgroundColor:'#2563EB', borderRadius:4 }]
+    },
+    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}}, scales:{x:{max:25}} }
+  });
+}
+
+init().catch(console.error);
+</script>
+</body>
+</html>

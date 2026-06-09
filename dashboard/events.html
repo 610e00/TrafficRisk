@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>即時事件 — 桃園市車禍風險預測平台</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="brand-icon">🚦</div>
+        <div><h2>車禍風險預測平台</h2><small>桃園市政府交通局</small></div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">總覽</div>
+      <a href="dashboard.html"><span class="nav-icon">📊</span> 儀表板</a>
+      <div class="nav-section">資料管理</div>
+      <a href="hotspot.html"><span class="nav-icon">📍</span> 危險街道</a>
+      <a href="events.html" class="active"><span class="nav-icon">🔔</span> 即時事件</a>
+      <a href="construction.html"><span class="nav-icon">🚧</span> 施工</a>
+    </nav>
+    <div class="sidebar-footer">v1.0 · 2026</div>
+  </aside>
+
+  <div class="main-content">
+    <header class="top-header">
+      <h1>即時事件</h1>
+      <div class="header-actions">
+        <span class="badge badge-info" style="padding:6px 14px" id="connBadge">連線中…</span>
+      </div>
+    </header>
+
+    <div class="page-body">
+
+      <!-- ── 社群即時事件 ── -->
+      <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="kpi-card warning">
+          <div class="kpi-label">🔔 待確認</div>
+          <div class="kpi-value" id="kpiPending">—</div>
+        </div>
+        <div class="kpi-card success">
+          <div class="kpi-label">✔ 已確認</div>
+          <div class="kpi-value" id="kpiConfirmed">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">✖ 已刪除</div>
+          <div class="kpi-value" id="kpiDeleted">—</div>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <div class="spacer"></div>
+        <label style="display:flex;align-items:center;gap:6px;font-size:.85rem;cursor:pointer">
+          <input type="checkbox" id="showDeleted"> 顯示已刪除
+        </label>
+        <span style="font-size:.85rem;color:var(--text-muted)" id="lastUpdate"></span>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h3>🔔 社群即時事件</h3>
+          <span style="font-size:.85rem;color:var(--text-muted)" id="tableNote"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>描述</th>
+                <th>日期</th><th>來源</th><th>狀態</th><th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="eventsTable">
+              <tr><td colspan="7" style="text-align:center;color:var(--text-muted)">載入中…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── 消防出警（原本保留） ── -->
+      <div class="panel" style="margin-top:20px">
+        <div class="panel-header">
+          <h3>🚨 緊急出警紀錄</h3>
+          <span class="badge badge-danger" id="emergencyBadge">載入中…</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>編號</th><th>類型</th><th>地點</th><th>行政區</th>
+                <th>時間</th><th>狀態</th>
+              </tr>
+            </thead>
+            <tbody id="emergencyTable">
+              <tr><td colspan="6" style="text-align:center;color:var(--text-muted)">載入中…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const API = 'http://localhost:8000';
+let events = [];
+
+function stsBadge(s) {
+  return s==='confirmed'?'badge-success':s==='deleted'?'badge-neutral':'badge-warning';
+}
+function stsLabel(s) {
+  return s==='confirmed'?'已確認':s==='deleted'?'已刪除':'待確認';
+}
+
+function updateKpi() {
+  document.getElementById('kpiPending').textContent   = events.filter(e=>e.status==='pending').length;
+  document.getElementById('kpiConfirmed').textContent = events.filter(e=>e.status==='confirmed').length;
+  document.getElementById('kpiDeleted').textContent   = events.filter(e=>e.status==='deleted').length;
+}
+
+function renderTable() {
+  const showDel = document.getElementById('showDeleted').checked;
+  const filtered = showDel ? events : events.filter(e => e.status !== 'deleted');
+  document.getElementById('tableNote').textContent = `顯示 ${filtered.length} 筆`;
+  document.getElementById('lastUpdate').textContent = `PTT 爬蟲 · ${new Date().toLocaleTimeString('zh-TW')}`;
+
+  document.getElementById('eventsTable').innerHTML = filtered.length
+    ? filtered.map(e => `<tr style="${e.status==='deleted'?'opacity:.45':''}">
+        <td style="font-size:.85rem">${e.description}</td>
+        <td>${e.crawled_at?.slice(0,10) ?? '—'}</td>
+        <td>${e.source_url
+          ? `<a href="${e.source_url}" target="_blank" style="color:var(--primary-light);font-size:.82rem">原文連結</a>`
+          : '—'}</td>
+        <td><span class="badge ${stsBadge(e.status)}">${stsLabel(e.status)}</span></td>
+        <td style="white-space:nowrap">
+          ${e.status==='pending'
+            ? `<button class="btn btn-secondary btn-sm" onclick="confirmEvt(${e.id})">✔ 確認</button>
+               <button class="btn btn-danger btn-sm" style="margin-left:4px" onclick="deleteEvt(${e.id})">✖ 刪除</button>`
+            : e.status==='confirmed'
+            ? `<button class="btn btn-danger btn-sm" onclick="deleteEvt(${e.id})">✖ 刪除</button>`
+            : `<button class="btn btn-secondary btn-sm" onclick="restoreEvt(${e.id})">↩ 還原</button>`}
+        </td>
+      </tr>`).join('')
+    : '<tr><td colspan="5" style="text-align:center;color:var(--text-muted)">目前無社群事件資料（爬蟲執行後會顯示）</td></tr>';
+}
+
+async function confirmEvt(id) {
+  await fetch(`${API}/api/events/confirm/${id}`, { method:'POST' });
+  await loadEvents();
+}
+async function deleteEvt(id) {
+  await fetch(`${API}/api/events/${id}`, { method:'DELETE' });
+  await loadEvents();
+}
+async function restoreEvt(id) {
+  await fetch(`${API}/api/events/restore/${id}`, { method:'POST' });
+  await loadEvents();
+}
+
+async function loadEvents() {
+  try {
+    const res = await fetch(`${API}/api/events/?include_deleted=true`);
+    const data = await res.json();
+    events = data.events || [];
+
+    const badge = document.getElementById('connBadge');
+    badge.textContent = '● 已連線';
+    badge.className = 'badge badge-success';
+
+    updateKpi();
+    renderTable();
+  } catch(e) {
+    document.getElementById('connBadge').textContent = '○ 連線失敗';
+    document.getElementById('connBadge').className = 'badge badge-danger';
+    document.getElementById('eventsTable').innerHTML =
+      '<tr><td colspan="5" style="text-align:center;color:var(--danger)">後端未連線</td></tr>';
+  }
+}
+
+// 消防出警
+async function loadEmergency() {
+  try {
+    const res = await fetch(`${API}/api/emergency/`);
+    const data = await res.json();
+    const items = data.items || [];
+
+    document.getElementById('emergencyBadge').textContent =
+      items.length > 0 ? `${items.length} 筆出警中` : '目前無資料';
+    document.getElementById('emergencyBadge').className =
+      items.length > 0 ? 'badge badge-danger' : 'badge badge-neutral';
+
+    document.getElementById('emergencyTable').innerHTML = items.length
+      ? items.map((e, i) => `<tr>
+          <td>${i + 1}</td>
+          <td>🚨 ${e.type}</td>
+          <td>${e.location}</td>
+          <td>${e.district}</td>
+          <td>${e.time}</td>
+          <td><span class="badge badge-danger">${e.status}</span></td>
+        </tr>`).join('')
+      : '<tr><td colspan="6" style="text-align:center;color:var(--text-muted)">目前無中壢區車禍出警資料</td></tr>';
+  } catch(e) {
+    document.getElementById('emergencyBadge').textContent = '連線失敗';
+    document.getElementById('emergencyBadge').className = 'badge badge-neutral';
+    document.getElementById('emergencyTable').innerHTML =
+      '<tr><td colspan="6" style="text-align:center;color:var(--text-muted)">後端未啟動或爬蟲失敗</td></tr>';
+  }
+}
+
+document.getElementById('showDeleted').addEventListener('change', renderTable);
+loadEvents();
+loadEmergency();
+</script>
+</body>
+</html>

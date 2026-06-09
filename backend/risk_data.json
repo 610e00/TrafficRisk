@@ -1,0 +1,8604 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "name": "國道1號 61公里300.0公尺處南側向",
+      "dist": "中壢區",
+      "lat": 24.9715,
+      "lng": 121.2185,
+      "score": {
+        "all": 100.0,
+        "peak": 61.1,
+        "day": 82.0,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.24,
+      "moto_sensitivity": 0.5,
+      "acc": 828,
+      "fatal": 14,
+      "weighted_score": 503.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          33
+        ],
+        [
+          "恍神、緊張、心不在焉分心",
+          15
+        ],
+        [
+          "變換車道不當",
+          12
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約91km/h"
+    },
+    {
+      "id": 2,
+      "name": "環中東路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.248,
+      "score": {
+        "all": 100.0,
+        "peak": 94.4,
+        "day": 82.0,
+        "eve": 78.5,
+        "night": 100
+      },
+      "rain_sensitivity": 0.8,
+      "moto_sensitivity": 1.18,
+      "acc": 579,
+      "fatal": 0,
+      "weighted_score": 351.2,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 3,
+      "name": "國道1號 57公里南側向交流道",
+      "dist": "中壢區",
+      "lat": 24.9795,
+      "lng": 121.2275,
+      "score": {
+        "all": 100.0,
+        "peak": 52.5,
+        "day": 82.0,
+        "eve": 100,
+        "night": 63.6
+      },
+      "rain_sensitivity": 1.88,
+      "moto_sensitivity": 0.5,
+      "acc": 246,
+      "fatal": 10,
+      "weighted_score": 333.9,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          41
+        ],
+        [
+          "恍神、緊張、心不在焉分心",
+          14
+        ],
+        [
+          "車輛或機械操作不當(慎)",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約94km/h"
+    },
+    {
+      "id": 4,
+      "name": "中華路2段口 / 普忠路口",
+      "dist": "中壢區",
+      "lat": 24.972,
+      "lng": 121.2055,
+      "score": {
+        "all": 99.9,
+        "peak": 100,
+        "day": 81.9,
+        "eve": 100,
+        "night": 74.5
+      },
+      "rain_sensitivity": 0.78,
+      "moto_sensitivity": 1.03,
+      "acc": 430,
+      "fatal": 0,
+      "weighted_score": 275.4,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          17
+        ],
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "其他未依規定讓車",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約47km/h"
+    },
+    {
+      "id": 5,
+      "name": "新生路口 / 環北路口",
+      "dist": "中壢區",
+      "lat": 24.966,
+      "lng": 121.2235,
+      "score": {
+        "all": 99.9,
+        "peak": 100,
+        "day": 81.9,
+        "eve": 89.5,
+        "night": 100
+      },
+      "rain_sensitivity": 1.23,
+      "moto_sensitivity": 1.02,
+      "acc": 442,
+      "fatal": 0,
+      "weighted_score": 257.6,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 6,
+      "name": "中美路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.2235,
+      "score": {
+        "all": 99.9,
+        "peak": 66.7,
+        "day": 81.9,
+        "eve": 96.6,
+        "night": 100
+      },
+      "rain_sensitivity": 1.04,
+      "moto_sensitivity": 0.94,
+      "acc": 455,
+      "fatal": 0,
+      "weighted_score": 254.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 7,
+      "name": "中華路一段口 / 自強一路口",
+      "dist": "中壢區",
+      "lat": 24.967,
+      "lng": 121.2445,
+      "score": {
+        "all": 99.9,
+        "peak": 100,
+        "day": 81.9,
+        "eve": 94.8,
+        "night": 86.2
+      },
+      "rain_sensitivity": 1.14,
+      "moto_sensitivity": 1.22,
+      "acc": 417,
+      "fatal": 2,
+      "weighted_score": 251.2,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          28
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "未保持行車安全間隔",
+          5
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 8,
+      "name": "延平路口 / 元化路口",
+      "dist": "中壢區",
+      "lat": 24.959,
+      "lng": 121.2245,
+      "score": {
+        "all": 99.8,
+        "peak": 65.5,
+        "day": 81.8,
+        "eve": 95.9,
+        "night": 100
+      },
+      "rain_sensitivity": 1.16,
+      "moto_sensitivity": 1.02,
+      "acc": 478,
+      "fatal": 0,
+      "weighted_score": 244.9,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 9,
+      "name": "延平路口 / 元化路口",
+      "dist": "中壢區",
+      "lat": 24.9615,
+      "lng": 121.2265,
+      "score": {
+        "all": 99.8,
+        "peak": 64.7,
+        "day": 81.8,
+        "eve": 88.4,
+        "night": 100
+      },
+      "rain_sensitivity": 1.37,
+      "moto_sensitivity": 0.88,
+      "acc": 414,
+      "fatal": 0,
+      "weighted_score": 244.2,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          17
+        ],
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 10,
+      "name": "環中東路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.25,
+      "score": {
+        "all": 99.8,
+        "peak": 81.4,
+        "day": 81.8,
+        "eve": 89.9,
+        "night": 100
+      },
+      "rain_sensitivity": 0.75,
+      "moto_sensitivity": 1.03,
+      "acc": 304,
+      "fatal": 7,
+      "weighted_score": 239.1,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 11,
+      "name": "環中東路二段口 / 龍岡路二段口",
+      "dist": "中壢區",
+      "lat": 24.9445,
+      "lng": 121.2295,
+      "score": {
+        "all": 99.8,
+        "peak": 80.7,
+        "day": 81.8,
+        "eve": 98.2,
+        "night": 100
+      },
+      "rain_sensitivity": 1.02,
+      "moto_sensitivity": 1.04,
+      "acc": 432,
+      "fatal": 0,
+      "weighted_score": 234.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 12,
+      "name": "環中東路口 / 振興街口",
+      "dist": "中壢區",
+      "lat": 24.9515,
+      "lng": 121.2405,
+      "score": {
+        "all": 99.8,
+        "peak": 93.1,
+        "day": 81.8,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.13,
+      "moto_sensitivity": 1.04,
+      "acc": 396,
+      "fatal": 0,
+      "weighted_score": 226.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 13,
+      "name": "新中北路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.9545,
+      "lng": 121.237,
+      "score": {
+        "all": 99.7,
+        "peak": 100,
+        "day": 81.8,
+        "eve": 84.7,
+        "night": 100
+      },
+      "rain_sensitivity": 0.6,
+      "moto_sensitivity": 1.1,
+      "acc": 368,
+      "fatal": 0,
+      "weighted_score": 224.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約47km/h"
+    },
+    {
+      "id": 14,
+      "name": "環中東路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.958,
+      "lng": 121.249,
+      "score": {
+        "all": 99.7,
+        "peak": 100,
+        "day": 81.8,
+        "eve": 88.6,
+        "night": 100
+      },
+      "rain_sensitivity": 1.06,
+      "moto_sensitivity": 0.98,
+      "acc": 352,
+      "fatal": 2,
+      "weighted_score": 211.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 15,
+      "name": "中豐路口 / 中山路口",
+      "dist": "中壢區",
+      "lat": 24.958,
+      "lng": 121.2195,
+      "score": {
+        "all": 99.7,
+        "peak": 68.6,
+        "day": 81.8,
+        "eve": 85.0,
+        "night": 100
+      },
+      "rain_sensitivity": 0.91,
+      "moto_sensitivity": 0.92,
+      "acc": 390,
+      "fatal": 0,
+      "weighted_score": 211.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 16,
+      "name": "中豐路口 / 中山路口",
+      "dist": "中壢區",
+      "lat": 24.9565,
+      "lng": 121.219,
+      "score": {
+        "all": 99.7,
+        "peak": 80.7,
+        "day": 81.8,
+        "eve": 100,
+        "night": 95.5
+      },
+      "rain_sensitivity": 0.98,
+      "moto_sensitivity": 1.03,
+      "acc": 294,
+      "fatal": 3,
+      "weighted_score": 207.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 17,
+      "name": "文化路口 / 長春一路口",
+      "dist": "中壢區",
+      "lat": 24.9795,
+      "lng": 121.2505,
+      "score": {
+        "all": 99.6,
+        "peak": 100,
+        "day": 81.7,
+        "eve": 97.4,
+        "night": 100
+      },
+      "rain_sensitivity": 0.96,
+      "moto_sensitivity": 0.88,
+      "acc": 335,
+      "fatal": 0,
+      "weighted_score": 206.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約47km/h"
+    },
+    {
+      "id": 18,
+      "name": "延平路口 / 環北路口",
+      "dist": "中壢區",
+      "lat": 24.963,
+      "lng": 121.23,
+      "score": {
+        "all": 99.6,
+        "peak": 94.0,
+        "day": 81.7,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.83,
+      "moto_sensitivity": 1.07,
+      "acc": 354,
+      "fatal": 0,
+      "weighted_score": 205.9,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 19,
+      "name": "中正路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.955,
+      "lng": 121.2225,
+      "score": {
+        "all": 99.6,
+        "peak": 100,
+        "day": 81.7,
+        "eve": 69.7,
+        "night": 98.2
+      },
+      "rain_sensitivity": 0.96,
+      "moto_sensitivity": 1.05,
+      "acc": 349,
+      "fatal": 0,
+      "weighted_score": 205.7,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 20,
+      "name": "中豐路口 / 元化路二段口",
+      "dist": "中壢區",
+      "lat": 24.9625,
+      "lng": 121.22,
+      "score": {
+        "all": 99.6,
+        "peak": 100,
+        "day": 81.7,
+        "eve": 86.8,
+        "night": 100
+      },
+      "rain_sensitivity": 1.21,
+      "moto_sensitivity": 0.96,
+      "acc": 331,
+      "fatal": 3,
+      "weighted_score": 205.1,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約51km/h"
+    },
+    {
+      "id": 21,
+      "name": "環中東路口 / 永福路口",
+      "dist": "中壢區",
+      "lat": 24.962,
+      "lng": 121.2545,
+      "score": {
+        "all": 99.6,
+        "peak": 95.4,
+        "day": 81.7,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.99,
+      "moto_sensitivity": 1.18,
+      "acc": 338,
+      "fatal": 0,
+      "weighted_score": 204.6,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "左轉彎未依規定",
+          6
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 22,
+      "name": "中華路二段口 / 普忠路口",
+      "dist": "中壢區",
+      "lat": 24.966,
+      "lng": 121.2415,
+      "score": {
+        "all": 99.5,
+        "peak": 87.2,
+        "day": 81.6,
+        "eve": 99.6,
+        "night": 100
+      },
+      "rain_sensitivity": 1.04,
+      "moto_sensitivity": 1.01,
+      "acc": 381,
+      "fatal": 0,
+      "weighted_score": 203.9,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          28
+        ],
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "變換車道不當",
+          6
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 23,
+      "name": "中園路口 / 南園二路口",
+      "dist": "中壢區",
+      "lat": 24.9715,
+      "lng": 121.236,
+      "score": {
+        "all": 99.5,
+        "peak": 100,
+        "day": 81.6,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.14,
+      "moto_sensitivity": 1.02,
+      "acc": 364,
+      "fatal": 0,
+      "weighted_score": 197.9,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 24,
+      "name": "中正路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.9565,
+      "lng": 121.2235,
+      "score": {
+        "all": 99.5,
+        "peak": 96.6,
+        "day": 81.6,
+        "eve": 80.6,
+        "night": 100
+      },
+      "rain_sensitivity": 0.86,
+      "moto_sensitivity": 1.0,
+      "acc": 344,
+      "fatal": 0,
+      "weighted_score": 193.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 25,
+      "name": "新生路口 / 南園二路口",
+      "dist": "中壢區",
+      "lat": 24.9715,
+      "lng": 121.224,
+      "score": {
+        "all": 99.5,
+        "peak": 100,
+        "day": 81.6,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.12,
+      "moto_sensitivity": 0.93,
+      "acc": 306,
+      "fatal": 0,
+      "weighted_score": 186.8,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "右轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 26,
+      "name": "龍岡地下道",
+      "dist": "中壢區",
+      "lat": 24.95,
+      "lng": 121.2235,
+      "score": {
+        "all": 99.4,
+        "peak": 100,
+        "day": 81.5,
+        "eve": 75.7,
+        "night": 100
+      },
+      "rain_sensitivity": 0.98,
+      "moto_sensitivity": 1.02,
+      "acc": 308,
+      "fatal": 0,
+      "weighted_score": 177.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 27,
+      "name": "中華路一段口 / 成功路口",
+      "dist": "中壢區",
+      "lat": 24.974,
+      "lng": 121.2625,
+      "score": {
+        "all": 99.4,
+        "peak": 100,
+        "day": 81.5,
+        "eve": 91.1,
+        "night": 100
+      },
+      "rain_sensitivity": 0.74,
+      "moto_sensitivity": 1.07,
+      "acc": 288,
+      "fatal": 2,
+      "weighted_score": 176.7,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          19
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 28,
+      "name": "忠孝路口 / 興農路口",
+      "dist": "中壢區",
+      "lat": 24.971,
+      "lng": 121.2545,
+      "score": {
+        "all": 99.4,
+        "peak": 99.6,
+        "day": 81.5,
+        "eve": 73.8,
+        "night": 100
+      },
+      "rain_sensitivity": 1.44,
+      "moto_sensitivity": 1.01,
+      "acc": 303,
+      "fatal": 0,
+      "weighted_score": 176.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 29,
+      "name": "中正路口 / 中正路口",
+      "dist": "中壢區",
+      "lat": 24.96,
+      "lng": 121.21,
+      "score": {
+        "all": 99.4,
+        "peak": 70.7,
+        "day": 81.5,
+        "eve": 94.7,
+        "night": 100
+      },
+      "rain_sensitivity": 1.18,
+      "moto_sensitivity": 1.01,
+      "acc": 313,
+      "fatal": 0,
+      "weighted_score": 171.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 30,
+      "name": "中豐路口 / 中山路口",
+      "dist": "中壢區",
+      "lat": 24.955,
+      "lng": 121.219,
+      "score": {
+        "all": 99.4,
+        "peak": 85.9,
+        "day": 81.5,
+        "eve": 74.5,
+        "night": 100
+      },
+      "rain_sensitivity": 0.75,
+      "moto_sensitivity": 0.95,
+      "acc": 287,
+      "fatal": 2,
+      "weighted_score": 170.8,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 31,
+      "name": "新中北路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.2355,
+      "score": {
+        "all": 99.3,
+        "peak": 64.6,
+        "day": 81.4,
+        "eve": 71.5,
+        "night": 100
+      },
+      "rain_sensitivity": 1.09,
+      "moto_sensitivity": 1.13,
+      "acc": 319,
+      "fatal": 2,
+      "weighted_score": 167.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約46km/h"
+    },
+    {
+      "id": 32,
+      "name": "榮民南路口 / 仁慈路口",
+      "dist": "中壢區",
+      "lat": 24.949,
+      "lng": 121.257,
+      "score": {
+        "all": 99.3,
+        "peak": 100,
+        "day": 81.4,
+        "eve": 100,
+        "night": 79.3
+      },
+      "rain_sensitivity": 0.9,
+      "moto_sensitivity": 1.01,
+      "acc": 245,
+      "fatal": 2,
+      "weighted_score": 165.3,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 33,
+      "name": "環西路口 / 志廣路口",
+      "dist": "中壢區",
+      "lat": 24.9615,
+      "lng": 121.208,
+      "score": {
+        "all": 99.3,
+        "peak": 89.7,
+        "day": 81.4,
+        "eve": 71.3,
+        "night": 100
+      },
+      "rain_sensitivity": 1.09,
+      "moto_sensitivity": 0.95,
+      "acc": 252,
+      "fatal": 4,
+      "weighted_score": 162.1,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 34,
+      "name": "永清街口 / 大圳路口",
+      "dist": "中壢區",
+      "lat": 24.988,
+      "lng": 121.2285,
+      "score": {
+        "all": 99.3,
+        "peak": 80.2,
+        "day": 81.4,
+        "eve": 79.4,
+        "night": 100
+      },
+      "rain_sensitivity": 1.09,
+      "moto_sensitivity": 1.06,
+      "acc": 263,
+      "fatal": 3,
+      "weighted_score": 162.1,
+      "causes": [
+        [
+          "無號誌路口，支線道未讓幹",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約36km/h"
+    },
+    {
+      "id": 35,
+      "name": "新中北路口 / 榮民南路口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.259,
+      "score": {
+        "all": 99.2,
+        "peak": 100,
+        "day": 81.3,
+        "eve": 82.8,
+        "night": 100
+      },
+      "rain_sensitivity": 0.98,
+      "moto_sensitivity": 1.14,
+      "acc": 287,
+      "fatal": 0,
+      "weighted_score": 159.5,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          17
+        ],
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口闖紅燈事故多，請確認號誌再通行"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 36,
+      "name": "環中東路二段口 / 福州路口",
+      "dist": "中壢區",
+      "lat": 24.948,
+      "lng": 121.235,
+      "score": {
+        "all": 99.2,
+        "peak": 77.4,
+        "day": 81.3,
+        "eve": 91.1,
+        "night": 100
+      },
+      "rain_sensitivity": 1.13,
+      "moto_sensitivity": 1.09,
+      "acc": 266,
+      "fatal": 0,
+      "weighted_score": 157.9,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 37,
+      "name": "中華路二段口 / 育樂路口",
+      "dist": "中壢區",
+      "lat": 24.965,
+      "lng": 121.2375,
+      "score": {
+        "all": 99.2,
+        "peak": 100,
+        "day": 81.3,
+        "eve": 88.7,
+        "night": 63.1
+      },
+      "rain_sensitivity": 1.71,
+      "moto_sensitivity": 1.06,
+      "acc": 246,
+      "fatal": 0,
+      "weighted_score": 157.3,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          22
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "未保持行車安全間隔",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 38,
+      "name": "元化路口 / 慈惠三街口",
+      "dist": "中壢區",
+      "lat": 24.9625,
+      "lng": 121.223,
+      "score": {
+        "all": 99.2,
+        "peak": 85.6,
+        "day": 81.3,
+        "eve": 84.5,
+        "night": 100
+      },
+      "rain_sensitivity": 1.42,
+      "moto_sensitivity": 1.02,
+      "acc": 264,
+      "fatal": 0,
+      "weighted_score": 154.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 39,
+      "name": "延平路口 / 環北路口",
+      "dist": "中壢區",
+      "lat": 24.9625,
+      "lng": 121.2305,
+      "score": {
+        "all": 99.2,
+        "peak": 73.5,
+        "day": 81.3,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.31,
+      "moto_sensitivity": 0.95,
+      "acc": 287,
+      "fatal": 0,
+      "weighted_score": 153.3,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          17
+        ],
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 40,
+      "name": "中山路口 / 長江路口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.228,
+      "score": {
+        "all": 99.1,
+        "peak": 59.8,
+        "day": 81.3,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.1,
+      "moto_sensitivity": 1.08,
+      "acc": 285,
+      "fatal": 0,
+      "weighted_score": 151.7,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ]
+      ],
+      "hints": {},
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 41,
+      "name": "中山路口 / 長江路口",
+      "dist": "中壢區",
+      "lat": 24.955,
+      "lng": 121.2265,
+      "score": {
+        "all": 99.1,
+        "peak": 82.7,
+        "day": 81.3,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.03,
+      "moto_sensitivity": 0.99,
+      "acc": 273,
+      "fatal": 0,
+      "weighted_score": 150.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 42,
+      "name": "龍昌路口 / 龍昌路口",
+      "dist": "中壢區",
+      "lat": 24.9365,
+      "lng": 121.251,
+      "score": {
+        "all": 99.1,
+        "peak": 100,
+        "day": 81.3,
+        "eve": 76.9,
+        "night": 100
+      },
+      "rain_sensitivity": 0.92,
+      "moto_sensitivity": 1.04,
+      "acc": 189,
+      "fatal": 0,
+      "weighted_score": 149.7,
+      "causes": [
+        [
+          "無號誌路口，支線道未讓幹",
+          14
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約47km/h"
+    },
+    {
+      "id": 43,
+      "name": "中山東路三段口 / 仁慈路口",
+      "dist": "中壢區",
+      "lat": 24.9465,
+      "lng": 121.2465,
+      "score": {
+        "all": 99.1,
+        "peak": 100,
+        "day": 81.3,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.12,
+      "moto_sensitivity": 1.06,
+      "acc": 238,
+      "fatal": 0,
+      "weighted_score": 147.7,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 44,
+      "name": "環中東路口 / 實踐路口",
+      "dist": "中壢區",
+      "lat": 24.9535,
+      "lng": 121.243,
+      "score": {
+        "all": 99.0,
+        "peak": 76.5,
+        "day": 81.2,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.86,
+      "moto_sensitivity": 1.1,
+      "acc": 249,
+      "fatal": 0,
+      "weighted_score": 147.1,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "恍神、緊張、心不在焉分心",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 45,
+      "name": "延平路口 / 環北路口",
+      "dist": "中壢區",
+      "lat": 24.9645,
+      "lng": 121.229,
+      "score": {
+        "all": 99.0,
+        "peak": 100,
+        "day": 81.2,
+        "eve": 89.3,
+        "night": 100
+      },
+      "rain_sensitivity": 0.93,
+      "moto_sensitivity": 1.09,
+      "acc": 260,
+      "fatal": 0,
+      "weighted_score": 144.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 46,
+      "name": "中山東路二段口 / 日新路口",
+      "dist": "中壢區",
+      "lat": 24.954,
+      "lng": 121.238,
+      "score": {
+        "all": 99.0,
+        "peak": 62.6,
+        "day": 81.2,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.88,
+      "moto_sensitivity": 1.12,
+      "acc": 288,
+      "fatal": 0,
+      "weighted_score": 139.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 47,
+      "name": "中華路一段口 / 文化二路口",
+      "dist": "中壢區",
+      "lat": 24.971,
+      "lng": 121.254,
+      "score": {
+        "all": 99.0,
+        "peak": 96.2,
+        "day": 81.2,
+        "eve": 71.3,
+        "night": 100
+      },
+      "rain_sensitivity": 0.6,
+      "moto_sensitivity": 1.06,
+      "acc": 224,
+      "fatal": 0,
+      "weighted_score": 138.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 48,
+      "name": "中山路口 / 和平街口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.226,
+      "score": {
+        "all": 99.0,
+        "peak": 100,
+        "day": 81.2,
+        "eve": 75.5,
+        "night": 100
+      },
+      "rain_sensitivity": 0.9,
+      "moto_sensitivity": 1.01,
+      "acc": 237,
+      "fatal": 0,
+      "weighted_score": 138.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約47km/h"
+    },
+    {
+      "id": 49,
+      "name": "新明路口 / 明德路口",
+      "dist": "中壢區",
+      "lat": 24.9625,
+      "lng": 121.2175,
+      "score": {
+        "all": 98.9,
+        "peak": 63.4,
+        "day": 81.1,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.75,
+      "moto_sensitivity": 1.1,
+      "acc": 213,
+      "fatal": 2,
+      "weighted_score": 137.2,
+      "causes": [
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 50,
+      "name": "環中東路口 / 榮安一街口",
+      "dist": "中壢區",
+      "lat": 24.9635,
+      "lng": 121.2575,
+      "score": {
+        "all": 98.9,
+        "peak": 51.9,
+        "day": 81.1,
+        "eve": 90.3,
+        "night": 100
+      },
+      "rain_sensitivity": 1.22,
+      "moto_sensitivity": 1.09,
+      "acc": 198,
+      "fatal": 2,
+      "weighted_score": 137.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 51,
+      "name": "中華路一段口 / 復華街口",
+      "dist": "中壢區",
+      "lat": 24.9685,
+      "lng": 121.248,
+      "score": {
+        "all": 98.9,
+        "peak": 91.9,
+        "day": 81.1,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.91,
+      "moto_sensitivity": 0.99,
+      "acc": 207,
+      "fatal": 2,
+      "weighted_score": 136.9,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          23
+        ],
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全間隔",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 52,
+      "name": "中山路口 / 長江路口",
+      "dist": "中壢區",
+      "lat": 24.953,
+      "lng": 121.2295,
+      "score": {
+        "all": 98.9,
+        "peak": 84.1,
+        "day": 81.1,
+        "eve": 70.6,
+        "night": 100
+      },
+      "rain_sensitivity": 1.01,
+      "moto_sensitivity": 1.07,
+      "acc": 226,
+      "fatal": 0,
+      "weighted_score": 136.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 53,
+      "name": "中華路一段口 / 成功路口",
+      "dist": "中壢區",
+      "lat": 24.9735,
+      "lng": 121.2605,
+      "score": {
+        "all": 98.8,
+        "peak": 100,
+        "day": 81.0,
+        "eve": 67.6,
+        "night": 79.5
+      },
+      "rain_sensitivity": 0.94,
+      "moto_sensitivity": 1.07,
+      "acc": 243,
+      "fatal": 2,
+      "weighted_score": 134.8,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          19
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 54,
+      "name": "中正路口 / 中正路口",
+      "dist": "中壢區",
+      "lat": 24.9655,
+      "lng": 121.204,
+      "score": {
+        "all": 98.8,
+        "peak": 100,
+        "day": 81.0,
+        "eve": 100,
+        "night": 57.6
+      },
+      "rain_sensitivity": 1.23,
+      "moto_sensitivity": 0.91,
+      "acc": 282,
+      "fatal": 0,
+      "weighted_score": 134.5,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "未保持行車安全間隔",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 55,
+      "name": "榮民路口 / 榮民路口",
+      "dist": "中壢區",
+      "lat": 24.9675,
+      "lng": 121.2605,
+      "score": {
+        "all": 98.8,
+        "peak": 87.9,
+        "day": 81.0,
+        "eve": 99.0,
+        "night": 100
+      },
+      "rain_sensitivity": 0.9,
+      "moto_sensitivity": 1.18,
+      "acc": 239,
+      "fatal": 0,
+      "weighted_score": 133.7,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          19
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 56,
+      "name": "中正路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.9525,
+      "lng": 121.222,
+      "score": {
+        "all": 98.8,
+        "peak": 79.6,
+        "day": 81.0,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.6,
+      "moto_sensitivity": 1.06,
+      "acc": 245,
+      "fatal": 0,
+      "weighted_score": 133.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約47km/h"
+    },
+    {
+      "id": 57,
+      "name": "中山東路三段口 / 中山東路三段口",
+      "dist": "中壢區",
+      "lat": 24.944,
+      "lng": 121.2485,
+      "score": {
+        "all": 98.8,
+        "peak": 100,
+        "day": 81.0,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.14,
+      "moto_sensitivity": 1.01,
+      "acc": 223,
+      "fatal": 3,
+      "weighted_score": 129.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ]
+      ],
+      "hints": {
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 58,
+      "name": "松江南路口 / 合江路口",
+      "dist": "中壢區",
+      "lat": 24.9835,
+      "lng": 121.247,
+      "score": {
+        "all": 98.7,
+        "peak": 100,
+        "day": 80.9,
+        "eve": 100,
+        "night": 92.3
+      },
+      "rain_sensitivity": 0.76,
+      "moto_sensitivity": 1.06,
+      "acc": 184,
+      "fatal": 2,
+      "weighted_score": 126.5,
+      "causes": [
+        [
+          "左轉彎未依規定",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 59,
+      "name": "新中北路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.959,
+      "lng": 121.24,
+      "score": {
+        "all": 98.7,
+        "peak": 95.7,
+        "day": 80.9,
+        "eve": 80.0,
+        "night": 100
+      },
+      "rain_sensitivity": 0.62,
+      "moto_sensitivity": 1.34,
+      "acc": 193,
+      "fatal": 0,
+      "weighted_score": 126.2,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約41km/h"
+    },
+    {
+      "id": 60,
+      "name": "中園路口 / 福州二街口",
+      "dist": "中壢區",
+      "lat": 24.969,
+      "lng": 121.236,
+      "score": {
+        "all": 98.7,
+        "peak": 100,
+        "day": 80.9,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.22,
+      "moto_sensitivity": 1.03,
+      "acc": 231,
+      "fatal": 0,
+      "weighted_score": 126.1,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          17
+        ],
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未注意車前狀態",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 61,
+      "name": "忠孝路口 / 興農路口",
+      "dist": "中壢區",
+      "lat": 24.9725,
+      "lng": 121.257,
+      "score": {
+        "all": 98.7,
+        "peak": 99.4,
+        "day": 80.9,
+        "eve": 79.0,
+        "night": 100
+      },
+      "rain_sensitivity": 0.83,
+      "moto_sensitivity": 1.21,
+      "acc": 226,
+      "fatal": 0,
+      "weighted_score": 125.9,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 62,
+      "name": "自強一路口 / 自強四路口",
+      "dist": "中壢區",
+      "lat": 24.9725,
+      "lng": 121.2445,
+      "score": {
+        "all": 98.6,
+        "peak": 100,
+        "day": 80.9,
+        "eve": 99.6,
+        "night": 94.1
+      },
+      "rain_sensitivity": 1.13,
+      "moto_sensitivity": 0.96,
+      "acc": 213,
+      "fatal": 0,
+      "weighted_score": 125.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          18
+        ],
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          14
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口闖紅燈事故多，請確認號誌再通行"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 63,
+      "name": "環西路口 / 志廣路口",
+      "dist": "中壢區",
+      "lat": 24.9605,
+      "lng": 121.2095,
+      "score": {
+        "all": 98.6,
+        "peak": 100,
+        "day": 80.9,
+        "eve": 100,
+        "night": 59.7
+      },
+      "rain_sensitivity": 1.85,
+      "moto_sensitivity": 0.97,
+      "acc": 181,
+      "fatal": 0,
+      "weighted_score": 123.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 64,
+      "name": "中正路口 / 義民路口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.216,
+      "score": {
+        "all": 98.6,
+        "peak": 100,
+        "day": 80.9,
+        "eve": 91.5,
+        "night": 100
+      },
+      "rain_sensitivity": 1.05,
+      "moto_sensitivity": 0.99,
+      "acc": 216,
+      "fatal": 0,
+      "weighted_score": 123.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 65,
+      "name": "延平路口 / 元化路口",
+      "dist": "中壢區",
+      "lat": 24.9625,
+      "lng": 121.229,
+      "score": {
+        "all": 98.6,
+        "peak": 100,
+        "day": 80.9,
+        "eve": 99.5,
+        "night": 100
+      },
+      "rain_sensitivity": 2.24,
+      "moto_sensitivity": 1.12,
+      "acc": 218,
+      "fatal": 0,
+      "weighted_score": 122.5,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約49km/h"
+    },
+    {
+      "id": 66,
+      "name": "中華路二段口 / 育樂路口",
+      "dist": "中壢區",
+      "lat": 24.9645,
+      "lng": 121.2355,
+      "score": {
+        "all": 98.6,
+        "peak": 100,
+        "day": 80.9,
+        "eve": 81.8,
+        "night": 100
+      },
+      "rain_sensitivity": 0.92,
+      "moto_sensitivity": 1.14,
+      "acc": 212,
+      "fatal": 0,
+      "weighted_score": 121.9,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          23
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "未保持行車安全間隔",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 67,
+      "name": "龍岡圓環",
+      "dist": "中壢區",
+      "lat": 24.9255,
+      "lng": 121.244,
+      "score": {
+        "all": 98.5,
+        "peak": 100,
+        "day": 80.8,
+        "eve": 89.6,
+        "night": 69.7
+      },
+      "rain_sensitivity": 1.1,
+      "moto_sensitivity": 0.99,
+      "acc": 188,
+      "fatal": 0,
+      "weighted_score": 121.4,
+      "causes": [
+        [
+          "變換車道不當",
+          17
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "其他不當駕車行為",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": "此路口車道變換事故多，機車請注意左右來車",
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 68,
+      "name": "民權路口 / 三光路口",
+      "dist": "中壢區",
+      "lat": 24.965,
+      "lng": 121.217,
+      "score": {
+        "all": 98.5,
+        "peak": 99.3,
+        "day": 80.8,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.48,
+      "moto_sensitivity": 1.0,
+      "acc": 231,
+      "fatal": 0,
+      "weighted_score": 120.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 69,
+      "name": "中美路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.9615,
+      "lng": 121.223,
+      "score": {
+        "all": 98.5,
+        "peak": 59.8,
+        "day": 80.8,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.27,
+      "moto_sensitivity": 0.99,
+      "acc": 200,
+      "fatal": 0,
+      "weighted_score": 119.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 70,
+      "name": "中豐北路口 / 環北路口",
+      "dist": "中壢區",
+      "lat": 24.9665,
+      "lng": 121.221,
+      "score": {
+        "all": 98.5,
+        "peak": 95.5,
+        "day": 80.8,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.19,
+      "moto_sensitivity": 0.97,
+      "acc": 214,
+      "fatal": 0,
+      "weighted_score": 119.3,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 71,
+      "name": "環中東路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.246,
+      "score": {
+        "all": 98.4,
+        "peak": 100,
+        "day": 80.7,
+        "eve": 79.2,
+        "night": 100
+      },
+      "rain_sensitivity": 0.51,
+      "moto_sensitivity": 1.1,
+      "acc": 170,
+      "fatal": 0,
+      "weighted_score": 118.8,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          19
+        ],
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約49km/h"
+    },
+    {
+      "id": 72,
+      "name": "中豐路口 / 中山路口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.2175,
+      "score": {
+        "all": 98.4,
+        "peak": 100,
+        "day": 80.7,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.91,
+      "moto_sensitivity": 1.04,
+      "acc": 192,
+      "fatal": 2,
+      "weighted_score": 118.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 73,
+      "name": "中山路口 / 長江路口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.2285,
+      "score": {
+        "all": 98.4,
+        "peak": 100,
+        "day": 80.7,
+        "eve": 94.4,
+        "night": 61.1
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.09,
+      "acc": 214,
+      "fatal": 0,
+      "weighted_score": 117.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 74,
+      "name": "忠孝路口 / 興農路口",
+      "dist": "中壢區",
+      "lat": 24.973,
+      "lng": 121.2565,
+      "score": {
+        "all": 98.4,
+        "peak": 59.4,
+        "day": 80.7,
+        "eve": 99.3,
+        "night": 100
+      },
+      "rain_sensitivity": 1.14,
+      "moto_sensitivity": 1.08,
+      "acc": 218,
+      "fatal": 0,
+      "weighted_score": 117.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 75,
+      "name": "龍東路口 / 龍東路口",
+      "dist": "中壢區",
+      "lat": 24.9355,
+      "lng": 121.257,
+      "score": {
+        "all": 98.4,
+        "peak": 100,
+        "day": 80.7,
+        "eve": 51.7,
+        "night": 100
+      },
+      "rain_sensitivity": 0.98,
+      "moto_sensitivity": 0.99,
+      "acc": 192,
+      "fatal": 0,
+      "weighted_score": 116.6,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 76,
+      "name": "中華路2段口 / 育樂路口",
+      "dist": "中壢區",
+      "lat": 24.964,
+      "lng": 121.235,
+      "score": {
+        "all": 98.3,
+        "peak": 100,
+        "day": 80.6,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.8,
+      "moto_sensitivity": 1.16,
+      "acc": 235,
+      "fatal": 0,
+      "weighted_score": 116.5,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          23
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "未保持行車安全間隔",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 77,
+      "name": "忠孝路口 / 興農路口",
+      "dist": "中壢區",
+      "lat": 24.9725,
+      "lng": 121.256,
+      "score": {
+        "all": 98.3,
+        "peak": 76.5,
+        "day": 80.6,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.86,
+      "moto_sensitivity": 0.98,
+      "acc": 195,
+      "fatal": 0,
+      "weighted_score": 116.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          10
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 78,
+      "name": "松江北路口 / 合定路口",
+      "dist": "中壢區",
+      "lat": 24.989,
+      "lng": 121.2495,
+      "score": {
+        "all": 98.3,
+        "peak": 100,
+        "day": 80.6,
+        "eve": 85.8,
+        "night": 77.8
+      },
+      "rain_sensitivity": 0.64,
+      "moto_sensitivity": 1.0,
+      "acc": 168,
+      "fatal": 5,
+      "weighted_score": 116.3,
+      "causes": [
+        [
+          "左轉彎未依規定",
+          18
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "其他不當駕車行為",
+          11
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 79,
+      "name": "中華路一段口 / 成功路口",
+      "dist": "中壢區",
+      "lat": 24.9735,
+      "lng": 121.26,
+      "score": {
+        "all": 98.3,
+        "peak": 85.8,
+        "day": 80.6,
+        "eve": 74.4,
+        "night": 100
+      },
+      "rain_sensitivity": 0.77,
+      "moto_sensitivity": 1.15,
+      "acc": 226,
+      "fatal": 2,
+      "weighted_score": 115.5,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          17
+        ],
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 80,
+      "name": "中正路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.954,
+      "lng": 121.222,
+      "score": {
+        "all": 98.2,
+        "peak": 71.0,
+        "day": 80.5,
+        "eve": 100,
+        "night": 76.8
+      },
+      "rain_sensitivity": 1.15,
+      "moto_sensitivity": 1.09,
+      "acc": 210,
+      "fatal": 0,
+      "weighted_score": 114.8,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 81,
+      "name": "環西路口 / 志廣路口",
+      "dist": "中壢區",
+      "lat": 24.961,
+      "lng": 121.2075,
+      "score": {
+        "all": 98.2,
+        "peak": 91.3,
+        "day": 80.5,
+        "eve": 100,
+        "night": 74.7
+      },
+      "rain_sensitivity": 0.87,
+      "moto_sensitivity": 1.03,
+      "acc": 185,
+      "fatal": 2,
+      "weighted_score": 113.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 82,
+      "name": "龍岡圓環",
+      "dist": "中壢區",
+      "lat": 24.9255,
+      "lng": 121.2445,
+      "score": {
+        "all": 98.2,
+        "peak": 100,
+        "day": 80.5,
+        "eve": 100,
+        "night": 85.4
+      },
+      "rain_sensitivity": 0.86,
+      "moto_sensitivity": 1.06,
+      "acc": 180,
+      "fatal": 0,
+      "weighted_score": 112.6,
+      "causes": [
+        [
+          "變換車道不當",
+          17
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "其他不當駕車行為",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": "此路口車道變換事故多，機車請注意左右來車",
+      "note": "無號誌，速限約47km/h"
+    },
+    {
+      "id": 83,
+      "name": "新中北路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.9565,
+      "lng": 121.238,
+      "score": {
+        "all": 98.2,
+        "peak": 51.6,
+        "day": 80.5,
+        "eve": 76.8,
+        "night": 100
+      },
+      "rain_sensitivity": 0.84,
+      "moto_sensitivity": 1.15,
+      "acc": 175,
+      "fatal": 0,
+      "weighted_score": 111.9,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "其他不當駕車行為",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約47km/h"
+    },
+    {
+      "id": 84,
+      "name": "中山路口 / 長江路口",
+      "dist": "中壢區",
+      "lat": 24.956,
+      "lng": 121.227,
+      "score": {
+        "all": 98.2,
+        "peak": 62.9,
+        "day": 80.5,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.76,
+      "moto_sensitivity": 1.08,
+      "acc": 158,
+      "fatal": 2,
+      "weighted_score": 111.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 85,
+      "name": "環中東路二段口 / 龍岡路二段口",
+      "dist": "中壢區",
+      "lat": 24.9465,
+      "lng": 121.232,
+      "score": {
+        "all": 98.1,
+        "peak": 98.8,
+        "day": 80.4,
+        "eve": 82.1,
+        "night": 71.1
+      },
+      "rain_sensitivity": 0.84,
+      "moto_sensitivity": 0.99,
+      "acc": 216,
+      "fatal": 0,
+      "weighted_score": 110.1,
+      "causes": [
+        [
+          "無號誌路口，支線道未讓幹",
+          14
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約39km/h"
+    },
+    {
+      "id": 86,
+      "name": "中山東路三段口 / 中山東路三段口",
+      "dist": "中壢區",
+      "lat": 24.9425,
+      "lng": 121.25,
+      "score": {
+        "all": 98.1,
+        "peak": 94.8,
+        "day": 80.4,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.71,
+      "moto_sensitivity": 1.03,
+      "acc": 178,
+      "fatal": 2,
+      "weighted_score": 109.1,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 87,
+      "name": "中華路一段口 / 長興街口",
+      "dist": "中壢區",
+      "lat": 24.9695,
+      "lng": 121.2505,
+      "score": {
+        "all": 98.1,
+        "peak": 100,
+        "day": 80.4,
+        "eve": 100,
+        "night": 73.1
+      },
+      "rain_sensitivity": 1.35,
+      "moto_sensitivity": 1.02,
+      "acc": 189,
+      "fatal": 0,
+      "weighted_score": 107.5,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          22
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未注意車前狀態",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 88,
+      "name": "中正路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.9545,
+      "lng": 121.2225,
+      "score": {
+        "all": 98.1,
+        "peak": 89.2,
+        "day": 80.4,
+        "eve": 100,
+        "night": 68.9
+      },
+      "rain_sensitivity": 0.6,
+      "moto_sensitivity": 0.98,
+      "acc": 167,
+      "fatal": 0,
+      "weighted_score": 107.1,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約49km/h"
+    },
+    {
+      "id": 89,
+      "name": "珠江街口 / 合浦街口",
+      "dist": "中壢區",
+      "lat": 24.9475,
+      "lng": 121.233,
+      "score": {
+        "all": 98.1,
+        "peak": 100,
+        "day": 80.4,
+        "eve": 51.5,
+        "night": 70.7
+      },
+      "rain_sensitivity": 0.53,
+      "moto_sensitivity": 1.1,
+      "acc": 152,
+      "fatal": 0,
+      "weighted_score": 106.4,
+      "causes": [
+        [
+          "無號誌路口，支線道未讓幹",
+          15
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約37km/h"
+    },
+    {
+      "id": 90,
+      "name": "環中東路二段口 / 龍岡路二段口",
+      "dist": "中壢區",
+      "lat": 24.943,
+      "lng": 121.23,
+      "score": {
+        "all": 98.0,
+        "peak": 80.2,
+        "day": 80.4,
+        "eve": 68.8,
+        "night": 100
+      },
+      "rain_sensitivity": 1.12,
+      "moto_sensitivity": 1.08,
+      "acc": 167,
+      "fatal": 0,
+      "weighted_score": 106.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 91,
+      "name": "中美路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.958,
+      "lng": 121.2225,
+      "score": {
+        "all": 98.0,
+        "peak": 73.7,
+        "day": 80.4,
+        "eve": 78.6,
+        "night": 100
+      },
+      "rain_sensitivity": 0.75,
+      "moto_sensitivity": 1.05,
+      "acc": 195,
+      "fatal": 0,
+      "weighted_score": 105.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 92,
+      "name": "中正路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.222,
+      "score": {
+        "all": 98.0,
+        "peak": 80.0,
+        "day": 80.4,
+        "eve": 74.7,
+        "night": 100
+      },
+      "rain_sensitivity": 1.01,
+      "moto_sensitivity": 1.03,
+      "acc": 186,
+      "fatal": 0,
+      "weighted_score": 105.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 93,
+      "name": "新中北路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.9585,
+      "lng": 121.238,
+      "score": {
+        "all": 98.0,
+        "peak": 72.2,
+        "day": 80.4,
+        "eve": 94.0,
+        "night": 100
+      },
+      "rain_sensitivity": 0.89,
+      "moto_sensitivity": 1.4,
+      "acc": 158,
+      "fatal": 0,
+      "weighted_score": 105.2,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約45km/h"
+    },
+    {
+      "id": 94,
+      "name": "西園路口 / 西園路口",
+      "dist": "中壢區",
+      "lat": 24.979,
+      "lng": 121.2345,
+      "score": {
+        "all": 97.9,
+        "peak": 100,
+        "day": 80.3,
+        "eve": 85.6,
+        "night": 86.2
+      },
+      "rain_sensitivity": 0.84,
+      "moto_sensitivity": 1.05,
+      "acc": 151,
+      "fatal": 0,
+      "weighted_score": 103.9,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          15
+        ]
+      ],
+      "hints": {
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約47km/h"
+    },
+    {
+      "id": 95,
+      "name": "新生路口 / 南園二路口",
+      "dist": "中壢區",
+      "lat": 24.971,
+      "lng": 121.224,
+      "score": {
+        "all": 97.9,
+        "peak": 100,
+        "day": 80.3,
+        "eve": 72.7,
+        "night": 72.7
+      },
+      "rain_sensitivity": 1.19,
+      "moto_sensitivity": 1.0,
+      "acc": 158,
+      "fatal": 0,
+      "weighted_score": 103.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "右轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 96,
+      "name": "民權路口 / 三光路口",
+      "dist": "中壢區",
+      "lat": 24.966,
+      "lng": 121.2165,
+      "score": {
+        "all": 97.9,
+        "peak": 100,
+        "day": 80.3,
+        "eve": 100,
+        "night": 83.0
+      },
+      "rain_sensitivity": 1.09,
+      "moto_sensitivity": 0.97,
+      "acc": 166,
+      "fatal": 0,
+      "weighted_score": 103.1,
+      "causes": [
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 97,
+      "name": "龍岡路三段口 / 龍岡路三段口",
+      "dist": "中壢區",
+      "lat": 24.9345,
+      "lng": 121.2355,
+      "score": {
+        "all": 97.9,
+        "peak": 100,
+        "day": 80.3,
+        "eve": 71.5,
+        "night": 64.6
+      },
+      "rain_sensitivity": 1.39,
+      "moto_sensitivity": 1.01,
+      "acc": 154,
+      "fatal": 2,
+      "weighted_score": 102.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 98,
+      "name": "松江南路口 / 合江路口",
+      "dist": "中壢區",
+      "lat": 24.981,
+      "lng": 121.2495,
+      "score": {
+        "all": 97.9,
+        "peak": 100,
+        "day": 80.3,
+        "eve": 100,
+        "night": 89.0
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.1,
+      "acc": 172,
+      "fatal": 0,
+      "weighted_score": 101.8,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 99,
+      "name": "中園路口 / 南園二路口",
+      "dist": "中壢區",
+      "lat": 24.9715,
+      "lng": 121.2345,
+      "score": {
+        "all": 97.8,
+        "peak": 100,
+        "day": 80.2,
+        "eve": 87.2,
+        "night": 100
+      },
+      "rain_sensitivity": 0.67,
+      "moto_sensitivity": 1.2,
+      "acc": 170,
+      "fatal": 0,
+      "weighted_score": 101.4,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約43km/h"
+    },
+    {
+      "id": 100,
+      "name": "龍岡圓環",
+      "dist": "中壢區",
+      "lat": 24.928,
+      "lng": 121.2445,
+      "score": {
+        "all": 97.8,
+        "peak": 100,
+        "day": 80.2,
+        "eve": 66.7,
+        "night": 94.9
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.1,
+      "acc": 129,
+      "fatal": 0,
+      "weighted_score": 100.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "其他不當駕車行為",
+          11
+        ],
+        [
+          "變換車道不當",
+          10
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 101,
+      "name": "新中北路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.234,
+      "score": {
+        "all": 97.8,
+        "peak": 96.1,
+        "day": 80.2,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.73,
+      "moto_sensitivity": 0.95,
+      "acc": 175,
+      "fatal": 0,
+      "weighted_score": 98.8,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約40km/h"
+    },
+    {
+      "id": 102,
+      "name": "中正路口 / 中大路口",
+      "dist": "中壢區",
+      "lat": 24.966,
+      "lng": 121.204,
+      "score": {
+        "all": 97.8,
+        "peak": 100,
+        "day": 80.2,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.04,
+      "acc": 191,
+      "fatal": 0,
+      "weighted_score": 98.3,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          7
+        ]
+      ],
+      "hints": {
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 103,
+      "name": "環中東路口 / 實踐路口",
+      "dist": "中壢區",
+      "lat": 24.955,
+      "lng": 121.2455,
+      "score": {
+        "all": 97.7,
+        "peak": 82.9,
+        "day": 80.1,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.0,
+      "moto_sensitivity": 1.06,
+      "acc": 161,
+      "fatal": 0,
+      "weighted_score": 98.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          19
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          6
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 104,
+      "name": "新中北路151號附近",
+      "dist": "中壢區",
+      "lat": 24.961,
+      "lng": 121.236,
+      "score": {
+        "all": 97.7,
+        "peak": 100,
+        "day": 80.1,
+        "eve": 100,
+        "night": 87.3
+      },
+      "rain_sensitivity": 1.0,
+      "moto_sensitivity": 1.05,
+      "acc": 140,
+      "fatal": 0,
+      "weighted_score": 98.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          20
+        ],
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "未保持行車安全間隔",
+          6
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 105,
+      "name": "環中東路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.247,
+      "score": {
+        "all": 97.7,
+        "peak": 89.1,
+        "day": 80.1,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.13,
+      "moto_sensitivity": 1.2,
+      "acc": 183,
+      "fatal": 0,
+      "weighted_score": 97.7,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約51km/h"
+    },
+    {
+      "id": 106,
+      "name": "環中東路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.9575,
+      "lng": 121.249,
+      "score": {
+        "all": 97.7,
+        "peak": 100,
+        "day": 80.1,
+        "eve": 61.7,
+        "night": 98.8
+      },
+      "rain_sensitivity": 1.23,
+      "moto_sensitivity": 1.09,
+      "acc": 147,
+      "fatal": 0,
+      "weighted_score": 95.7,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 107,
+      "name": "中山路口 / 長江路口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.2275,
+      "score": {
+        "all": 97.7,
+        "peak": 90.5,
+        "day": 80.1,
+        "eve": 87.4,
+        "night": 100
+      },
+      "rain_sensitivity": 0.61,
+      "moto_sensitivity": 1.07,
+      "acc": 153,
+      "fatal": 0,
+      "weighted_score": 95.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 108,
+      "name": "中美路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.958,
+      "lng": 121.224,
+      "score": {
+        "all": 97.6,
+        "peak": 51.2,
+        "day": 80.0,
+        "eve": 96.1,
+        "night": 100
+      },
+      "rain_sensitivity": 1.21,
+      "moto_sensitivity": 0.99,
+      "acc": 144,
+      "fatal": 0,
+      "weighted_score": 95.1,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 109,
+      "name": "中華路二段口 / 育樂路口",
+      "dist": "中壢區",
+      "lat": 24.9645,
+      "lng": 121.2365,
+      "score": {
+        "all": 97.6,
+        "peak": 100,
+        "day": 80.0,
+        "eve": 78.2,
+        "night": 100
+      },
+      "rain_sensitivity": 1.25,
+      "moto_sensitivity": 1.14,
+      "acc": 177,
+      "fatal": 0,
+      "weighted_score": 94.7,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          22
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "未保持行車安全間隔",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 110,
+      "name": "中華路一段口 / 成功路口",
+      "dist": "中壢區",
+      "lat": 24.9735,
+      "lng": 121.259,
+      "score": {
+        "all": 97.6,
+        "peak": 77.5,
+        "day": 80.0,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.27,
+      "moto_sensitivity": 1.0,
+      "acc": 153,
+      "fatal": 2,
+      "weighted_score": 94.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          8
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 111,
+      "name": "中山東路二段口 / 日新路口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.2405,
+      "score": {
+        "all": 97.6,
+        "peak": 63.3,
+        "day": 80.0,
+        "eve": 51.2,
+        "night": 100
+      },
+      "rain_sensitivity": 0.94,
+      "moto_sensitivity": 0.88,
+      "acc": 156,
+      "fatal": 0,
+      "weighted_score": 93.9,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          10
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 112,
+      "name": "吉林路口 / 自強一路口",
+      "dist": "中壢區",
+      "lat": 24.979,
+      "lng": 121.2445,
+      "score": {
+        "all": 97.5,
+        "peak": 100,
+        "day": 79.9,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.4,
+      "moto_sensitivity": 1.05,
+      "acc": 163,
+      "fatal": 0,
+      "weighted_score": 93.6,
+      "causes": [
+        [
+          "左轉彎未依規定",
+          15
+        ],
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 113,
+      "name": "中豐路口 / 中山路口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.22,
+      "score": {
+        "all": 97.5,
+        "peak": 51.2,
+        "day": 79.9,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.93,
+      "moto_sensitivity": 0.95,
+      "acc": 86,
+      "fatal": 4,
+      "weighted_score": 93.1,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 114,
+      "name": "中正路口 / 義民路口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.216,
+      "score": {
+        "all": 97.5,
+        "peak": 82.8,
+        "day": 79.9,
+        "eve": 100,
+        "night": 83.6
+      },
+      "rain_sensitivity": 0.52,
+      "moto_sensitivity": 0.87,
+      "acc": 155,
+      "fatal": 0,
+      "weighted_score": 93.1,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 115,
+      "name": "龍昌路口 / 龍東路口",
+      "dist": "中壢區",
+      "lat": 24.9285,
+      "lng": 121.2495,
+      "score": {
+        "all": 68.9,
+        "peak": 100,
+        "day": 56.5,
+        "eve": 70.9,
+        "night": 36.2
+      },
+      "rain_sensitivity": 0.7,
+      "moto_sensitivity": 0.65,
+      "acc": 19,
+      "fatal": 0,
+      "weighted_score": 16.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 116,
+      "name": "莒光路口 / 幸福街口",
+      "dist": "中壢區",
+      "lat": 24.9515,
+      "lng": 121.234,
+      "score": {
+        "all": 68.9,
+        "peak": 100,
+        "day": 56.5,
+        "eve": 59.4,
+        "night": 79.3
+      },
+      "rain_sensitivity": 0.98,
+      "moto_sensitivity": 1.25,
+      "acc": 34,
+      "fatal": 0,
+      "weighted_score": 16.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          8
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約38km/h"
+    },
+    {
+      "id": 117,
+      "name": "新中北路口 / 功學路口",
+      "dist": "中壢區",
+      "lat": 24.9565,
+      "lng": 121.2535,
+      "score": {
+        "all": 68.9,
+        "peak": 36.2,
+        "day": 56.5,
+        "eve": 100,
+        "night": 36.2
+      },
+      "rain_sensitivity": 0.51,
+      "moto_sensitivity": 1.02,
+      "acc": 26,
+      "fatal": 0,
+      "weighted_score": 16.6,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          21
+        ],
+        [
+          "其他不當駕車行為",
+          18
+        ],
+        [
+          "未注意車前狀態",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 118,
+      "name": "中美路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.224,
+      "score": {
+        "all": 68.9,
+        "peak": 58.1,
+        "day": 56.5,
+        "eve": 44.9,
+        "night": 100
+      },
+      "rain_sensitivity": 0.67,
+      "moto_sensitivity": 1.06,
+      "acc": 30,
+      "fatal": 0,
+      "weighted_score": 16.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約45km/h"
+    },
+    {
+      "id": 119,
+      "name": "新中北路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.9575,
+      "lng": 121.2375,
+      "score": {
+        "all": 68.9,
+        "peak": 91.0,
+        "day": 56.5,
+        "eve": 36.2,
+        "night": 36.2
+      },
+      "rain_sensitivity": 2.91,
+      "moto_sensitivity": 1.16,
+      "acc": 23,
+      "fatal": 0,
+      "weighted_score": 16.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約48km/h"
+    },
+    {
+      "id": 120,
+      "name": "中美路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.96,
+      "lng": 121.2225,
+      "score": {
+        "all": 68.9,
+        "peak": 42.3,
+        "day": 56.5,
+        "eve": 71.4,
+        "night": 81.7
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.13,
+      "acc": 33,
+      "fatal": 0,
+      "weighted_score": 16.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 121,
+      "name": "環中東路口 / 普忠路口",
+      "dist": "中壢區",
+      "lat": 24.96,
+      "lng": 121.247,
+      "score": {
+        "all": 68.9,
+        "peak": 36.2,
+        "day": 56.5,
+        "eve": 89.8,
+        "night": 100
+      },
+      "rain_sensitivity": 1.12,
+      "moto_sensitivity": 0.83,
+      "acc": 30,
+      "fatal": 0,
+      "weighted_score": 16.6,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 122,
+      "name": "環西路口 / 志廣路口",
+      "dist": "中壢區",
+      "lat": 24.961,
+      "lng": 121.207,
+      "score": {
+        "all": 68.9,
+        "peak": 93.9,
+        "day": 56.5,
+        "eve": 51.8,
+        "night": 41.5
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.16,
+      "acc": 26,
+      "fatal": 0,
+      "weighted_score": 16.6,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約49km/h"
+    },
+    {
+      "id": 123,
+      "name": "環中東路口 / 強國路口",
+      "dist": "中壢區",
+      "lat": 24.9695,
+      "lng": 121.2605,
+      "score": {
+        "all": 68.9,
+        "peak": 100,
+        "day": 56.5,
+        "eve": 84.2,
+        "night": 67.4
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.16,
+      "acc": 32,
+      "fatal": 0,
+      "weighted_score": 16.6,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          18
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "未注意車前狀態",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約47km/h"
+    },
+    {
+      "id": 124,
+      "name": "中福路口 / 中福路口",
+      "dist": "中壢區",
+      "lat": 24.9715,
+      "lng": 121.228,
+      "score": {
+        "all": 68.9,
+        "peak": 36.2,
+        "day": 56.5,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 1.62,
+      "moto_sensitivity": 0.8,
+      "acc": 29,
+      "fatal": 0,
+      "weighted_score": 16.6,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          19
+        ],
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 125,
+      "name": "中華路一段口 / 成功路口",
+      "dist": "中壢區",
+      "lat": 24.9735,
+      "lng": 121.261,
+      "score": {
+        "all": 68.9,
+        "peak": 76.3,
+        "day": 56.5,
+        "eve": 52.6,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.05,
+      "acc": 32,
+      "fatal": 0,
+      "weighted_score": 16.6,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          20
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 126,
+      "name": "中北路二段口 / 中北路二段口",
+      "dist": "中壢區",
+      "lat": 24.9525,
+      "lng": 121.2295,
+      "score": {
+        "all": 68.8,
+        "peak": 100,
+        "day": 56.4,
+        "eve": 36.1,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.81,
+      "acc": 33,
+      "fatal": 0,
+      "weighted_score": 16.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約45km/h"
+    },
+    {
+      "id": 127,
+      "name": "中山路口 / 和平街口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.225,
+      "score": {
+        "all": 68.8,
+        "peak": 36.1,
+        "day": 56.4,
+        "eve": 74.7,
+        "night": 39.9
+      },
+      "rain_sensitivity": 1.49,
+      "moto_sensitivity": 1.12,
+      "acc": 27,
+      "fatal": 0,
+      "weighted_score": 16.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約47km/h"
+    },
+    {
+      "id": 128,
+      "name": "環西路口 / 志廣路口",
+      "dist": "中壢區",
+      "lat": 24.9625,
+      "lng": 121.2085,
+      "score": {
+        "all": 68.8,
+        "peak": 36.1,
+        "day": 56.4,
+        "eve": 100,
+        "night": 100
+      },
+      "rain_sensitivity": 0.67,
+      "moto_sensitivity": 0.53,
+      "acc": 30,
+      "fatal": 0,
+      "weighted_score": 16.5,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 129,
+      "name": "中豐北路口 / 環北路口",
+      "dist": "中壢區",
+      "lat": 24.965,
+      "lng": 121.221,
+      "score": {
+        "all": 68.8,
+        "peak": 99.5,
+        "day": 56.4,
+        "eve": 36.1,
+        "night": 100
+      },
+      "rain_sensitivity": 1.43,
+      "moto_sensitivity": 0.89,
+      "acc": 28,
+      "fatal": 0,
+      "weighted_score": 16.5,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約39km/h"
+    },
+    {
+      "id": 130,
+      "name": "忠孝路口 / 成章二街口",
+      "dist": "中壢區",
+      "lat": 24.982,
+      "lng": 121.2535,
+      "score": {
+        "all": 68.8,
+        "peak": 53.6,
+        "day": 56.4,
+        "eve": 90.5,
+        "night": 36.1
+      },
+      "rain_sensitivity": 1.03,
+      "moto_sensitivity": 0.82,
+      "acc": 26,
+      "fatal": 0,
+      "weighted_score": 16.5,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          7
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "無號誌，速限約44km/h"
+    },
+    {
+      "id": 131,
+      "name": "華勛街口 / 華勛街口",
+      "dist": "中壢區",
+      "lat": 24.9475,
+      "lng": 121.26,
+      "score": {
+        "all": 68.6,
+        "peak": 36.0,
+        "day": 56.3,
+        "eve": 36.0,
+        "night": 44.7
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.48,
+      "acc": 24,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ],
+        [
+          "無號誌路口，左方車未讓右",
+          7
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約40km/h"
+    },
+    {
+      "id": 132,
+      "name": "晉元路口 / 華勛街口",
+      "dist": "中壢區",
+      "lat": 24.951,
+      "lng": 121.262,
+      "score": {
+        "all": 68.6,
+        "peak": 36.0,
+        "day": 56.3,
+        "eve": 53.6,
+        "night": 100
+      },
+      "rain_sensitivity": 1.07,
+      "moto_sensitivity": 1.28,
+      "acc": 25,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "其他未依規定讓車",
+          6
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 133,
+      "name": "中山東路二段口 / 日新路口",
+      "dist": "中壢區",
+      "lat": 24.9525,
+      "lng": 121.238,
+      "score": {
+        "all": 68.6,
+        "peak": 62.0,
+        "day": 56.3,
+        "eve": 100,
+        "night": 36.0
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.14,
+      "acc": 28,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約49km/h"
+    },
+    {
+      "id": 134,
+      "name": "環中東路口 / 實踐路口",
+      "dist": "中壢區",
+      "lat": 24.955,
+      "lng": 121.241,
+      "score": {
+        "all": 68.6,
+        "peak": 36.0,
+        "day": 56.3,
+        "eve": 74.5,
+        "night": 79.5
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.72,
+      "acc": 27,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          10
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約42km/h"
+    },
+    {
+      "id": 135,
+      "name": "環中東路口 / 實踐路口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.2455,
+      "score": {
+        "all": 68.6,
+        "peak": 57.9,
+        "day": 56.3,
+        "eve": 36.0,
+        "night": 100
+      },
+      "rain_sensitivity": 0.56,
+      "moto_sensitivity": 1.48,
+      "acc": 24,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          19
+        ],
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          7
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 136,
+      "name": "新中北路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.9565,
+      "lng": 121.2375,
+      "score": {
+        "all": 68.6,
+        "peak": 51.4,
+        "day": 56.3,
+        "eve": 100,
+        "night": 59.6
+      },
+      "rain_sensitivity": 1.49,
+      "moto_sensitivity": 0.92,
+      "acc": 27,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "其他不當駕車行為",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 137,
+      "name": "民族路2段口 / 正光街口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.202,
+      "score": {
+        "all": 68.6,
+        "peak": 100,
+        "day": 56.3,
+        "eve": 36.0,
+        "night": 44.7
+      },
+      "rain_sensitivity": 0.56,
+      "moto_sensitivity": 0.81,
+      "acc": 24,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "恍神、緊張、心不在焉分心",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 138,
+      "name": "中豐路口 / 元化路二段口",
+      "dist": "中壢區",
+      "lat": 24.963,
+      "lng": 121.2195,
+      "score": {
+        "all": 68.6,
+        "peak": 89.6,
+        "day": 56.3,
+        "eve": 36.0,
+        "night": 51.9
+      },
+      "rain_sensitivity": 1.3,
+      "moto_sensitivity": 0.92,
+      "acc": 31,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 139,
+      "name": "環中東路口 / 榮安一街口",
+      "dist": "中壢區",
+      "lat": 24.964,
+      "lng": 121.2575,
+      "score": {
+        "all": 68.6,
+        "peak": 69.4,
+        "day": 56.3,
+        "eve": 55.9,
+        "night": 36.0
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.01,
+      "acc": 30,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "其他未依規定讓車",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約46km/h"
+    },
+    {
+      "id": 140,
+      "name": "莊敬路口 / 榮安一街口",
+      "dist": "中壢區",
+      "lat": 24.9645,
+      "lng": 121.2535,
+      "score": {
+        "all": 68.6,
+        "peak": 100,
+        "day": 56.3,
+        "eve": 36.0,
+        "night": 61.9
+      },
+      "rain_sensitivity": 0.51,
+      "moto_sensitivity": 1.09,
+      "acc": 26,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約33km/h"
+    },
+    {
+      "id": 141,
+      "name": "新生路口 / 南園二路口",
+      "dist": "中壢區",
+      "lat": 24.97,
+      "lng": 121.224,
+      "score": {
+        "all": 68.6,
+        "peak": 55.5,
+        "day": 56.3,
+        "eve": 67.1,
+        "night": 42.9
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.14,
+      "acc": 25,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "右轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約42km/h"
+    },
+    {
+      "id": 142,
+      "name": "中華路一段口 / 成功路口",
+      "dist": "中壢區",
+      "lat": 24.9745,
+      "lng": 121.2605,
+      "score": {
+        "all": 68.6,
+        "peak": 77.1,
+        "day": 56.3,
+        "eve": 36.0,
+        "night": 36.0
+      },
+      "rain_sensitivity": 2.23,
+      "moto_sensitivity": 0.69,
+      "acc": 36,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 143,
+      "name": "文化路口 / 長春一路口",
+      "dist": "中壢區",
+      "lat": 24.979,
+      "lng": 121.2505,
+      "score": {
+        "all": 68.6,
+        "peak": 77.1,
+        "day": 56.3,
+        "eve": 36.0,
+        "night": 39.7
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.99,
+      "acc": 27,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 144,
+      "name": "領航北路2段口 / 永春路口",
+      "dist": "中壢區",
+      "lat": 25.012,
+      "lng": 121.207,
+      "score": {
+        "all": 68.6,
+        "peak": 100,
+        "day": 56.3,
+        "eve": 46.2,
+        "night": 37.0
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.61,
+      "acc": 29,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 145,
+      "name": "青昇路口 / 青峰路口",
+      "dist": "中壢區",
+      "lat": 25.0145,
+      "lng": 121.222,
+      "score": {
+        "all": 68.6,
+        "peak": 100,
+        "day": 56.3,
+        "eve": 36.0,
+        "night": 36.0
+      },
+      "rain_sensitivity": 0.89,
+      "moto_sensitivity": 0.83,
+      "acc": 30,
+      "fatal": 0,
+      "weighted_score": 16.4,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "其他不當駕車行為",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約51km/h"
+    },
+    {
+      "id": 146,
+      "name": "龍慈路口 / 後寮一路口",
+      "dist": "中壢區",
+      "lat": 24.9405,
+      "lng": 121.246,
+      "score": {
+        "all": 68.5,
+        "peak": 69.3,
+        "day": 56.2,
+        "eve": 57.4,
+        "night": 100
+      },
+      "rain_sensitivity": 2.49,
+      "moto_sensitivity": 1.37,
+      "acc": 35,
+      "fatal": 0,
+      "weighted_score": 16.3,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 147,
+      "name": "中山東路三段口 / 中山東路三段口",
+      "dist": "中壢區",
+      "lat": 24.941,
+      "lng": 121.25,
+      "score": {
+        "all": 68.5,
+        "peak": 36.0,
+        "day": 56.2,
+        "eve": 100,
+        "night": 36.0
+      },
+      "rain_sensitivity": 2.23,
+      "moto_sensitivity": 0.89,
+      "acc": 30,
+      "fatal": 0,
+      "weighted_score": 16.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 148,
+      "name": "環中東路口 / 振興街口",
+      "dist": "中壢區",
+      "lat": 24.951,
+      "lng": 121.2395,
+      "score": {
+        "all": 68.5,
+        "peak": 36.0,
+        "day": 56.2,
+        "eve": 37.2,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.94,
+      "acc": 36,
+      "fatal": 0,
+      "weighted_score": 16.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 149,
+      "name": "中北路二段口 / 健行路口",
+      "dist": "中壢區",
+      "lat": 24.9515,
+      "lng": 121.226,
+      "score": {
+        "all": 68.5,
+        "peak": 36.0,
+        "day": 56.2,
+        "eve": 80.8,
+        "night": 73.9
+      },
+      "rain_sensitivity": 2.08,
+      "moto_sensitivity": 1.22,
+      "acc": 29,
+      "fatal": 0,
+      "weighted_score": 16.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約49km/h"
+    },
+    {
+      "id": 150,
+      "name": "中山東路二段口 / 日新路口",
+      "dist": "中壢區",
+      "lat": 24.955,
+      "lng": 121.2395,
+      "score": {
+        "all": 68.5,
+        "peak": 36.0,
+        "day": 56.2,
+        "eve": 89.3,
+        "night": 100
+      },
+      "rain_sensitivity": 1.56,
+      "moto_sensitivity": 0.95,
+      "acc": 30,
+      "fatal": 0,
+      "weighted_score": 16.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          11
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 151,
+      "name": "中正路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.2225,
+      "score": {
+        "all": 68.5,
+        "peak": 36.0,
+        "day": 56.2,
+        "eve": 36.0,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.86,
+      "acc": 29,
+      "fatal": 0,
+      "weighted_score": 16.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 152,
+      "name": "中正路口 / 中明路口",
+      "dist": "中壢區",
+      "lat": 24.9565,
+      "lng": 121.2105,
+      "score": {
+        "all": 68.5,
+        "peak": 43.3,
+        "day": 56.2,
+        "eve": 97.7,
+        "night": 100
+      },
+      "rain_sensitivity": 0.56,
+      "moto_sensitivity": 0.96,
+      "acc": 24,
+      "fatal": 0,
+      "weighted_score": 16.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 153,
+      "name": "新中北路口 / 功學路口",
+      "dist": "中壢區",
+      "lat": 24.957,
+      "lng": 121.2565,
+      "score": {
+        "all": 68.5,
+        "peak": 36.0,
+        "day": 56.2,
+        "eve": 100,
+        "night": 73.9
+      },
+      "rain_sensitivity": 1.38,
+      "moto_sensitivity": 0.86,
+      "acc": 29,
+      "fatal": 0,
+      "weighted_score": 16.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          20
+        ],
+        [
+          "未保持行車安全距離",
+          17
+        ],
+        [
+          "未注意車前狀態",
+          8
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口闖紅燈事故多，請確認號誌再通行"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 154,
+      "name": "新中北路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.959,
+      "lng": 121.242,
+      "score": {
+        "all": 68.5,
+        "peak": 60.3,
+        "day": 56.2,
+        "eve": 58.2,
+        "night": 100
+      },
+      "rain_sensitivity": 1.75,
+      "moto_sensitivity": 1.47,
+      "acc": 23,
+      "fatal": 0,
+      "weighted_score": 16.3,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          19
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約47km/h"
+    },
+    {
+      "id": 155,
+      "name": "中華路一段口 / 成功路口",
+      "dist": "中壢區",
+      "lat": 24.974,
+      "lng": 121.261,
+      "score": {
+        "all": 68.5,
+        "peak": 100,
+        "day": 56.2,
+        "eve": 60.9,
+        "night": 48.7
+      },
+      "rain_sensitivity": 1.22,
+      "moto_sensitivity": 0.89,
+      "acc": 22,
+      "fatal": 0,
+      "weighted_score": 16.3,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          19
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 156,
+      "name": "榮民南路口 / 仁慈路口",
+      "dist": "中壢區",
+      "lat": 24.9445,
+      "lng": 121.2575,
+      "score": {
+        "all": 68.3,
+        "peak": 66.5,
+        "day": 56.0,
+        "eve": 51.4,
+        "night": 35.9
+      },
+      "rain_sensitivity": 1.03,
+      "moto_sensitivity": 0.68,
+      "acc": 26,
+      "fatal": 0,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "右轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約45km/h"
+    },
+    {
+      "id": 157,
+      "name": "環中東路口 / 實踐路口",
+      "dist": "中壢區",
+      "lat": 24.9555,
+      "lng": 121.242,
+      "score": {
+        "all": 68.3,
+        "peak": 60.1,
+        "day": 56.0,
+        "eve": 43.5,
+        "night": 100
+      },
+      "rain_sensitivity": 0.58,
+      "moto_sensitivity": 1.16,
+      "acc": 23,
+      "fatal": 0,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約34km/h"
+    },
+    {
+      "id": 158,
+      "name": "中山路口 / 明德路口",
+      "dist": "中壢區",
+      "lat": 24.959,
+      "lng": 121.2145,
+      "score": {
+        "all": 68.3,
+        "peak": 47.1,
+        "day": 56.0,
+        "eve": 60.7,
+        "night": 97.1
+      },
+      "rain_sensitivity": 0.61,
+      "moto_sensitivity": 0.89,
+      "acc": 22,
+      "fatal": 0,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 159,
+      "name": "中華路一段口 / 自強一路口",
+      "dist": "中壢區",
+      "lat": 24.9665,
+      "lng": 121.2435,
+      "score": {
+        "all": 68.3,
+        "peak": 79.8,
+        "day": 56.0,
+        "eve": 77.0,
+        "night": 41.1
+      },
+      "rain_sensitivity": 0.51,
+      "moto_sensitivity": 1.23,
+      "acc": 26,
+      "fatal": 0,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          26
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          6
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 160,
+      "name": "中正路二段口 / 大享街口",
+      "dist": "中壢區",
+      "lat": 24.9755,
+      "lng": 121.1965,
+      "score": {
+        "all": 68.3,
+        "peak": 62.8,
+        "day": 56.0,
+        "eve": 100,
+        "night": 72.9
+      },
+      "rain_sensitivity": 2.13,
+      "moto_sensitivity": 0.81,
+      "acc": 22,
+      "fatal": 0,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "恍神、緊張、心不在焉分心",
+          12
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 161,
+      "name": "西園路口 / 西園路口",
+      "dist": "中壢區",
+      "lat": 24.9755,
+      "lng": 121.2345,
+      "score": {
+        "all": 68.3,
+        "peak": 100,
+        "day": 56.0,
+        "eve": 51.4,
+        "night": 41.1
+      },
+      "rain_sensitivity": 1.29,
+      "moto_sensitivity": 0.96,
+      "acc": 26,
+      "fatal": 0,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          15
+        ],
+        [
+          "其他不當駕車行為",
+          14
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約45km/h"
+    },
+    {
+      "id": 162,
+      "name": "忠孝路口 / 忠孝路口",
+      "dist": "中壢區",
+      "lat": 24.979,
+      "lng": 121.2545,
+      "score": {
+        "all": 68.3,
+        "peak": 35.9,
+        "day": 56.0,
+        "eve": 100,
+        "night": 50.9
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.35,
+      "acc": 21,
+      "fatal": 0,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 163,
+      "name": "文化路口 / 長春一路口",
+      "dist": "中壢區",
+      "lat": 24.9795,
+      "lng": 121.2525,
+      "score": {
+        "all": 68.3,
+        "peak": 100,
+        "day": 56.0,
+        "eve": 61.8,
+        "night": 35.9
+      },
+      "rain_sensitivity": 0.99,
+      "moto_sensitivity": 1.05,
+      "acc": 27,
+      "fatal": 0,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約45km/h"
+    },
+    {
+      "id": 164,
+      "name": "新生路三段728號附近",
+      "dist": "中壢區",
+      "lat": 25.0015,
+      "lng": 121.216,
+      "score": {
+        "all": 68.3,
+        "peak": 94.3,
+        "day": 56.0,
+        "eve": 100,
+        "night": 35.9
+      },
+      "rain_sensitivity": 1.22,
+      "moto_sensitivity": 1.05,
+      "acc": 22,
+      "fatal": 0,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          23
+        ],
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          8
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 165,
+      "name": "領航北路一段口 / 環溪一街口",
+      "dist": "中壢區",
+      "lat": 25.005,
+      "lng": 121.2025,
+      "score": {
+        "all": 68.3,
+        "peak": 64.0,
+        "day": 56.0,
+        "eve": 35.9,
+        "night": 39.6
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.85,
+      "acc": 27,
+      "fatal": 0,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          19
+        ],
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約49km/h"
+    },
+    {
+      "id": 166,
+      "name": "高鐵站前路口 / 高鐵站前西路一段口",
+      "dist": "中壢區",
+      "lat": 25.0095,
+      "lng": 121.2145,
+      "score": {
+        "all": 68.3,
+        "peak": 100,
+        "day": 56.0,
+        "eve": 51.4,
+        "night": 41.1
+      },
+      "rain_sensitivity": 1.03,
+      "moto_sensitivity": 0.96,
+      "acc": 26,
+      "fatal": 0,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 167,
+      "name": "聖溪二路口 / 聖德路2段口",
+      "dist": "中壢區",
+      "lat": 25.0165,
+      "lng": 121.1945,
+      "score": {
+        "all": 68.3,
+        "peak": 100,
+        "day": 56.0,
+        "eve": 35.9,
+        "night": 35.9
+      },
+      "rain_sensitivity": 1.87,
+      "moto_sensitivity": 0.78,
+      "acc": 25,
+      "fatal": 3,
+      "weighted_score": 16.2,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          35
+        ],
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "違規超車",
+          16
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約47km/h"
+    },
+    {
+      "id": 168,
+      "name": "新中北路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.9575,
+      "lng": 121.239,
+      "score": {
+        "all": 68.2,
+        "peak": 38.3,
+        "day": 55.9,
+        "eve": 98.8,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.99,
+      "acc": 27,
+      "fatal": 0,
+      "weighted_score": 16.1,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約39km/h"
+    },
+    {
+      "id": 169,
+      "name": "成功路口 / 成功路口",
+      "dist": "中壢區",
+      "lat": 24.978,
+      "lng": 121.258,
+      "score": {
+        "all": 68.2,
+        "peak": 82.8,
+        "day": 55.9,
+        "eve": 53.3,
+        "night": 35.8
+      },
+      "rain_sensitivity": 2.14,
+      "moto_sensitivity": 1.06,
+      "acc": 25,
+      "fatal": 0,
+      "weighted_score": 16.1,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 170,
+      "name": "松江南路口 / 合江路口",
+      "dist": "中壢區",
+      "lat": 24.9815,
+      "lng": 121.2495,
+      "score": {
+        "all": 68.2,
+        "peak": 51.1,
+        "day": 55.9,
+        "eve": 98.8,
+        "night": 98.8
+      },
+      "rain_sensitivity": 1.24,
+      "moto_sensitivity": 1.05,
+      "acc": 27,
+      "fatal": 0,
+      "weighted_score": 16.1,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 171,
+      "name": "中華路一段口 / 成功路口",
+      "dist": "中壢區",
+      "lat": 24.973,
+      "lng": 121.2585,
+      "score": {
+        "all": 68.1,
+        "peak": 100,
+        "day": 55.8,
+        "eve": 86.3,
+        "night": 78.9
+      },
+      "rain_sensitivity": 0.99,
+      "moto_sensitivity": 0.99,
+      "acc": 27,
+      "fatal": 0,
+      "weighted_score": 16.1,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          8
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 172,
+      "name": "民族路3段口 / 高雙路口",
+      "dist": "中壢區",
+      "lat": 24.9605,
+      "lng": 121.1905,
+      "score": {
+        "all": 68.1,
+        "peak": 96.9,
+        "day": 55.8,
+        "eve": 35.8,
+        "night": 66.6
+      },
+      "rain_sensitivity": 2.09,
+      "moto_sensitivity": 0.78,
+      "acc": 32,
+      "fatal": 0,
+      "weighted_score": 16.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          23
+        ],
+        [
+          "左轉彎未依規定",
+          8
+        ],
+        [
+          "闖紅燈直行",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 173,
+      "name": "延平路口 / 環北路口",
+      "dist": "中壢區",
+      "lat": 24.9635,
+      "lng": 121.232,
+      "score": {
+        "all": 68.1,
+        "peak": 35.8,
+        "day": 55.8,
+        "eve": 64.4,
+        "night": 100
+      },
+      "rain_sensitivity": 0.86,
+      "moto_sensitivity": 0.8,
+      "acc": 31,
+      "fatal": 0,
+      "weighted_score": 16.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "未保持行車安全間隔",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 174,
+      "name": "民權路口 / 三光路口",
+      "dist": "中壢區",
+      "lat": 24.966,
+      "lng": 121.217,
+      "score": {
+        "all": 68.1,
+        "peak": 35.8,
+        "day": 55.8,
+        "eve": 96.6,
+        "night": 35.8
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.74,
+      "acc": 31,
+      "fatal": 0,
+      "weighted_score": 16.0,
+      "causes": [
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 175,
+      "name": "中華路一段口 / 成功路口",
+      "dist": "中壢區",
+      "lat": 24.9755,
+      "lng": 121.2615,
+      "score": {
+        "all": 68.1,
+        "peak": 88.9,
+        "day": 55.8,
+        "eve": 64.4,
+        "night": 35.8
+      },
+      "rain_sensitivity": 1.3,
+      "moto_sensitivity": 1.09,
+      "acc": 31,
+      "fatal": 0,
+      "weighted_score": 16.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約41km/h"
+    },
+    {
+      "id": 176,
+      "name": "新生路2段口 / 新生路2段口",
+      "dist": "中壢區",
+      "lat": 24.9805,
+      "lng": 121.2225,
+      "score": {
+        "all": 68.1,
+        "peak": 35.8,
+        "day": 55.8,
+        "eve": 100,
+        "night": 76.1
+      },
+      "rain_sensitivity": 1.34,
+      "moto_sensitivity": 1.17,
+      "acc": 35,
+      "fatal": 0,
+      "weighted_score": 16.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          22
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          12
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 177,
+      "name": "月桃路口 / 月桃路口",
+      "dist": "中壢區",
+      "lat": 25.008,
+      "lng": 121.192,
+      "score": {
+        "all": 68.1,
+        "peak": 64.6,
+        "day": 55.8,
+        "eve": 83.2,
+        "night": 100
+      },
+      "rain_sensitivity": 1.67,
+      "moto_sensitivity": 0.78,
+      "acc": 16,
+      "fatal": 0,
+      "weighted_score": 16.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          24
+        ],
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "闖紅燈直行",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 178,
+      "name": "領航北路三段口 / 青埔路一段口",
+      "dist": "中壢區",
+      "lat": 25.0145,
+      "lng": 121.2095,
+      "score": {
+        "all": 68.1,
+        "peak": 100,
+        "day": 55.8,
+        "eve": 100,
+        "night": 46.3
+      },
+      "rain_sensitivity": 1.16,
+      "moto_sensitivity": 0.85,
+      "acc": 23,
+      "fatal": 0,
+      "weighted_score": 16.0,
+      "causes": [
+        [
+          "右轉彎未依規定",
+          19
+        ],
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 179,
+      "name": "珠江街口 / 合浦街口",
+      "dist": "中壢區",
+      "lat": 24.9495,
+      "lng": 121.2305,
+      "score": {
+        "all": 68.0,
+        "peak": 100,
+        "day": 55.8,
+        "eve": 68.8,
+        "night": 36.7
+      },
+      "rain_sensitivity": 1.62,
+      "moto_sensitivity": 1.04,
+      "acc": 29,
+      "fatal": 0,
+      "weighted_score": 15.9,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 180,
+      "name": "普忠路1116號附近",
+      "dist": "中壢區",
+      "lat": 24.951,
+      "lng": 121.254,
+      "score": {
+        "all": 68.0,
+        "peak": 100,
+        "day": 55.8,
+        "eve": 88.6,
+        "night": 53.2
+      },
+      "rain_sensitivity": 1.78,
+      "moto_sensitivity": 0.89,
+      "acc": 30,
+      "fatal": 2,
+      "weighted_score": 15.9,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          24
+        ],
+        [
+          "未保持行車安全間隔",
+          11
+        ],
+        [
+          "恍神、緊張、心不在焉分心",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 181,
+      "name": "中山路口 / 長江路口",
+      "dist": "中壢區",
+      "lat": 24.956,
+      "lng": 121.2305,
+      "score": {
+        "all": 68.0,
+        "peak": 59.3,
+        "day": 55.8,
+        "eve": 57.3,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.1,
+      "acc": 29,
+      "fatal": 0,
+      "weighted_score": 15.9,
+      "causes": [
+        [
+          "左轉彎未依規定",
+          14
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "無號誌，速限約49km/h"
+    },
+    {
+      "id": 182,
+      "name": "中豐路口 / 中山路口",
+      "dist": "中壢區",
+      "lat": 24.9565,
+      "lng": 121.2195,
+      "score": {
+        "all": 68.0,
+        "peak": 71.7,
+        "day": 55.8,
+        "eve": 35.7,
+        "night": 44.3
+      },
+      "rain_sensitivity": 0.56,
+      "moto_sensitivity": 1.04,
+      "acc": 24,
+      "fatal": 0,
+      "weighted_score": 15.9,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 183,
+      "name": "中美路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.9585,
+      "lng": 121.2265,
+      "score": {
+        "all": 68.0,
+        "peak": 49.2,
+        "day": 55.8,
+        "eve": 35.7,
+        "night": 35.7
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.93,
+      "acc": 21,
+      "fatal": 0,
+      "weighted_score": 15.9,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 184,
+      "name": "普義路口 / 立和路口",
+      "dist": "中壢區",
+      "lat": 24.9605,
+      "lng": 121.232,
+      "score": {
+        "all": 68.0,
+        "peak": 71.2,
+        "day": 55.8,
+        "eve": 45.8,
+        "night": 100
+      },
+      "rain_sensitivity": 2.08,
+      "moto_sensitivity": 1.16,
+      "acc": 29,
+      "fatal": 0,
+      "weighted_score": 15.9,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約49km/h"
+    },
+    {
+      "id": 185,
+      "name": "忠孝路口 / 興農路口",
+      "dist": "中壢區",
+      "lat": 24.9725,
+      "lng": 121.258,
+      "score": {
+        "all": 68.0,
+        "peak": 100,
+        "day": 55.8,
+        "eve": 59.4,
+        "night": 95.0
+      },
+      "rain_sensitivity": 1.91,
+      "moto_sensitivity": 1.01,
+      "acc": 28,
+      "fatal": 0,
+      "weighted_score": 15.9,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約46km/h"
+    },
+    {
+      "id": 186,
+      "name": "青昇路口 / 青峰路口",
+      "dist": "中壢區",
+      "lat": 25.015,
+      "lng": 121.219,
+      "score": {
+        "all": 68.0,
+        "peak": 98.3,
+        "day": 55.8,
+        "eve": 35.7,
+        "night": 95.0
+      },
+      "rain_sensitivity": 2.15,
+      "moto_sensitivity": 0.82,
+      "acc": 28,
+      "fatal": 0,
+      "weighted_score": 15.9,
+      "causes": [
+        [
+          "左轉彎未依規定",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "其他不當駕車行為",
+          11
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 187,
+      "name": "中豐路88號",
+      "dist": "中壢區",
+      "lat": 24.948,
+      "lng": 121.2175,
+      "score": {
+        "all": 67.9,
+        "peak": 35.6,
+        "day": 55.7,
+        "eve": 94.8,
+        "night": 100
+      },
+      "rain_sensitivity": 1.27,
+      "moto_sensitivity": 0.68,
+      "acc": 21,
+      "fatal": 0,
+      "weighted_score": 15.9,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 188,
+      "name": "環中東路二段口 / 龍岡路二段口",
+      "dist": "中壢區",
+      "lat": 24.944,
+      "lng": 121.2285,
+      "score": {
+        "all": 67.8,
+        "peak": 76.2,
+        "day": 55.6,
+        "eve": 35.6,
+        "night": 35.6
+      },
+      "rain_sensitivity": 1.24,
+      "moto_sensitivity": 0.92,
+      "acc": 27,
+      "fatal": 0,
+      "weighted_score": 15.8,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 189,
+      "name": "中正路口 / 明德路口",
+      "dist": "中壢區",
+      "lat": 24.955,
+      "lng": 121.214,
+      "score": {
+        "all": 67.8,
+        "peak": 35.6,
+        "day": 55.6,
+        "eve": 100,
+        "night": 70.7
+      },
+      "rain_sensitivity": 2.68,
+      "moto_sensitivity": 0.83,
+      "acc": 30,
+      "fatal": 0,
+      "weighted_score": 15.8,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 190,
+      "name": "延平路口 / 環北路口",
+      "dist": "中壢區",
+      "lat": 24.963,
+      "lng": 121.2315,
+      "score": {
+        "all": 67.8,
+        "peak": 66.0,
+        "day": 55.6,
+        "eve": 89.2,
+        "night": 100
+      },
+      "rain_sensitivity": 1.54,
+      "moto_sensitivity": 0.61,
+      "acc": 26,
+      "fatal": 0,
+      "weighted_score": 15.8,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約48km/h"
+    },
+    {
+      "id": 191,
+      "name": "龍昌路口 / 龍東路口",
+      "dist": "中壢區",
+      "lat": 24.9275,
+      "lng": 121.2485,
+      "score": {
+        "all": 38.6,
+        "peak": 48.8,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.11,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          9
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 192,
+      "name": "龍昌路口 / 龍東路口",
+      "dist": "中壢區",
+      "lat": 24.928,
+      "lng": 121.2505,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 100,
+        "night": 20.3
+      },
+      "rain_sensitivity": 1.34,
+      "moto_sensitivity": 0.59,
+      "acc": 15,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 193,
+      "name": "龍東路口 / 龍東路口",
+      "dist": "中壢區",
+      "lat": 24.9335,
+      "lng": 121.2565,
+      "score": {
+        "all": 38.6,
+        "peak": 39.1,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 60.4
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.5,
+      "acc": 10,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          18
+        ],
+        [
+          "未保持行車安全距離",
+          11
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約44km/h"
+    },
+    {
+      "id": 194,
+      "name": "龍東路口 / 龍東路口",
+      "dist": "中壢區",
+      "lat": 24.935,
+      "lng": 121.254,
+      "score": {
+        "all": 38.6,
+        "peak": 100,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.71,
+      "acc": 5,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 195,
+      "name": "後興路二段238號",
+      "dist": "中壢區",
+      "lat": 24.941,
+      "lng": 121.2365,
+      "score": {
+        "all": 38.6,
+        "peak": 100,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 2.68,
+      "moto_sensitivity": 1.06,
+      "acc": 5,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未注意車前狀態",
+          14
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "早峰": "通勤壅塞，請保持安全車距"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "無號誌，速限約30km/h"
+    },
+    {
+      "id": 196,
+      "name": "環中東路二段口 / 林森路口",
+      "dist": "中壢區",
+      "lat": 24.943,
+      "lng": 121.225,
+      "score": {
+        "all": 38.6,
+        "peak": 97.7,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 1.67,
+      "moto_sensitivity": 1.33,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          7
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約40km/h"
+    },
+    {
+      "id": 197,
+      "name": "後興路二段238號",
+      "dist": "中壢區",
+      "lat": 24.943,
+      "lng": 121.2385,
+      "score": {
+        "all": 38.6,
+        "peak": 97.7,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 3.0,
+      "moto_sensitivity": 1.33,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未注意車前狀態",
+          13
+        ],
+        [
+          "未保持行車安全間隔",
+          12
+        ],
+        [
+          "恍神、緊張、心不在焉分心",
+          12
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "無號誌，速限約42km/h"
+    },
+    {
+      "id": 198,
+      "name": "環中東路二段口 / 龍岡路二段口",
+      "dist": "中壢區",
+      "lat": 24.9435,
+      "lng": 121.229,
+      "score": {
+        "all": 38.6,
+        "peak": 27.9,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.76,
+      "acc": 14,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 199,
+      "name": "環中東路二段口 / 龍岡路二段口",
+      "dist": "中壢區",
+      "lat": 24.944,
+      "lng": 121.232,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.71,
+      "acc": 5,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          8
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 200,
+      "name": "珠江街口 / 合浦街口",
+      "dist": "中壢區",
+      "lat": 24.948,
+      "lng": 121.232,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.06,
+      "acc": 5,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "無號誌路口，支線道未讓幹",
+          19
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約30km/h"
+    },
+    {
+      "id": 201,
+      "name": "華勛街口 / 華勛街口",
+      "dist": "中壢區",
+      "lat": 24.949,
+      "lng": 121.26,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 100,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.18,
+      "acc": 12,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "無號誌路口，左方車未讓右",
+          8
+        ],
+        [
+          "左轉彎未依規定",
+          8
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約43km/h"
+    },
+    {
+      "id": 202,
+      "name": "榮民南路口 / 普忠路口",
+      "dist": "中壢區",
+      "lat": 24.951,
+      "lng": 121.2565,
+      "score": {
+        "all": 38.6,
+        "peak": 48.8,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 75.5
+      },
+      "rain_sensitivity": 1.67,
+      "moto_sensitivity": 1.11,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "其他不當駕車行為",
+          11
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 203,
+      "name": "晉元路口 / 華勛街口",
+      "dist": "中壢區",
+      "lat": 24.951,
+      "lng": 121.261,
+      "score": {
+        "all": 38.6,
+        "peak": 43.4,
+        "day": 31.7,
+        "eve": 62.9,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.18,
+      "acc": 9,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          8
+        ],
+        [
+          "未注意車前狀態",
+          6
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 204,
+      "name": "環中東路口 / 振興街口",
+      "dist": "中壢區",
+      "lat": 24.952,
+      "lng": 121.239,
+      "score": {
+        "all": 38.6,
+        "peak": 39.1,
+        "day": 31.7,
+        "eve": 37.7,
+        "night": 60.4
+      },
+      "rain_sensitivity": 1.34,
+      "moto_sensitivity": 1.24,
+      "acc": 10,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約40km/h"
+    },
+    {
+      "id": 205,
+      "name": "中山東路二段口 / 治平街口",
+      "dist": "中壢區",
+      "lat": 24.9525,
+      "lng": 121.2355,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 94.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.11,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約45km/h"
+    },
+    {
+      "id": 206,
+      "name": "環中東路口 / 實踐路口",
+      "dist": "中壢區",
+      "lat": 24.9535,
+      "lng": 121.2415,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 94.3,
+        "night": 50.3
+      },
+      "rain_sensitivity": 1.12,
+      "moto_sensitivity": 1.77,
+      "acc": 12,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 207,
+      "name": "中正路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.9545,
+      "lng": 121.2205,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 100
+      },
+      "rain_sensitivity": 3.0,
+      "moto_sensitivity": 1.06,
+      "acc": 5,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          14
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 208,
+      "name": "新中北路口 / 榮民南路口",
+      "dist": "中壢區",
+      "lat": 24.9545,
+      "lng": 121.261,
+      "score": {
+        "all": 38.6,
+        "peak": 100,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 75.5
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.11,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          15
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ]
+      ],
+      "hints": {
+        "早峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 209,
+      "name": "中正路口 / 中豐路口",
+      "dist": "中壢區",
+      "lat": 24.956,
+      "lng": 121.2165,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 47.2,
+        "night": 75.5
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.89,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 210,
+      "name": "中豐路口 / 中山路口",
+      "dist": "中壢區",
+      "lat": 24.956,
+      "lng": 121.221,
+      "score": {
+        "all": 38.6,
+        "peak": 39.1,
+        "day": 31.7,
+        "eve": 37.7,
+        "night": 60.4
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.24,
+      "acc": 10,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 211,
+      "name": "中正路口 / 義民路口",
+      "dist": "中壢區",
+      "lat": 24.9565,
+      "lng": 121.2155,
+      "score": {
+        "all": 38.6,
+        "peak": 100,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.59,
+      "acc": 9,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約46km/h"
+    },
+    {
+      "id": 212,
+      "name": "新中北路口 / 榮民南路口",
+      "dist": "中壢區",
+      "lat": 24.9565,
+      "lng": 121.2615,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 67.4,
+        "night": 86.3
+      },
+      "rain_sensitivity": 0.96,
+      "moto_sensitivity": 0.63,
+      "acc": 14,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 213,
+      "name": "新中北路口 / 新中北路口",
+      "dist": "中壢區",
+      "lat": 24.9575,
+      "lng": 121.234,
+      "score": {
+        "all": 38.6,
+        "peak": 43.4,
+        "day": 31.7,
+        "eve": 41.9,
+        "night": 100
+      },
+      "rain_sensitivity": 1.49,
+      "moto_sensitivity": 1.58,
+      "acc": 9,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ],
+        [
+          "未保持行車安全距離",
+          8
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": "此路口轉彎事故多，機車請提前減速確認來車",
+      "note": "無號誌，速限約34km/h"
+    },
+    {
+      "id": 214,
+      "name": "三民路一段口 / 五興路口",
+      "dist": "中壢區",
+      "lat": 24.9595,
+      "lng": 121.196,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.5,
+      "acc": 5,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          18
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 215,
+      "name": "中央東路口 / 延平路口",
+      "dist": "中壢區",
+      "lat": 24.9595,
+      "lng": 121.222,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 47.2,
+        "night": 20.3
+      },
+      "rain_sensitivity": 1.67,
+      "moto_sensitivity": 1.11,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約37km/h"
+    },
+    {
+      "id": 216,
+      "name": "榮民路口 / 永福路口",
+      "dist": "中壢區",
+      "lat": 24.96,
+      "lng": 121.259,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.67,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約47km/h"
+    },
+    {
+      "id": 217,
+      "name": "環西路口 / 志廣路口",
+      "dist": "中壢區",
+      "lat": 24.962,
+      "lng": 121.206,
+      "score": {
+        "all": 38.6,
+        "peak": 100,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.5,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          14
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約85km/h"
+    },
+    {
+      "id": 218,
+      "name": "環中東路口 / 榮安一街口",
+      "dist": "中壢區",
+      "lat": 24.962,
+      "lng": 121.2595,
+      "score": {
+        "all": 38.6,
+        "peak": 100,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 3.0,
+      "moto_sensitivity": 1.06,
+      "acc": 5,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "其他不當駕車行為",
+          10
+        ]
+      ],
+      "hints": {
+        "晚峰": "此路口轉向事故頻繁，請確認來車再行駛",
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛",
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛",
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 219,
+      "name": "元化路口 / 慈惠三街口",
+      "dist": "中壢區",
+      "lat": 24.9635,
+      "lng": 121.2235,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 94.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.89,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          12
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 220,
+      "name": "環中東路口 / 永福路口",
+      "dist": "中壢區",
+      "lat": 24.964,
+      "lng": 121.255,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.89,
+      "acc": 10,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          15
+        ],
+        [
+          "未保持行車安全距離",
+          15
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {
+        "深夜": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    },
+    {
+      "id": 221,
+      "name": "環中東路口 / 榮安一街口",
+      "dist": "中壢區",
+      "lat": 24.965,
+      "lng": 121.258,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 75.5
+      },
+      "rain_sensitivity": 1.67,
+      "moto_sensitivity": 0.59,
+      "acc": 12,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          13
+        ],
+        [
+          "其他未依規定讓車",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約26km/h"
+    },
+    {
+      "id": 222,
+      "name": "環北路口 / 中福路口",
+      "dist": "中壢區",
+      "lat": 24.9665,
+      "lng": 121.2305,
+      "score": {
+        "all": 38.6,
+        "peak": 48.8,
+        "day": 31.7,
+        "eve": 47.2,
+        "night": 75.5
+      },
+      "rain_sensitivity": 1.67,
+      "moto_sensitivity": 1.11,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          18
+        ],
+        [
+          "左轉彎未依規定",
+          10
+        ],
+        [
+          "未保持行車安全距離",
+          10
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約40km/h"
+    },
+    {
+      "id": 223,
+      "name": "新生路口 / 環北路口",
+      "dist": "中壢區",
+      "lat": 24.968,
+      "lng": 121.2235,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.42,
+      "acc": 5,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          6
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約44km/h"
+    },
+    {
+      "id": 224,
+      "name": "遠東路135號",
+      "dist": "中壢區",
+      "lat": 24.97,
+      "lng": 121.265,
+      "score": {
+        "all": 38.6,
+        "peak": 35.5,
+        "day": 31.7,
+        "eve": 34.3,
+        "night": 100
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.45,
+      "acc": 11,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          20
+        ],
+        [
+          "未注意車前狀態",
+          12
+        ],
+        [
+          "無號誌路口，支線道未讓幹",
+          12
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約33km/h"
+    },
+    {
+      "id": 225,
+      "name": "中華路一段口 / 文化二路口",
+      "dist": "中壢區",
+      "lat": 24.971,
+      "lng": 121.2515,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 100,
+        "night": 20.3
+      },
+      "rain_sensitivity": 3.0,
+      "moto_sensitivity": 1.13,
+      "acc": 11,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          18
+        ],
+        [
+          "其他不當駕車行為",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          11
+        ]
+      ],
+      "hints": {
+        "夜間": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "有號誌，速限約50km/h"
+    },
+    {
+      "id": 226,
+      "name": "國道1號 61公里300.0公尺處南側向",
+      "dist": "中壢區",
+      "lat": 24.972,
+      "lng": 121.22,
+      "score": {
+        "all": 38.6,
+        "peak": 100,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.33,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          29
+        ],
+        [
+          "恍神、緊張、心不在焉分心",
+          17
+        ],
+        [
+          "變換車道不當",
+          13
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約40km/h"
+    },
+    {
+      "id": 227,
+      "name": "中華路一段口 / 遠東路口",
+      "dist": "中壢區",
+      "lat": 24.973,
+      "lng": 121.2635,
+      "score": {
+        "all": 38.6,
+        "peak": 78.1,
+        "day": 31.7,
+        "eve": 100,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 0.71,
+      "acc": 5,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          24
+        ],
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "左轉彎未依規定",
+          8
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約30km/h"
+    },
+    {
+      "id": 228,
+      "name": "國道1號 61公里300.0公尺處南側向",
+      "dist": "中壢區",
+      "lat": 24.9735,
+      "lng": 121.219,
+      "score": {
+        "all": 38.6,
+        "peak": 20.3,
+        "day": 31.7,
+        "eve": 94.3,
+        "night": 75.5
+      },
+      "rain_sensitivity": 3.0,
+      "moto_sensitivity": 0.67,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "未保持行車安全距離",
+          29
+        ],
+        [
+          "恍神、緊張、心不在焉分心",
+          15
+        ],
+        [
+          "變換車道不當",
+          11
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約42km/h"
+    },
+    {
+      "id": 229,
+      "name": "新生路口 / 南園二路口",
+      "dist": "中壢區",
+      "lat": 24.9735,
+      "lng": 121.2255,
+      "score": {
+        "all": 38.6,
+        "peak": 48.8,
+        "day": 31.7,
+        "eve": 94.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 0.5,
+      "moto_sensitivity": 1.33,
+      "acc": 8,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          16
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ],
+        [
+          "左轉彎未依規定",
+          9
+        ]
+      ],
+      "hints": {},
+      "moto_hint": null,
+      "note": "無號誌，速限約30km/h"
+    },
+    {
+      "id": 230,
+      "name": "自強一路口 / 自強四路口",
+      "dist": "中壢區",
+      "lat": 24.974,
+      "lng": 121.2455,
+      "score": {
+        "all": 38.6,
+        "peak": 100,
+        "day": 31.7,
+        "eve": 20.3,
+        "night": 20.3
+      },
+      "rain_sensitivity": 2.68,
+      "moto_sensitivity": 1.06,
+      "acc": 5,
+      "fatal": 0,
+      "weighted_score": 5.0,
+      "causes": [
+        [
+          "其他不當駕車行為",
+          17
+        ],
+        [
+          "左轉彎未依規定",
+          13
+        ],
+        [
+          "未保持行車安全距離",
+          12
+        ]
+      ],
+      "hints": {
+        "雨天": "此路口轉向事故頻繁，請確認來車再行駛"
+      },
+      "moto_hint": null,
+      "note": "無號誌，速限約50km/h"
+    }
+  ],
+  "features": [
+    {
+      "name": "早期事故密度",
+      "pct": 18.3
+    },
+    {
+      "name": "早期A2密度",
+      "pct": 16.3
+    },
+    {
+      "name": "雨天比例",
+      "pct": 12.5
+    },
+    {
+      "name": "夜間比例",
+      "pct": 12.0
+    },
+    {
+      "name": "晚峰比例",
+      "pct": 11.3
+    },
+    {
+      "name": "早峰比例",
+      "pct": 10.0
+    },
+    {
+      "name": "機車比例",
+      "pct": 8.0
+    },
+    {
+      "name": "平均速限",
+      "pct": 5.8
+    },
+    {
+      "name": "有號誌",
+      "pct": 5.5
+    },
+    {
+      "name": "早期A1密度",
+      "pct": 0.3
+    }
+  ],
+  "model_metrics": {
+    "f1_score": 0.812,
+    "a1_recall": 0.817,
+    "total_accidents": 146561,
+    "high_risk_count": 1355,
+    "mid_risk_count": 1878,
+    "n_clusters": 0,
+    "grid_size": "50x50m",
+    "data_years": "2020-2026",
+    "train_years": "2020-2026（SMOTE擴增，參考胡李2022先切割再SMOTE）",
+    "test_years": "隨機抽取25%（各類別等比例，原始不平衡分布）",
+    "districts": "中壢區",
+    "label_threshold": "百分位數門檻：前25%為高風險，25-60%為中風險（參考Hazaymeh et al.2022）"
+  },
+  "generated_at": "2026-06-06 19:05"
+}

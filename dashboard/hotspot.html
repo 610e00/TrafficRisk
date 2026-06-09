@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>危險街道 — 桃園市車禍風險預測平台</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="brand-icon">🚦</div>
+        <div><h2>車禍風險預測平台</h2><small>桃園市政府交通局</small></div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">總覽</div>
+      <a href="dashboard.html"><span class="nav-icon">📊</span> 儀表板</a>
+      <div class="nav-section">資料管理</div>
+      <a href="hotspot.html" class="active"><span class="nav-icon">📍</span> 危險街道</a>
+      <a href="events.html"><span class="nav-icon">🔔</span> 即時事件</a>
+      <a href="construction.html"><span class="nav-icon">🚧</span> 施工</a>
+    </nav>
+    <div class="sidebar-footer">v1.0 · 2026</div>
+  </aside>
+
+  <div class="main-content">
+    <header class="top-header"><h1>中壢區危險街道排行</h1></header>
+
+    <div class="page-body">
+      <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="kpi-card danger">
+          <div class="kpi-label">分析街道數</div>
+          <div class="kpi-value" id="kpiStreets">—</div>
+          <div class="kpi-change">中壢區熱點路段</div>
+        </div>
+        <div class="kpi-card warning">
+          <div class="kpi-label">最危險街道事故數</div>
+          <div class="kpi-value" id="kpiTop1">—</div>
+          <div class="kpi-change" id="kpiTop1Name"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">各街道主要危險時段</div>
+          <div class="kpi-value">晚峰</div>
+          <div class="kpi-change">17:00 – 19:00</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header"><h3>各街道累計事故數</h3></div>
+        <div class="panel-body">
+          <div class="chart-container" style="height:420px"><canvas id="streetChart"></canvas></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header"><h3>前 15 條危險街道</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>排名</th><th>街道名稱</th><th>行政區</th>
+                <th>累計事故數</th><th>佔比</th><th>危險時段</th><th>等級</th>
+              </tr>
+            </thead>
+            <tbody id="streetTable">
+              <tr><td colspan="7" style="text-align:center;color:var(--text-muted)">載入中…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+async function init() {
+  const data    = await fetch('../clusters.json').then(r => r.json());
+  const streets = data.clusters;
+  const total   = streets.reduce((s,c) => s + c.count, 0);
+  const top1    = streets[0];
+
+  document.getElementById('kpiStreets').textContent  = streets.length;
+  document.getElementById('kpiTop1').textContent     = top1.count.toLocaleString();
+  document.getElementById('kpiTop1Name').textContent = top1.road;
+
+  new Chart(document.getElementById('streetChart'), {
+    type:'bar',
+    data:{
+      labels: streets.map(s => s.road),
+      datasets:[{ label:'累計事故數', data:streets.map(s => s.count),
+        backgroundColor: streets.map((_,i) => i===0?'#DC2626':i<3?'#D97706':i<7?'#2563EB':'#94A3B8'),
+        borderRadius:4 }]
+    },
+    options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true}} }
+  });
+
+  document.getElementById('streetTable').innerHTML = streets.map((s,i) => {
+    const pct = (s.count/total*100).toFixed(1);
+    const cl  = i===0?'high':i<7?'medium':'low';
+    const lv  = i===0?{l:'極高',c:'badge-danger'}:i<3?{l:'高',c:'badge-danger'}:i<7?{l:'中高',c:'badge-warning'}:{l:'中',c:'badge-warning'};
+    return `<tr>
+      <td>${i+1}</td><td><strong>${s.road}</strong></td><td>中壢區</td>
+      <td>${s.count.toLocaleString()}</td>
+      <td><div class="risk-bar"><div class="risk-bar-track"><div class="risk-bar-fill ${cl}" style="width:${(s.count/top1.count*100).toFixed(0)}%"></div></div><span style="font-size:.8rem;color:var(--text-muted)">${pct}%</span></div></td>
+      <td>${s.peak}</td>
+      <td><span class="badge ${lv.c}">${lv.l}</span></td>
+    </tr>`;
+  }).join('');
+}
+init().catch(e => {
+  document.getElementById('streetTable').innerHTML =
+    '<tr><td colspan="7" style="text-align:center;color:var(--danger)">載入失敗，請確認 clusters.json 存在。</td></tr>';
+});
+</script>
+</body>
+</html>

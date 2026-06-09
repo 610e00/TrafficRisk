@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>施工 — 桃園市車禍風險預測平台</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="brand-icon">🚦</div>
+        <div><h2>車禍風險預測平台</h2><small>桃園市政府交通局</small></div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">總覽</div>
+      <a href="dashboard.html"><span class="nav-icon">📊</span> 儀表板</a>
+      <div class="nav-section">資料管理</div>
+      <a href="hotspot.html"><span class="nav-icon">📍</span> 危險街道</a>
+      <a href="events.html"><span class="nav-icon">🔔</span> 即時事件</a>
+      <a href="construction.html" class="active"><span class="nav-icon">🚧</span> 施工</a>
+    </nav>
+    <div class="sidebar-footer">v1.0 · 2026</div>
+  </aside>
+
+  <div class="main-content">
+    <header class="top-header">
+      <h1>施工路段管理</h1>
+      <div class="header-actions">
+        <span class="badge" id="connBadge" style="padding:6px 14px">連線中…</span>
+      </div>
+    </header>
+
+    <div class="page-body">
+      <div class="alert-banner warning" id="offlineBanner" style="display:none">
+        <span>🚧</span>
+        後端 API 未連線。
+      </div>
+
+      <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="kpi-card warning"><div class="kpi-label">今日施工總數</div><div class="kpi-value" id="kpiTotal">—</div></div>
+        <div class="kpi-card danger"><div class="kpi-label">車道縮減施工</div><div class="kpi-value" id="kpiLane">—</div></div>
+        <div class="kpi-card info"><div class="kpi-label">資料來源</div><div class="kpi-value" style="font-size:1rem">TDX</div><div class="kpi-change">桃園市道路挖掘中心</div></div>
+      </div>
+
+      <div class="filter-bar">
+        
+        <span style="font-size:.85rem;color:var(--text-muted)" id="lastUpdate"></span>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h3>中壢區即時施工清單</h3>
+          <span style="font-size:.85rem;color:var(--text-muted)" id="tableNote"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>事件編號</th><th>地點</th><th>行政區</th>
+                <th>影響說明</th><th>開始日期</th><th>嚴重度</th><th>狀態</th>
+              </tr>
+            </thead>
+            <tbody id="conTable">
+              <tr><td colspan="7" style="text-align:center;color:var(--text-muted)">載入中…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+<script>
+const API = 'http://localhost:8000';
+let allItems = [];
+
+function sevLabel(s) {
+  if (s >= 2) return {l:'高', c:'badge-danger'};
+  if (s >= 1) return {l:'中', c:'badge-warning'};
+  return {l:'低', c:'badge-info'};
+}
+
+function render(items) {
+  document.getElementById('kpiTotal').textContent = items.length;
+  document.getElementById('kpiLane').textContent  = items.filter(i => i.severity >= 1).length;
+  document.getElementById('tableNote').textContent = `顯示 ${items.length} 筆`;
+  document.getElementById('lastUpdate').textContent = `TDX 即時資料 · ${new Date().toLocaleTimeString('zh-TW')}`;
+
+  document.getElementById('conTable').innerHTML = items.length
+    ? items.map(c => {
+        const sv = sevLabel(c.severity);
+        return `<tr>
+          <td style="font-size:.8rem;color:var(--text-muted)">${c.id.slice(-8)}</td>
+          <td>${c.location}</td>
+          <td>${c.district}</td>
+          <td style="font-size:.85rem">${c.description_impact}</td>
+          <td>${c.start}</td>
+          <td><span class="badge ${sv.c}">${sv.l}</span></td>
+          <td><span class="badge badge-warning">進行中</span></td>
+        </tr>`;
+      }).join('')
+    : '<tr><td colspan="7" style="text-align:center;color:var(--text-muted)">目前無施工資料</td></tr>';
+}
+
+function filterBySearch() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const filtered = q ? allItems.filter(i => i.location.toLowerCase().includes(q)) : allItems;
+  render(filtered);
+}
+
+async function init() {
+  try {
+    const res = await fetch(`${API}/api/construction/`, { signal: AbortSignal.timeout(15000) });
+    const data = await res.json();
+    allItems = data.items || [];
+
+    const badge = document.getElementById('connBadge');
+    badge.textContent = '● TDX 即時連線';
+    badge.className = 'badge badge-success';
+
+    render(allItems);
+  } catch(e) {
+    document.getElementById('connBadge').textContent = '○ 連線失敗';
+    document.getElementById('connBadge').className = 'badge badge-danger';
+    document.getElementById('offlineBanner').style.display = 'flex';
+    document.getElementById('conTable').innerHTML =
+      '<tr><td colspan="7" style="text-align:center;color:var(--danger)">無法連線後端，請確認 uvicorn 是否執行中。</td></tr>';
+  }
+}
+
+const si = document.getElementById('searchInput');
+if (si) si.addEventListener('input', filterBySearch);
+init();
+</script>
+</body>
+</html>
