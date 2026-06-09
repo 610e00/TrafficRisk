@@ -563,15 +563,17 @@ function useGPS(){
     originCoords={lat:userLat,lng:userLng};
     document.getElementById('nav-from').value='我的位置';
 
-    // 在導航地圖顯示位置標記並移動到該位置
-    if(navMap){
+    // 確保導航地圖已初始化
+    initNavMap();
+    setTimeout(()=>{
+      navMap.invalidateSize();
       if(navUserMarker) navMap.removeLayer(navUserMarker);
-      const icon=L.divIcon({className:'',iconSize:[24,24],iconAnchor:[12,12],
-        html:`<div class="mk mk-user" style="width:24px;height:24px;font-size:9px">我</div>`});
+      const icon=L.divIcon({className:'',iconSize:[28,28],iconAnchor:[14,14],
+        html:`<div class="mk mk-user" style="width:28px;height:28px;font-size:10px">我</div>`});
       navUserMarker=L.marker([userLat,userLng],{icon}).addTo(navMap);
       navMap.setView([userLat,userLng],15,{animate:true});
-    }
-  },err=>{alert('無法取得位置');});
+    }, 100);
+  },err=>{alert('無法取得位置');},{enableHighAccuracy:true,timeout:10000});
 }
 
 // ── GEOCODING（用 JS SDK Geocoder，避免 CORS）────────────────────
@@ -775,6 +777,8 @@ function renderRouteResult(cache, type){
   const line=L.polyline(rd.coords,{color:col,weight:5,opacity:.85}).addTo(navMap);
   navMap.fitBounds(line.getBounds(),{padding:[50,50]});
   navL.push(line);
+  // fitBounds完成後重新渲染點大小
+  navMap.once('moveend', ()=>{ if(typeof renderNavNodes==='function') renderNavNodes(); });
 
   // 如果兩條路線不同，淡色顯示另一條
   if(!cmp.same_route && other.coords){
@@ -787,13 +791,28 @@ function renderRouteResult(cache, type){
   navL.push(L.marker([originCoords.lat,originCoords.lng],{icon:mkA}).addTo(navMap));
   navL.push(L.marker([destCoords.lat,destCoords.lng],{icon:mkB}).addTo(navMap));
 
-  NODES.filter(n=>sc(n)>=50).forEach(n=>{
-    const s=sc(n),l=lvl(n);
-    const sz=s>=70?20:16;
-    const icon=L.divIcon({className:'',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],
-      html:`<div class="mk mk-${l}" style="width:${sz}px;height:${sz}px"></div>`});
-    navL.push(L.marker([n.lat,n.lng],{icon}).addTo(navMap).bindPopup(popup(n,s)));
-  });
+  function renderNavNodes(){
+    navL = navL.filter(l=>{
+      if(l._navRiskMk){navMap.removeLayer(l);return false;}
+      return true;
+    });
+    const zoom = navMap.getZoom();
+    NODES.filter(n=>sc(n)>=50).forEach(n=>{
+      const s=sc(n),l=lvl(n);
+      let sz;
+      if(zoom < 13) sz = 8;
+      else if(zoom < 15) sz = 13;
+      else sz = s>=70 ? 20 : 16;
+      const mk=L.marker([n.lat,n.lng],{
+        icon:L.divIcon({className:'',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],
+          html:`<div class="mk mk-${l}" style="width:${sz}px;height:${sz}px"></div>`})
+      }).addTo(navMap).bindPopup(popup(n,s));
+      mk._navRiskMk=true;
+      navL.push(mk);
+    });
+  }
+  renderNavNodes();
+  navMap.off('zoomend.navRisk').on('zoomend.navRisk', renderNavNodes);
 
   // 比較資訊banner（只在安全路線顯示，或兩條不同時才顯示）
   let compareBanner = '';
@@ -916,7 +935,10 @@ function startNav(){
   // 隱藏底部 UI，地圖全螢幕
   document.querySelector('.nav-sheet').style.display='none';
 
-  // 顯示結束導航按鈕
+  // 強制地圖重新計算大小（修留白）
+  setTimeout(()=>{ if(navMap) navMap.invalidateSize(); }, 100);
+
+  // 結束導航按鈕
   let endBtn = document.getElementById('nav-end-btn');
   if(!endBtn){
     endBtn = document.createElement('button');
@@ -932,6 +954,28 @@ function startNav(){
     document.querySelector('.nav-map-wrap').appendChild(endBtn);
   }
   endBtn.style.display = 'block';
+
+  // 回到我的位置按鈕
+  let locBtn = document.getElementById('nav-loc-btn');
+  if(!locBtn){
+    locBtn = document.createElement('button');
+    locBtn.id = 'nav-loc-btn';
+    locBtn.innerHTML = '⊙';
+    locBtn.style.cssText = `
+      position:absolute;bottom:80px;right:16px;
+      z-index:600;background:#fff;color:var(--blue);
+      border:1px solid var(--border);border-radius:50%;
+      width:40px;height:40px;font-size:20px;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.15);
+    `;
+    locBtn.onclick = ()=>{
+      if(userLat && navMap) navMap.setView([userLat, userLng], navMap.getZoom(), {animate:true});
+    };
+    document.querySelector('.nav-map-wrap').appendChild(locBtn);
+  }
+  locBtn.style.display = 'flex';
+
   rerouteLastTime = 0;
   reroutingInProgress = false;
 }
@@ -957,6 +1001,8 @@ function cancelNav(){
   document.querySelector('.nav-sheet').style.display='';
   const endBtn=document.getElementById('nav-end-btn');
   if(endBtn) endBtn.style.display='none';
+  const locBtn=document.getElementById('nav-loc-btn');
+  if(locBtn) locBtn.style.display='none';
 }
 
 // ── VOICE NAVIGATION ─────────────────────────────────────────────
