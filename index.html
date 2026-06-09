@@ -18,7 +18,7 @@
   --text:#1a2233;--text2:#6b7a99;--text3:#aab4c8;
   --red:#e8354a;--red2:rgba(232,53,74,0.1);--red3:rgba(232,53,74,0.06);
   --orange:#f57c00;--orange2:rgba(245,124,0,0.1);
-  --green:#1db954;--green2:rgba(29,185,84,0.1);--yellow:#f59e0b;--yellow2:rgba(245,158,11,0.12);
+  --green:#1db954;--green2:rgba(29,185,84,0.1);--yellow:#ffd000;--yellow2:rgba(245,158,11,0.12);
   --blue:#1a73e8;--blue2:rgba(26,115,232,0.1);
   --shadow:0 2px 12px rgba(0,0,0,0.08);--shadow2:0 4px 24px rgba(0,0,0,0.12);
   --r:16px;--rs:10px;--font:'Noto Sans TC',sans-serif;--mono:'DM Mono',monospace;
@@ -80,7 +80,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
 .mk:hover{transform:scale(1.15)}
 .mk-h{background:rgba(232,53,74,0.72);color:#fff}
 .mk-m{background:rgba(245,124,0,0.72);color:#fff}
-.mk-l{background:rgba(226, 180, 13, 0.70);color:#fff}
+.mk-l{background:rgba(226, 180, 13, 0.72);color:#fff}
 .mk-user{background:var(--blue);color:#fff;border:3px solid white;box-shadow:0 0 0 3px rgba(26,115,232,0.3)}
 
 /* MAP OVERLAYS */
@@ -314,7 +314,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
   <div class="card">
     <div class="card-h">一天中最危險的時段</div>
     <div id="period-chart"></div>
-    <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">根據桃園市歷史事故資料統計各時段事故比例（2020-2026年，約40萬筆）</div>
+    <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">根據桃園市歷史事故資料統計各時段事故比例（2020-2026年）</div>
   </div>
 
   <!-- 最近查詢路線 -->
@@ -745,7 +745,7 @@ async function calcRoute(type){
     renderRouteResult(_routeCache, type);
   } catch(e){
     hideLoading();
-    console.error('路線失敗，切換為本地計算：', e.message);
+    console.error('後端路線失敗，切換為本地計算：', e.message);
     // fallback：用本地 DirectionsService
     await calcRouteFallback(type);
   }
@@ -956,14 +956,11 @@ function checkVoiceAlerts(lat,lng){
   });
 
   routeNodes.forEach(n=>{
-    const s=sc(n);
     const d=dist2D(lat,lng,n.lat,n.lng);
     const key=`${n.id}`;
     const last=lastVoiceAlert[key]||0;
-    if(now-last<60000) return; // 60秒冷卻
-
-    if(d<=100 && d>0){
-      // 100公尺內才播報
+    if(now-last<60000) return;
+    if(d<=80 && d>0){
       lastVoiceAlert[key]=now;
       const lbl=lvlLbl(n);
       speak(`前方${Math.round(d)}公尺，${n.name}，${lbl}，請減速注意`);
@@ -996,7 +993,6 @@ function startVoiceTracking(){
       const icon=L.divIcon({className:'',iconSize:[24,24],iconAnchor:[12,12],
         html:`<div class="mk mk-user" style="width:24px;height:24px;font-size:9px">我</div>`});
       navUserMarker=L.marker([lat,lng],{icon}).addTo(navMap);
-      // 地圖自動跟隨使用者位置
       navMap.setView([lat,lng], navMap.getZoom(), {animate:true});
       checkVoiceAlerts(lat,lng);
       checkReroute(lat,lng);
@@ -1044,9 +1040,9 @@ function buildReport(){
   // 目前路況提示
   const periodLabels={'peak':'早峰','day':'日間','eve':'晚峰','night':'夜間/深夜'};
   const periodRiskNote={
-    'peak':'通勤車流量大，追撞事故頻繁，請保持安全車距',
-    'day':'日間相對安全，但仍需小心駕駛，請注意號誌',
-    'eve':'晚高峰是全天最危險時段，事故率最高，請多留意路況',
+    'peak':'早高峰通勤車流量大，追撞事故頻繁，請保持安全車距',
+    'day':'日間相對安全，但仍須謹慎駕駛，注意號誌',
+    'eve':'晚高峰是全天最危險時段，事故率最高，建議多留意路況',
     'night':'夜間車流少但車速快，視線不佳，請提高警覺'
   };
   const nowPeriod=cT||'day';
