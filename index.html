@@ -495,7 +495,7 @@ function initMain(){
 let constructionMarkers = [];
 async function loadConstruction() {
   try {
-    const res = await fetch('http://localhost:8000/api/construction/');
+    const res = await fetch('https://trafficrisk.onrender.com/api/construction/');
     const data = await res.json();
     constructionMarkers.forEach(m => mainMap.removeLayer(m));
     constructionMarkers = [];
@@ -525,7 +525,7 @@ async function loadConstruction() {
 
 async function loadEmergency() {
   try {
-    const res = await fetch('http://localhost:8000/api/emergency/');
+    const res = await fetch('https://trafficrisk.onrender.com/api/emergency/');
     const data = await res.json();
     (data.items || []).forEach(item => {
       if (!item.lat || !item.lng) return;
@@ -550,7 +550,7 @@ async function loadEmergency() {
 
 async function loadPTTEvents() {
   try {
-    const res = await fetch('http://localhost:8000/api/events/?confirmed_only=true');
+    const res = await fetch('https://trafficrisk.onrender.com/api/events/?confirmed_only=true');
     const data = await res.json();
     (data.events || []).forEach(item => {
       if (!item.lat || !item.lng) return;

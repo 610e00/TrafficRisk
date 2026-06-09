@@ -4,6 +4,7 @@
 端點：GET /api/construction
 """
 import re
+import os
 import requests
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
@@ -11,8 +12,8 @@ from fastapi.responses import JSONResponse
 router = APIRouter()
 
 # ── 填你自己的 TDX 金鑰 ──────────────────────────
-CLIENT_ID     = "11244248-8182305a-7c97-4b15"
-CLIENT_SECRET = "9f047ece-fc8d-487e-9a79-34882d911fd5"
+CLIENT_ID     = os.environ.get("TDX_CLIENT_ID", "")
+CLIENT_SECRET = os.environ.get("TDX_CLIENT_SECRET", "")
 # ─────────────────────────────────────────────────
 
 TDX_TOKEN_URL = "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token"

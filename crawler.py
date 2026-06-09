@@ -11,7 +11,7 @@ SEARCH_URL = "https://www.ptt.cc/bbs/Food/search?q=中壢"
 HEADERS = {"User-Agent": "Mozilla/5.0"}
 THIS_YEAR = datetime.now().year
 GOOGLE_KEY = "AIzaSyCF6WZSkgcfhWQJ0DH4l3zUXXL8AkqZJtA"
-BACKEND_URL = "http://localhost:8000/api/events/"
+BACKEND_URL = "https://trafficrisk.onrender.com/api/events/"
 
 ZHONGLI_ROADS = [
     '環中東路', '環中東路一段', '環中東路二段', '環中東路三段',
