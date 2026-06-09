@@ -124,14 +124,17 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:var(--font);backgro
 .ac-sub{font-size:11px;color:var(--text2);margin-top:1px}
 
 .nav-btns{display:flex;gap:8px;margin-bottom:8px}
-.btn-fast{flex:1;padding:11px;border-radius:var(--rs);background:var(--blue);border:none;color:#fff;font-size:13px;font-weight:700;font-family:var(--font);cursor:pointer}
-.btn-safe{flex:1;padding:11px;border-radius:var(--rs);background:var(--green2);border:2px solid var(--green);color:var(--green);font-size:13px;font-weight:700;font-family:var(--font);cursor:pointer}
-.btn-cancel{padding:11px 14px;border-radius:var(--rs);background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:13px;font-weight:600;font-family:var(--font);cursor:pointer;display:none}
+.btn-fast{flex:1;padding:12px;border-radius:var(--rs);background:var(--blue);border:2px solid var(--blue);color:#fff;font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer;transition:all .15s}
+.btn-fast:hover{background:#1557b0}
+.btn-safe{flex:1;padding:12px;border-radius:var(--rs);background:#fff;border:2px solid var(--green);color:var(--green);font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer;transition:all .15s}
+.btn-safe:hover{background:var(--green2)}
+.btn-safe.active{background:var(--green);color:#fff}
+.btn-fast.active{background:#1557b0}
+.btn-cancel{padding:12px 14px;border-radius:var(--rs);background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:13px;font-weight:600;font-family:var(--font);cursor:pointer;display:none}
 
 #route-result{display:none;flex-direction:column;max-height:200px;overflow-y:auto}
-.r-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:8px}
-.r-tab{flex:1;padding:7px;text-align:center;font-size:12px;font-weight:600;cursor:pointer;color:var(--text2);border-bottom:2px solid transparent;transition:all .15s}
-.r-tab.on{color:var(--blue);border-bottom-color:var(--blue)}
+.r-tabs{display:none}
+.r-tab{display:none}
 .r-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}
 .rs{background:var(--surface);border-radius:var(--rs);padding:8px;text-align:center}
 .rs-v{font-size:18px;font-weight:700;font-family:var(--mono)}
@@ -466,9 +469,6 @@ function popup(n, s){
   const txtColor = l==='h'?'var(--red)':l==='m'?'var(--orange)':'var(--yellow)';
 
   return `<div class="pu r${l}">
-    <div class="pu-top">
-      <span class="pu-name">${n.name}</span>
-    </div>
     <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;align-items:center">
       <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:${bgColor};color:${txtColor}">${lvlLbl(n)}</span>
       ${boostTags.join('')}
@@ -562,6 +562,15 @@ function useGPS(){
     userLng=pos.coords.longitude;
     originCoords={lat:userLat,lng:userLng};
     document.getElementById('nav-from').value='我的位置';
+
+    // 在導航地圖顯示位置標記並移動到該位置
+    if(navMap){
+      if(navUserMarker) navMap.removeLayer(navUserMarker);
+      const icon=L.divIcon({className:'',iconSize:[24,24],iconAnchor:[12,12],
+        html:`<div class="mk mk-user" style="width:24px;height:24px;font-size:9px">我</div>`});
+      navUserMarker=L.marker([userLat,userLng],{icon}).addTo(navMap);
+      navMap.setView([userLat,userLng],15,{animate:true});
+    }
   },err=>{alert('無法取得位置');});
 }
 
@@ -714,8 +723,10 @@ async function calcRoute(type){
 
   initNavMap();
   setTimeout(()=>navMap.invalidateSize(),50);
-  document.getElementById('tab-fast').classList.toggle('on',type==='fast');
-  document.getElementById('tab-safe').classList.toggle('on',type==='safe');
+  // 更新上方按鈕選中狀態
+  document.querySelector('.btn-fast').style.background = type==='fast' ? '#1557b0' : 'var(--blue)';
+  document.querySelector('.btn-safe').style.background = type==='safe' ? 'var(--green)' : '#fff';
+  document.querySelector('.btn-safe').style.color = type==='safe' ? '#fff' : 'var(--green)';
 
   // 有快取就直接切換，不重打API
   if(_routeCache){
@@ -901,19 +912,38 @@ function startNav(){
   if(!routeCoords){alert('請先規劃路線');return;}
   speak('開始導航，請依路線行駛');
   startVoiceTracking();
-  const btn=document.getElementById('btn-start');
-  if(btn){btn.textContent='導航中';btn.style.background='var(--green)';}
-  // 隱藏之前的錯誤訊息
-  const rb=document.getElementById('route-body');
-  if(rb && rb.innerHTML.includes('無法取得路線')) rb.innerHTML='';
+
+  // 隱藏底部 UI，地圖全螢幕
+  document.querySelector('.nav-sheet').style.display='none';
+
+  // 顯示結束導航按鈕
+  let endBtn = document.getElementById('nav-end-btn');
+  if(!endBtn){
+    endBtn = document.createElement('button');
+    endBtn.id = 'nav-end-btn';
+    endBtn.textContent = '結束導航';
+    endBtn.style.cssText = `
+      position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+      z-index:600;background:rgba(30,30,30,0.85);color:#fff;
+      border:none;border-radius:20px;padding:10px 28px;
+      font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer;
+    `;
+    endBtn.onclick = cancelNav;
+    document.querySelector('.nav-map-wrap').appendChild(endBtn);
+  }
+  endBtn.style.display = 'block';
+  rerouteLastTime = 0;
+  reroutingInProgress = false;
 }
+
 function cancelNav(){
   if(watchId){navigator.geolocation.clearWatch(watchId);watchId=null;}
   navL.forEach(l=>navMap.removeLayer(l));navL=[];
   routeCoords=null;currentRouteType=null;
   destCoords=null;
   _routeCache=null;
-  // 只有當出發地是手動輸入的才清掉，GPS定位的保留
+  reroutingInProgress=false;
+  rerouteLastTime=0;
   const fromVal=document.getElementById('nav-from').value.trim();
   if(fromVal!=='我的位置') originCoords=null;
   document.getElementById('nav-to').value='';
@@ -922,6 +952,11 @@ function cancelNav(){
   document.getElementById('voice-banner').classList.remove('show');
   const sr2=document.getElementById('nav-start-row');if(sr2)sr2.style.display='none';
   lastVoiceAlert={};
+
+  // 恢復底部 UI
+  document.querySelector('.nav-sheet').style.display='';
+  const endBtn=document.getElementById('nav-end-btn');
+  if(endBtn) endBtn.style.display='none';
 }
 
 // ── VOICE NAVIGATION ─────────────────────────────────────────────
@@ -963,22 +998,32 @@ function checkVoiceAlerts(lat,lng){
     if(d<=80 && d>0){
       lastVoiceAlert[key]=now;
       const lbl=lvlLbl(n);
-      speak(`前方${Math.round(d)}公尺，${n.name}，${lbl}，請減速注意`);
+      speak(`前方${Math.round(d)}公尺，${lbl}路口，請減速注意`);
     }
   });
 }
 
+let rerouteLastTime = 0;
+let reroutingInProgress = false;
+
 function checkReroute(lat,lng){
   if(!routeCoords) return;
+  if(reroutingInProgress) return;
+  const now = Date.now();
+  if(now - rerouteLastTime < 15000) return;
   const nearest=routeCoords.reduce((best,[rlat,rlng])=>{
     const d=dist2D(lat,lng,rlat,rlng);
     return d<best.d?{d,lat:rlat,lng:rlng}:best;
   },{d:Infinity});
-  if(nearest.d>80){
-    // user deviated from route
+  if(nearest.d > 120){
+    rerouteLastTime = now;
+    reroutingInProgress = true;
     speak('路線已更新，正在為您重新規劃安全路徑');
     originCoords={lat,lng};
-    setTimeout(()=>calcRoute(currentRouteType||'safe'),1500);
+    setTimeout(()=>{
+      calcRoute(currentRouteType||'safe');
+      setTimeout(()=>{ reroutingInProgress=false; }, 5000);
+    }, 1500);
   }
 }
 
@@ -993,7 +1038,7 @@ function startVoiceTracking(){
       const icon=L.divIcon({className:'',iconSize:[24,24],iconAnchor:[12,12],
         html:`<div class="mk mk-user" style="width:24px;height:24px;font-size:9px">我</div>`});
       navUserMarker=L.marker([lat,lng],{icon}).addTo(navMap);
-      navMap.setView([lat,lng], navMap.getZoom(), {animate:true});
+      navMap.panTo([lat,lng], {animate:true});
       checkVoiceAlerts(lat,lng);
       checkReroute(lat,lng);
     },
